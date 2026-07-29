@@ -1,247 +1,661 @@
 <!DOCTYPE html>
 2
-<html>
+<html lang="en">
 3
-<head>
+ 
 4
-<meta charset="UTF-8">
+<head>
 5
-<title>Vuori Compliance Control Tower</title>
+<meta charset="UTF-8">
 6
- 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 7
-<style>
+ 
 8
- 
+<title>Vuori Compliance Control Tower</title>
 9
-body{
+ 
 10
-font-family:Arial;
+<style>
 11
-background:#f5f5f5;
+ 
 12
-margin:0;
+*{
 13
-}
+margin:0;
 14
- 
+padding:0;
 15
-.header{
+box-sizing:border-box;
 16
-background:#000;
+font-family:Arial,sans-serif;
 17
-color:white;
+}
 18
-padding:30px;
+ 
 19
-}
+body{
 20
- 
+background:#f4f7fa;
 21
-.kpi-container{
+color:#333;
 22
-display:flex;
+}
 23
-gap:20px;
+ 
 24
-padding:20px;
+.header{
 25
-flex-wrap:wrap;
+background:#111827;
 26
-}
+color:white;
 27
- 
+padding:30px 50px;
 28
-.card{
+}
 29
-background:white;
+ 
 30
-padding:20px;
+.header h1{
 31
-border-radius:10px;
+font-size:40px;
 32
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+font-weight:bold;
 33
-width:250px;
+}
 34
-}
+ 
 35
- 
+.header p{
 36
-.section{
+margin-top:10px;
 37
-background:white;
+color:#d1d5db;
 38
-margin:20px;
-39
-padding:20px;
-40
-border-radius:10px;
-41
 }
+39
+ 
+40
+.container{
+41
+padding:30px;
 42
- 
+}
 43
-</style>
+ 
 44
- 
+.section-title{
 45
-</head>
+font-size:24px;
 46
- 
+margin-bottom:20px;
 47
-<body>
+font-weight:bold;
 48
- 
+}
 49
-<div class="header">
+ 
 50
- 
+.kpi-grid{
 51
-<h1>Vuori Compliance Control Tower</h1>
+display:grid;
 52
- 
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 53
-<p>Executive Dashboard Prototype</p>
+gap:20px;
 54
- 
+margin-bottom:40px;
 55
-</div>
+}
 56
  
 57
-<div class="kpi-container">
+.card{
 58
- 
+background:white;
 59
-<div class="card">
+padding:25px;
 60
-<h3>Total RSL Tests</h3>
+border-radius:12px;
 61
-<h1>58</h1>
+box-shadow:0px 3px 10px rgba(0,0,0,0.08);
 62
-</div>
+}
 63
  
 64
-<div class="card">
+.card h3{
 65
-<h3>Pass Tests</h3>
+font-size:14px;
 66
-<h1>40</h1>
+color:#6b7280;
 67
-</div>
+margin-bottom:10px;
 68
- 
+}
 69
-<div class="card">
-70
-<h3>Fail Tests</h3>
-71
-<h1>10</h1>
-72
-</div>
-73
  
+70
+.card h1{
+71
+font-size:42px;
+72
+color:#111827;
+73
+}
 74
-<div class="card">
+ 
 75
-<h3>Vendors</h3>
+.green{
 76
-<h1>8</h1>
+border-left:8px solid #10b981;
 77
-</div>
+}
 78
  
 79
-</div>
+.red{
 80
- 
+border-left:8px solid #ef4444;
 81
-<div class="section">
+}
 82
  
 83
-<h2>Vendor Risk Index</h2>
+.blue{
 84
- 
+border-left:8px solid #3b82f6;
 85
-<ul>
+}
 86
-<li>MADISON 88 LTD</li>
+ 
 87
-<li>TOYOTA TSUSHO</li>
+.orange{
 88
-<li>TORAY SAKAI</li>
+border-left:8px solid #f59e0b;
 89
-</ul>
+}
 90
  
 91
-</div>
+.dashboard-row{
 92
- 
+display:grid;
 93
-<div class="section">
+grid-template-columns:1fr 1fr;
 94
- 
+gap:20px;
 95
-<h2>Chemistry Heatmap</h2>
+margin-bottom:30px;
 96
- 
+}
 97
-<ul>
+ 
 98
-<li>PFAS</li>
+.panel{
 99
-<li>CBs & CTs</li>
+background:white;
 100
-<li>Bisphenols</li>
+padding:20px;
 101
-<li>pH</li>
+border-radius:12px;
 102
-</ul>
+box-shadow:0px 3px 10px rgba(0,0,0,0.08);
 103
- 
+}
 104
-</div>
+ 
 105
- 
+.panel h2{
 106
-<div class="section">
+margin-bottom:15px;
 107
- 
+font-size:20px;
 108
-<h2>Ship Readiness</h2>
+}
 109
  
 110
-<p>Blocked Styles Dashboard</p>
+table{
 111
- 
+width:100%;
 112
-</div>
+border-collapse:collapse;
 113
- 
+}
 114
-<div class="section">
+ 
 115
- 
+table th{
 116
-<h2>eFiling Tracker</h2>
+background:#111827;
 117
- 
+color:white;
 118
-<p>Coming Soon</p>
+padding:10px;
 119
- 
+text-align:left;
 120
-</div>
+}
 121
  
 122
-</body>
+table td{
 123
- 
+padding:10px;
 124
+border-bottom:1px solid #ddd;
+125
+}
+126
+ 
+127
+.risk-high{
+128
+color:red;
+129
+font-weight:bold;
+130
+}
+131
+ 
+132
+.blocked{
+133
+color:red;
+134
+font-weight:bold;
+135
+}
+136
+ 
+137
+.footer{
+138
+margin-top:40px;
+139
+text-align:center;
+140
+color:#888;
+141
+padding:20px;
+142
+}
+143
+ 
+144
+</style>
+145
+ 
+146
+</head>
+147
+ 
+148
+<body>
+149
+ 
+150
+<div class="header">
+151
+ 
+152
+<h1>Vuori Compliance Control Tower</h1>
+153
+ 
+154
+<p>
+155
+Executive Dashboard | RSL | Physical Testing | Ship Readiness | eFiling
+156
+</p>
+157
+ 
+158
+</div>
+159
+ 
+160
+<div class="container">
+161
+ 
+162
+<h2 class="section-title">Executive Summary</h2>
+163
+ 
+164
+<div class="kpi-grid">
+165
+ 
+166
+<div class="card blue">
+167
+<h3>Total RSL Tests</h3>
+168
+<h1>58</h1>
+169
+</div>
+170
+ 
+171
+<div class="card green">
+172
+<h3>Passed</h3>
+173
+<h1>40</h1>
+174
+</div>
+175
+ 
+176
+<div class="card red">
+177
+<h3>Failed</h3>
+178
+<h1>10</h1>
+179
+</div>
+180
+ 
+181
+<div class="card orange">
+182
+<h3>Vendors</h3>
+183
+<h1>8</h1>
+184
+</div>
+185
+ 
+186
+</div>
+187
+ 
+188
+<div class="dashboard-row">
+189
+ 
+190
+<div class="panel">
+191
+ 
+192
+<h2>Vendor Risk Index</h2>
+193
+ 
+194
+<table>
+195
+ 
+196
+<tr>
+197
+<th>Vendor</th>
+198
+<th>Risk Score</th>
+199
+</tr>
+200
+ 
+201
+<tr>
+202
+<td>MADISON 88 LTD</td>
+203
+<td class="risk-high">100</td>
+204
+</tr>
+205
+ 
+206
+<tr>
+207
+<td>TOYOTA TSUSHO</td>
+208
+<td class="risk-high">100</td>
+209
+</tr>
+210
+ 
+211
+<tr>
+212
+<td>TORAY SAKAI</td>
+213
+<td>70</td>
+214
+</tr>
+215
+ 
+216
+<tr>
+217
+<td>MANTECO</td>
+218
+<td>30</td>
+219
+</tr>
+220
+ 
+221
+</table>
+222
+ 
+223
+</div>
+224
+ 
+225
+<div class="panel">
+226
+ 
+227
+<h2>Chemistry Failure Overview</h2>
+228
+ 
+229
+<ul>
+230
+ 
+231
+<li>PFAS / Fluorine</li>
+232
+<li>CBs & CTs</li>
+233
+<li>Bisphenols</li>
+234
+<li>pH</li>
+235
+<li>AP/APEOs</li>
+236
+ 
+237
+</ul>
+238
+ 
+239
+</div>
+240
+ 
+241
+</div>
+242
+ 
+243
+<div class="dashboard-row">
+244
+ 
+245
+<div class="panel">
+246
+ 
+247
+<h2>Ship Readiness</h2>
+248
+ 
+249
+<table>
+250
+ 
+251
+<tr>
+252
+<th>Style</th>
+253
+<th>Status</th>
+254
+</tr>
+255
+ 
+256
+<tr>
+257
+<td>V4123/V5097</td>
+258
+<td class="blocked">Blocked</td>
+259
+</tr>
+260
+ 
+261
+<tr>
+262
+<td>V8214</td>
+263
+<td class="blocked">Blocked</td>
+264
+</tr>
+265
+ 
+266
+<tr>
+267
+<td>V5033</td>
+268
+<td class="blocked">Blocked</td>
+269
+</tr>
+270
+ 
+271
+</table>
+272
+ 
+273
+</div>
+274
+ 
+275
+<div class="panel">
+276
+ 
+277
+<h2>eFiling Dashboard</h2>
+278
+ 
+279
+<table>
+280
+ 
+281
+<tr>
+282
+<th>Status</th>
+283
+<th>Count</th>
+284
+</tr>
+285
+ 
+286
+<tr>
+287
+<td>Ready</td>
+288
+<td>0</td>
+289
+</tr>
+290
+ 
+291
+<tr>
+292
+<td>Pending</td>
+293
+<td>0</td>
+294
+</tr>
+295
+ 
+296
+<tr>
+297
+<td>Blocked</td>
+298
+<td>0</td>
+299
+</tr>
+300
+ 
+301
+</table>
+302
+ 
+303
+</div>
+304
+ 
+305
+</div>
+306
+ 
+307
+<div class="panel">
+308
+ 
+309
+<h2>Management Action Items</h2>
+310
+ 
+311
+<ul>
+312
+<li>Review PFAS related failures</li>
+313
+<li>Monitor CBs & CTs trends</li>
+314
+<li>Track high risk vendors</li>
+315
+<li>Verify blocked styles before shipment</li>
+316
+<li>Continue eFiling implementation</li>
+317
+</ul>
+318
+ 
+319
+</div>
+320
+ 
+321
+<div class="footer">
+322
+ 
+323
+Vuori Compliance Control Tower Prototype v1.0
+324
+ 
+325
+</div>
+326
+ 
+327
+</div>
+328
+ 
+329
+</body>
+330
+ 
+331
 </html>
