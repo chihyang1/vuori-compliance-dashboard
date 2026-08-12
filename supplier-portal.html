@@ -399,5 +399,9 @@ const menu=document.querySelector('.menu'),links=document.querySelector('.links'
 const search=document.getElementById('search'),grid=document.getElementById('supplierGrid'),empty=document.getElementById('empty'),sort=document.getElementById('sort');let selected='ALL';
 function apply(){const q=search.value.trim().toLowerCase();let visible=0;[...grid.children].forEach(card=>{const okQ=!q||card.dataset.name.includes(q),okL=selected==='ALL'||card.dataset.letter===selected;card.classList.toggle('hidden',!(okQ&&okL));if(okQ&&okL)visible++});empty.style.display=visible?'none':'block'}
 search.addEventListener('input',apply);document.querySelectorAll('.letter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.letter').forEach(x=>x.classList.remove('active'));b.classList.add('active');selected=b.dataset.letter;apply()}));sort.addEventListener('change',()=>{[...grid.children].sort((a,b)=>sort.value==='az'?a.dataset.name.localeCompare(b.dataset.name):b.dataset.name.localeCompare(a.dataset.name)).forEach(x=>grid.appendChild(x));apply()});
-const modal=document.getElementById('modal');function openSupplier(name){document.getElementById('modalTitle').textContent=name;modal.classList.add('open')}document.getElementById('close').addEventListener('click',()=>modal.classList.remove('open'));modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
+const modal=document.getElementById('modal');function openSupplier(name){window.location.href =
+  'supplier-detail.html?supplier=' +
+encodeURIComponent(name);
+}
+document.getElementById('modalTitle').textContent=name;modal.classList.add('open')}document.getElementById('close').addEventListener('click',()=>modal.classList.remove('open'));modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
 </script></body></html>
