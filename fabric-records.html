@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabric Article Master Records</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#f5f2ea;color:#20211f;margin:0;padding:40px}
+h1{font-size:56px;margin:0}.subtitle{color:#66725a;font-size:22px;margin:8px 0 30px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}.kpi{background:#fff;padding:20px;border-radius:16px;text-align:center}.kpi-value{font-size:42px;font-weight:700}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}.toolbar input,.toolbar select{padding:12px;border:1px solid #ddd;border-radius:10px}.btn{background:#20211f;color:#fff;border:none;border-radius:10px;padding:12px 20px;cursor:pointer}
+.import-zone{background:#fff;border:2px dashed #bbb;border-radius:16px;padding:35px;text-align:center;margin-bottom:20px}
+.summary,table{background:#fff}.summary{padding:20px;border-radius:16px;margin-bottom:20px}
+table{width:100%;border-collapse:collapse;border-radius:16px;overflow:hidden}th{background:#20211f;color:#fff;padding:12px}td{padding:12px;border-bottom:1px solid #eee}.valid{color:green;font-weight:700}.expiring{color:#d89200;font-weight:700}.expired{color:red;font-weight:700}
+@media(max-width:768px){.kpis{grid-template-columns:repeat(2,1fr)}h1{font-size:40px}}
+</style>
+</head>
+<body>
+<h1>Fabric Article Master Records</h1>
+<div class="subtitle">布料 Article 主紀錄</div>
+<div class="kpis">
+<div class="kpi"><div class="kpi-value" id="recordCount">0</div>Records</div>
+<div class="kpi"><div class="kpi-value" id="validCount">0</div>Valid</div>
+<div class="kpi"><div class="kpi-value" id="expiringCount">0</div>Expiring</div>
+<div class="kpi"><div class="kpi-value" id="expiredCount">0</div>Expired</div>
+</div>
+<div class="toolbar">
+<input type="search" id="search" placeholder="Search Article #, Supplier, PO">
+<select id="statusFilter"><option value="all">All Statuses</option><option value="valid">Valid</option><option value="expiring">Expiring</option><option value="expired">Expired</option></select>
+<input type="file" id="csvFile" accept=".csv">
+<button class="btn" onclick="exportCSV()">Export CSV</button>
+</div>
+<div class="import-zone">
+<h2>Import CSV</h2>
+<p>Drag & Drop or Select CSV File</p>
+<p>Supported: SGS SMART Export / Fabric Master Export / PO Export</p>
+</div>
+<div class="summary"><h2>Supplier Summary</h2><div id="supplierSummary">No data imported.</div></div>
+<table>
+<thead><tr><th>Supplier</th><th>Article #</th><th>Composition</th><th>PO</th><th>RSL Report</th><th>Valid Until</th><th>Status</th></tr></thead>
+<tbody id="tableBody"></tbody>
+</table>
+<script>
+let data=[];
+document.getElementById('csvFile').addEventListener('change',e=>Papa.parse(e.target.files[0],{header:true,skipEmptyLines:true,complete:r=>{data=r.data;render();}}));
+function status(v){const d=(new Date(v)-new Date())/86400000;if(d<0)return'expired';if(d<=30)return'expiring';return'valid';}
+function render(){const tb=document.getElementById('tableBody');tb.innerHTML='';let v=0,e=0,x=0,s={};data.forEach(r=>{const st=status(r.Valid_Until||'');if(st==='valid')v++;else if(st==='expiring')e++;else x++;s[r.Supplier]=(s[r.Supplier]||0)+1;tb.innerHTML+=`<tr><td>${r.Supplier||''}</td><td>${r.Article||''}</td><td>${r.Composition||''}</td><td>${r.PO||''}</td><td>${r.RSL_Report||''}</td><td>${r.Valid_Until||''}</td><td class='${st}'>${st}</td></tr>`});document.getElementById('recordCount').textContent=data.length;document.getElementById('validCount').textContent=v;document.getElementById('expiringCount').textContent=e;document.getElementById('expiredCount').textContent=x;document.getElementById('supplierSummary').innerHTML=Object.entries(s).map(([k,v])=>`<div>${k}: ${v} Articles</div>`).join('');}
+function exportCSV(){if(!data.length)return;const csv=Papa.unparse(data);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='fabric_records_export.csv';a.click();}
+</script>
+</body></html>
