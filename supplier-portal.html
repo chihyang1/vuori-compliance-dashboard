@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<meta content="T2 Fabric Supplier Portal" name="description"/><title>T2 Fabric Supplier Portal</title>
+<style>
+:root{--ink:#20211f;--sage:#66725a;--cream:#f5f2ea;--white:#fff;--line:#ddd7cb;--gold:#b99a54;--red:#a7493f;--gray:#6e6b65;--shadow:0 14px 36px rgba(32,33,31,.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"Segoe UI","Noto Sans TC",Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.container{width:min(1180px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:100;background:rgba(32,33,31,.96);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{color:white;font-weight:800;letter-spacing:.08em}.brand small{display:block;color:#cbd3c5;font-size:.62rem;letter-spacing:.14em}.links{display:flex;gap:22px;list-style:none}.links a{color:#f3f0ea;font-size:.83rem;font-weight:700}.links a:hover{color:#d7dfcf}.menu{display:none;color:white;background:none;border:0;font-size:1.5rem;cursor:pointer}
+.hero{padding:78px 0 64px;background:linear-gradient(125deg,#20211f 0%,#30342d 68%,#66725a 100%);color:white}.eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.18em;color:#cbd3c5;margin-bottom:12px}h1{font-size:clamp(2.4rem,5vw,4.8rem);line-height:1;letter-spacing:-.045em;max-width:850px}h1 span{display:block;font-size:.42em;color:#dfe4da;margin-top:15px;letter-spacing:0}.hero p{max-width:760px;color:#dedfd9;font-size:1.06rem;margin-top:24px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;min-height:44px;padding:0 19px;border-radius:999px;align-items:center;justify-content:center;font-weight:750;font-size:.88rem;border:1px solid transparent}.primary{background:white;color:var(--ink)}.ghost{color:white;border-color:#8b9185;background:rgba(255,255,255,.06)}
+.metrics{margin-top:-28px;position:relative;z-index:2}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);background:white;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}.metric{padding:23px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;color:var(--sage);font-size:2rem;line-height:1}.metric span{display:block;color:var(--gray);font-size:.8rem;margin-top:8px}
+main{padding:76px 0 90px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(2rem,4vw,3rem);line-height:1.08;letter-spacing:-.035em}.section-head h2 span{display:block;color:var(--sage);font-size:.52em;margin-top:8px;letter-spacing:0}.section-head p{max-width:480px;color:var(--gray)}
+.toolbar{display:grid;grid-template-columns:1fr auto;gap:14px;background:white;border:1px solid var(--line);border-radius:17px;padding:14px;margin-bottom:24px;box-shadow:0 8px 24px rgba(32,33,31,.04)}.search{border:1px solid var(--line);border-radius:12px;padding:13px 15px;outline:none;background:#fbfaf7}.search:focus{border-color:var(--sage)}.filter{border:1px solid var(--line);border-radius:12px;padding:0 13px;background:#fbfaf7;color:var(--ink)}.alphabet{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:23px}.letter{width:32px;height:32px;border:1px solid var(--line);background:white;border-radius:50%;cursor:pointer;font-size:.78rem;font-weight:750;color:var(--gray)}.letter.active,.letter:hover{background:var(--sage);border-color:var(--sage);color:white}
+.supplier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.supplier-card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px rgba(32,33,31,.045);transition:.2s}.supplier-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.supplier-card.hidden{display:none}.supplier-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.supplier-initial{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e4e8df;color:var(--sage);font-weight:850}.status-pill{font-size:.68rem;background:#e5ebe1;color:var(--sage);border-radius:999px;padding:6px 9px}.supplier-card h3{margin:18px 0 7px;font-size:1.15rem;line-height:1.35;min-height:3.1em}.supplier-card h3 span{display:inline-block}.supplier-card p{color:var(--gray);font-size:.84rem;min-height:52px}.open-btn{width:100%;margin-top:18px;border-top:1px solid var(--line);padding-top:15px;text-align:left;font-weight:750;color:var(--sage);display:flex;justify-content:space-between}.open-btn:hover{color:#404a39}.empty{display:none;text-align:center;padding:50px;color:var(--gray)}
+.governance{margin-top:78px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:26px}.panel h2{font-size:1.45rem}.panel .zh{color:var(--sage);font-weight:700;margin-top:3px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}.field-grid span{padding:10px 12px;border-radius:10px;background:#f1eee7;font-size:.82rem}.key{margin-top:16px;color:var(--red);font-weight:800;font-size:.85rem}.rule-list{display:grid;gap:11px;margin-top:20px}.rule{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}.rule b{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--sage);color:white;font-size:.72rem}.rule:last-child b{background:var(--red)}.rule h3{font-size:.94rem}.rule p{color:var(--gray);font-size:.8rem;margin-top:2px}
+footer{background:#171815;color:#d5d4cf;padding:28px 0}.footer{display:flex;justify-content:space-between;gap:20px;font-size:.79rem}
+@media(max-width:950px){.links{position:absolute;top:72px;left:0;right:0;background:var(--ink);display:none;flex-direction:column;padding:22px}.links.open{display:flex}.menu{display:block}.metric-grid{grid-template-columns:repeat(2,1fr)}.supplier-grid{grid-template-columns:1fr 1fr}.governance{grid-template-columns:1fr}}
+@media(max-width:620px){.metric-grid,.supplier-grid,.field-grid{grid-template-columns:1fr}.metric{border-bottom:1px solid var(--line)}.section-head{display:block}.section-head p{margin-top:16px}.toolbar{grid-template-columns:1fr}.filter{height:46px}.footer{display:block;text-align:center}.footer div+div{margin-top:8px}}
+</style></head>
+<body>
+<header><div class="container nav"><a class="brand" href="index.html">PRODUCT INTEGRITY<small>T2 MATERIALS COMPLIANCE PLATFORM</small></a><button aria-label="Open menu" class="menu" type="button">☰</button><ul class="links"><li><a href="index.html">HOME</a></li><li><a href="supplier-portal.html">T2 SUPPLIER PORTAL</a></li><li><a href="index.html#academy">ACADEMY</a></li><li><a href="library.html">LIBRARY</a></li><li><a href="quiz.html">QUIZ CENTER</a></li></ul></div></header>
+<section class="hero"><div class="container"><div class="eyebrow">COMPLIANCE EXECUTION</div><h1>T2 Fabric Supplier Portal<span>T2 布料供應商入口</span></h1><p>Supplier-specific workspaces for ordered Fabric Articles, PO data, RSL evidence, SGS SMART links and compliance status.</p><div class="hero-actions"><a class="btn primary" href="#directory">Browse Supplier Directory</a><a class="btn ghost" href="index.html">Return Home</a></div></div></section>
+<div class="metrics"><div class="container metric-grid"><div class="metric"><strong id="supplierCount">71</strong><span>T2 Fabric Suppliers</span></div><div class="metric"><strong>365</strong><span>RSL report validity days</span></div><div class="metric"><strong>30</strong><span>Days before expiry alert</span></div><div class="metric"><strong>5</strong><span>Valid · Expiring · Missing · Expired · Failed</span></div></div></div>
+<main id="directory"><div class="container"><div class="section-head"><div><div class="eyebrow" style="color:var(--sage)">SUPPLIER DIRECTORY</div><h2>Approved T2 Fabric Suppliers<span>核准 T2 布料供應商目錄</span></h2></div><p>Search by supplier name or filter alphabetically. Every card links directly to the reusable supplier workspace.</p></div>
+<div class="toolbar"><input class="search" id="search" placeholder="Search supplier / 搜尋供應商" type="search"/><select class="filter" id="sort"><option value="az">Sort A–Z</option><option value="za">Sort Z–A</option></select></div>
+<div class="alphabet"><button class="letter active" data-letter="ALL" type="button">ALL</button><button class="letter" data-letter="A" type="button">A</button><button class="letter" data-letter="B" type="button">B</button><button class="letter" data-letter="C" type="button">C</button><button class="letter" data-letter="D" type="button">D</button><button class="letter" data-letter="E" type="button">E</button><button class="letter" data-letter="F" type="button">F</button><button class="letter" data-letter="G" type="button">G</button><button class="letter" data-letter="H" type="button">H</button><button class="letter" data-letter="I" type="button">I</button><button class="letter" data-letter="J" type="button">J</button><button class="letter" data-letter="K" type="button">K</button><button class="letter" data-letter="L" type="button">L</button><button class="letter" data-letter="M" type="button">M</button><button class="letter" data-letter="N" type="button">N</button><button class="letter" data-letter="O" type="button">O</button><button class="letter" data-letter="P" type="button">P</button><button class="letter" data-letter="Q" type="button">Q</button><button class="letter" data-letter="R" type="button">R</button><button class="letter" data-letter="S" type="button">S</button><button class="letter" data-letter="T" type="button">T</button><button class="letter" data-letter="U" type="button">U</button><button class="letter" data-letter="V" type="button">V</button><button class="letter" data-letter="W" type="button">W</button><button class="letter" data-letter="X" type="button">X</button><button class="letter" data-letter="Y" type="button">Y</button><button class="letter" data-letter="Z" type="button">Z</button></div>
+<div class="supplier-grid" id="supplierGrid"><article class="supplier-card" data-letter="A" data-name="advance sico / advance denim">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>Advance SICO</span><br/><span>Advance Denim</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Advance%20SICO%20%2F%20Advance%20Denim">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="advance / unifield">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>Advance</span><br/><span>Unifield</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Advance%20%2F%20Unifield">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="alpine / paradise">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>Alpine</span><br/><span>Paradise</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Alpine%20%2F%20Paradise">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="anita">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3>Anita</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Anita">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="arch">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3>Arch</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Arch">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="artistic milliners">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3>Artistic Milliners</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Artistic%20Milliners">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="asi">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3>ASI</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=ASI">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="A" data-name="asmara">
+<div class="supplier-top"><span class="supplier-initial">A</span><span class="status-pill">Workspace ready</span></div>
+<h3>Asmara</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Asmara">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="B" data-name="best pacific">
+<div class="supplier-top"><span class="supplier-initial">B</span><span class="status-pill">Workspace ready</span></div>
+<h3>Best Pacific</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Best%20Pacific">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="C" data-name="carvico">
+<div class="supplier-top"><span class="supplier-initial">C</span><span class="status-pill">Workspace ready</span></div>
+<h3>Carvico</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Carvico">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="C" data-name="chaintex">
+<div class="supplier-top"><span class="supplier-initial">C</span><span class="status-pill">Workspace ready</span></div>
+<h3>Chaintex</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Chaintex">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="C" data-name="chia her">
+<div class="supplier-top"><span class="supplier-initial">C</span><span class="status-pill">Workspace ready</span></div>
+<h3>Chia Her</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Chia%20Her">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="C" data-name="consinee">
+<div class="supplier-top"><span class="supplier-initial">C</span><span class="status-pill">Workspace ready</span></div>
+<h3>Consinee</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Consinee">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="D" data-name="delicacy">
+<div class="supplier-top"><span class="supplier-initial">D</span><span class="status-pill">Workspace ready</span></div>
+<h3>Delicacy</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Delicacy">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="D" data-name="delta">
+<div class="supplier-top"><span class="supplier-initial">D</span><span class="status-pill">Workspace ready</span></div>
+<h3>Delta</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Delta">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="E" data-name="eclat">
+<div class="supplier-top"><span class="supplier-initial">E</span><span class="status-pill">Workspace ready</span></div>
+<h3>Eclat</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Eclat">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="E" data-name="ekoten">
+<div class="supplier-top"><span class="supplier-initial">E</span><span class="status-pill">Workspace ready</span></div>
+<h3>Ekoten</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Ekoten">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="E" data-name="eurojersey">
+<div class="supplier-top"><span class="supplier-initial">E</span><span class="status-pill">Workspace ready</span></div>
+<h3>Eurojersey</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Eurojersey">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="E" data-name="everest">
+<div class="supplier-top"><span class="supplier-initial">E</span><span class="status-pill">Workspace ready</span></div>
+<h3>Everest</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Everest">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="F" data-name="far eastern">
+<div class="supplier-top"><span class="supplier-initial">F</span><span class="status-pill">Workspace ready</span></div>
+<h3>Far Eastern</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Far%20Eastern">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="F" data-name="flexfit">
+<div class="supplier-top"><span class="supplier-initial">F</span><span class="status-pill">Workspace ready</span></div>
+<h3>Flexfit</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Flexfit">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="F" data-name="formosa">
+<div class="supplier-top"><span class="supplier-initial">F</span><span class="status-pill">Workspace ready</span></div>
+<h3>Formosa</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Formosa">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="G" data-name="gb textile">
+<div class="supplier-top"><span class="supplier-initial">G</span><span class="status-pill">Workspace ready</span></div>
+<h3>GB Textile</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=GB%20Textile">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="G" data-name="global merino">
+<div class="supplier-top"><span class="supplier-initial">G</span><span class="status-pill">Workspace ready</span></div>
+<h3>Global Merino</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Global%20Merino">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="H" data-name="hannice">
+<div class="supplier-top"><span class="supplier-initial">H</span><span class="status-pill">Workspace ready</span></div>
+<h3>Hannice</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Hannice">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="H" data-name="hubo">
+<div class="supplier-top"><span class="supplier-initial">H</span><span class="status-pill">Workspace ready</span></div>
+<h3>Hubo</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Hubo">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="H" data-name="hungyen">
+<div class="supplier-top"><span class="supplier-initial">H</span><span class="status-pill">Workspace ready</span></div>
+<h3>HungYen</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=HungYen">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="H" data-name="hwear">
+<div class="supplier-top"><span class="supplier-initial">H</span><span class="status-pill">Workspace ready</span></div>
+<h3>Hwear</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Hwear">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="H" data-name="hyperbola">
+<div class="supplier-top"><span class="supplier-initial">H</span><span class="status-pill">Workspace ready</span></div>
+<h3>Hyperbola</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Hyperbola">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="I" data-name="ikar">
+<div class="supplier-top"><span class="supplier-initial">I</span><span class="status-pill">Workspace ready</span></div>
+<h3>IKAR</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=IKAR">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="I" data-name="indo taichen">
+<div class="supplier-top"><span class="supplier-initial">I</span><span class="status-pill">Workspace ready</span></div>
+<h3>Indo Taichen</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Indo%20Taichen">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="I" data-name="intai">
+<div class="supplier-top"><span class="supplier-initial">I</span><span class="status-pill">Workspace ready</span></div>
+<h3>Intai</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Intai">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="J" data-name="j&amp;b">
+<div class="supplier-top"><span class="supplier-initial">J</span><span class="status-pill">Workspace ready</span></div>
+<h3>J&amp;B</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=J%26B">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="J" data-name="jjamm / kfine">
+<div class="supplier-top"><span class="supplier-initial">J</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>JJAMM</span><br/><span>Kfine</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=JJAMM%20%2F%20Kfine">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="K" data-name="kingwhale">
+<div class="supplier-top"><span class="supplier-initial">K</span><span class="status-pill">Workspace ready</span></div>
+<h3>Kingwhale</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Kingwhale">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="K" data-name="kiyi">
+<div class="supplier-top"><span class="supplier-initial">K</span><span class="status-pill">Workspace ready</span></div>
+<h3>Kiyi</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Kiyi">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="L" data-name="labtex">
+<div class="supplier-top"><span class="supplier-initial">L</span><span class="status-pill">Workspace ready</span></div>
+<h3>Labtex</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Labtex">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="L" data-name="leejo">
+<div class="supplier-top"><span class="supplier-initial">L</span><span class="status-pill">Workspace ready</span></div>
+<h3>Leejo</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Leejo">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="L" data-name="lihe">
+<div class="supplier-top"><span class="supplier-initial">L</span><span class="status-pill">Workspace ready</span></div>
+<h3>LIHE</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=LIHE">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="M" data-name="manteco">
+<div class="supplier-top"><span class="supplier-initial">M</span><span class="status-pill">Workspace ready</span></div>
+<h3>Manteco</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Manteco">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="M" data-name="mas matrix">
+<div class="supplier-top"><span class="supplier-initial">M</span><span class="status-pill">Workspace ready</span></div>
+<h3>MAS Matrix</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=MAS%20Matrix">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="M" data-name="mas seamless">
+<div class="supplier-top"><span class="supplier-initial">M</span><span class="status-pill">Workspace ready</span></div>
+<h3>MAS Seamless</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=MAS%20Seamless">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="M" data-name="maxland">
+<div class="supplier-top"><span class="supplier-initial">M</span><span class="status-pill">Workspace ready</span></div>
+<h3>Maxland</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Maxland">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="M" data-name="millefili">
+<div class="supplier-top"><span class="supplier-initial">M</span><span class="status-pill">Workspace ready</span></div>
+<h3>Millefili</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Millefili">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="N" data-name="nice dyeing ecotextile texwinca">
+<div class="supplier-top"><span class="supplier-initial">N</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>Nice Dyeing</span><br/><span>Ecotextile</span><br/><span>TEXWINCA</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Nice%20Dyeing%20%2F%20Ecotextile%20%2F%20TEXWINCA">Open Supplier Workspace <span>→</span></a>
+</article>
+
+
+<article class="supplier-card" data-letter="N" data-name="nice gain">
+<div class="supplier-top"><span class="supplier-initial">N</span><span class="status-pill">Workspace ready</span></div>
+<h3>Nice Gain</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Nice%20Gain">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="N" data-name="nova fides">
+<div class="supplier-top"><span class="supplier-initial">N</span><span class="status-pill">Workspace ready</span></div>
+<h3>Nova Fides</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Nova%20Fides">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="N" data-name="n-star">
+<div class="supplier-top"><span class="supplier-initial">N</span><span class="status-pill">Workspace ready</span></div>
+<h3>N-Star</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=N-Star">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="O" data-name="olimpias">
+<div class="supplier-top"><span class="supplier-initial">O</span><span class="status-pill">Workspace ready</span></div>
+<h3>Olimpias</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Olimpias">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="P" data-name="pacific textiles">
+<div class="supplier-top"><span class="supplier-initial">P</span><span class="status-pill">Workspace ready</span></div>
+<h3>Pacific Textiles</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Pacific%20Textiles">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="P" data-name="polartec">
+<div class="supplier-top"><span class="supplier-initial">P</span><span class="status-pill">Workspace ready</span></div>
+<h3>Polartec</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Polartec">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="P" data-name="promax">
+<div class="supplier-top"><span class="supplier-initial">P</span><span class="status-pill">Workspace ready</span></div>
+<h3>Promax</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Promax">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="sabrina">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Sabrina</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Sabrina">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="sewang">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Sewang</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Sewang">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="shangtex">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Shangtex</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Shangtex">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="shin han">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Shin Han</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Shin%20Han">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="shinkong">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>ShinKong</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=ShinKong">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="sidonios">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Sidonios</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Sidonios">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="soco / harry trading">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3><span>SOCO</span><br/><span>Harry Trading</span></h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=SOCO%20%2F%20Harry%20Trading">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="S" data-name="solotex">
+<div class="supplier-top"><span class="supplier-initial">S</span><span class="status-pill">Workspace ready</span></div>
+<h3>Solotex</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Solotex">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="T" data-name="teijin">
+<div class="supplier-top"><span class="supplier-initial">T</span><span class="status-pill">Workspace ready</span></div>
+<h3>Teijin</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Teijin">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="T" data-name="tessile fiorentina">
+<div class="supplier-top"><span class="supplier-initial">T</span><span class="status-pill">Workspace ready</span></div>
+<h3>Tessile Fiorentina</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Tessile%20Fiorentina">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="T" data-name="toray">
+<div class="supplier-top"><span class="supplier-initial">T</span><span class="status-pill">Workspace ready</span></div>
+<h3>Toray</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Toray">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="T" data-name="toyota">
+<div class="supplier-top"><span class="supplier-initial">T</span><span class="status-pill">Workspace ready</span></div>
+<h3>Toyota</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Toyota">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="T" data-name="trend textile">
+<div class="supplier-top"><span class="supplier-initial">T</span><span class="status-pill">Workspace ready</span></div>
+<h3>Trend Textile</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Trend%20Textile">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="U" data-name="united berry">
+<div class="supplier-top"><span class="supplier-initial">U</span><span class="status-pill">Workspace ready</span></div>
+<h3>United Berry</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=United%20Berry">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="V" data-name="victoria">
+<div class="supplier-top"><span class="supplier-initial">V</span><span class="status-pill">Workspace ready</span></div>
+<h3>Victoria</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Victoria">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="W" data-name="wu luen">
+<div class="supplier-top"><span class="supplier-initial">W</span><span class="status-pill">Workspace ready</span></div>
+<h3>Wu Luen</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Wu%20Luen">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="X" data-name="xinao">
+<div class="supplier-top"><span class="supplier-initial">X</span><span class="status-pill">Workspace ready</span></div>
+<h3>XINAO</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=XINAO">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="Y" data-name="youngone">
+<div class="supplier-top"><span class="supplier-initial">Y</span><span class="status-pill">Workspace ready</span></div>
+<h3>Youngone</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Youngone">Open Supplier Workspace <span>→</span></a>
+</article>
+<article class="supplier-card" data-letter="Y" data-name="youngtex">
+<div class="supplier-top"><span class="supplier-initial">Y</span><span class="status-pill">Workspace ready</span></div>
+<h3>Youngtex</h3><p>Fabric Article records, PO data, RSL evidence and SGS SMART links.</p>
+<a class="open-btn" href="supplier-detail.html?supplier=Youngtex">Open Supplier Workspace <span>→</span></a>
+</article></div><div class="empty" id="empty">No supplier matched your search.</div>
+<section class="governance"><article class="panel"><h2>Fabric Article Master Record</h2><div class="zh">布料 Article 治理模型</div><div class="field-grid"><span>Supplier</span><span>Article #</span><span>Material Composition</span><span>PO #</span><span>RSL Report #</span><span>Report Date</span><span>Valid Until</span><span>SGS SMART Link</span><span>Compliance Status</span><span>Notes</span></div><div class="key">Primary record key: Supplier + Article #</div></article><article class="panel"><h2>Compliance Rule Engine</h2><div class="zh">合規規則引擎</div><div class="rule-list"><div class="rule"><b>01</b><div><h3>PO Coverage</h3><p>Every ordered Fabric Article requires a corresponding RSL report.</p></div></div><div class="rule"><b>02</b><div><h3>Validity</h3><p>RSL report must be within 365 days.</p></div></div><div class="rule"><b>03</b><div><h3>Early Warning</h3><p>Flag reports within 30 days of expiry.</p></div></div><div class="rule"><b>04</b><div><h3>Action</h3><p>Failed, missing or expired reports require action.</p></div></div></div></article></section>
+</div></main>
+<footer><div class="container footer"><div>Product Integrity &amp; T2 Materials Compliance Platform</div><div>Supplier Portal V3 · Internal Review</div></div></footer>
+<script>const supplierCount=document.getElementById('supplierCount');if(supplierCount){supplierCount.textContent=document.querySelectorAll('.supplier-card').length;}
+
+const menu=document.querySelector('.menu');const links=document.querySelector('.links');menu.addEventListener('click',()=>links.classList.toggle('open'));
+const search=document.getElementById('search');const grid=document.getElementById('supplierGrid');const empty=document.getElementById('empty');const sort=document.getElementById('sort');let selected='ALL';
+function apply(){const q=search.value.trim().toLowerCase();let visible=0;[...grid.children].forEach(card=>{const show=(!q||card.dataset.name.includes(q))&&(selected==='ALL'||card.dataset.letter===selected);card.classList.toggle('hidden',!show);if(show)visible++});empty.style.display=visible?'none':'block'}
+search.addEventListener('input',apply);document.querySelectorAll('.letter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.letter').forEach(x=>x.classList.remove('active'));button.classList.add('active');selected=button.dataset.letter;apply()}));
+sort.addEventListener('change',()=>{[...grid.children].sort((a,b)=>sort.value==='az'?a.dataset.name.localeCompare(b.dataset.name):b.dataset.name.localeCompare(a.dataset.name)).forEach(card=>grid.appendChild(card));apply()});
+</script>
+</body></html>
