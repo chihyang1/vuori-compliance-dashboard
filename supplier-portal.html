@@ -395,11 +395,45 @@ footer{background:#171815;color:#d5d4cf;padding:28px 0}.footer{display:flex;just
 </div><div class="notice">POC placeholder: authentication, supplier-specific permissions, PO data and SGS SMART integration are not active on this public GitHub Pages prototype.</div><div class="record-preview"><table><thead><tr><th>Article #</th><th>Material Composition</th><th>PO #</th><th>RSL Report #</th><th>Valid Until</th><th>Status</th></tr></thead><tbody><tr><td>Sample Article</td><td>Sample composition</td><td>Sample PO</td><td>Pending link</td><td>MM/DD/YYYY</td><td>In Process</td></tr></tbody></table></div></div></div>
 <footer><div class="container footer"><div>Product Integrity & T2 Materials Compliance Platform</div><div>Supplier Portal POC · Internal Review</div></div></footer>
 <script>
-const menu=document.querySelector('.menu'),links=document.querySelector('.links');menu.addEventListener('click',()=>links.classList.toggle('open'));
-const search=document.getElementById('search'),grid=document.getElementById('supplierGrid'),empty=document.getElementById('empty'),sort=document.getElementById('sort');let selected='ALL';
-function apply(){const q=search.value.trim().toLowerCase();let visible=0;[...grid.children].forEach(card=>{const okQ=!q||card.dataset.name.includes(q),okL=selected==='ALL'||card.dataset.letter===selected;card.classList.toggle('hidden',!(okQ&&okL));if(okQ&&okL)visible++});empty.style.display=visible?'none':'block'}
-search.addEventListener('input',apply);document.querySelectorAll('.letter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.letter').forEach(x=>x.classList.remove('active'));b.classList.add('active');selected=b.dataset.letter;apply()}));sort.addEventListener('change',()=>{[...grid.children].sort((a,b)=>sort.value==='az'?a.dataset.name.localeCompare(b.dataset.name):b.dataset.name.localeCompare(a.dataset.name)).forEach(x=>grid.appendChild(x));apply()});
-function openSupplier(name){window.location.href =
-  'supplier-detail.html?supplier=' +
-encodeURIComponent(name);
+const menu = document.querySelector('.menu');
+const links = document.querySelector('.links');
+menu.addEventListener('click', () => {
+links.classList.toggle('open');
+});
+const search = document.getElementById('search');
+const grid = document.getElementById('supplierGrid');
+const empty = document.getElementById('empty');
+const sort = document.getElementById('sort');
+let selected = 'ALL';
+function apply() {
+const query = search.value.trim().toLowerCase();
+let visible = 0;
+[...grid.children].forEach(card => {
+const matchesSearch =
+!query || card.dataset.name.includes(query);
+const matchesLetter =
+selected === 'ALL' ||
+card.dataset.letter === selected;
+const showCard = matchesSearch && matchesLetter;
+card.classList.toggle('hidden', !showCard);
+if (showCard) {
+visible++;
 }
+});empty.style.display = visible ? 'none' : 'block';
+}
+search.addEventListener('input', apply);document.querySelectorAll('.letter').forEach(button => {
+button.addEventListener('click', () => {
+document.querySelectorAll('.letter').forEach(item => {
+item.classList.remove('active');
+});button.classList.add('active');selected = button.dataset.letter;apply();
+});
+sort.addEventListener('change', () => {
+const cards = [...grid.children];cards.sort((a, b) => {
+if (sort.value === 'az') {
+return a.dataset.name.localeCompare(b.dataset.name);
+}
+return b.dataset.name.localeCompare(a.dataset.name);
+});cards.forEach(card => {grid.appendChild(card);});apply();});function openSupplier(name) {
+window.location.href ='supplier-detail.html?supplier=' +encodeURIComponent(name);
+}
+</script>
