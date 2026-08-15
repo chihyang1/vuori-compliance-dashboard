@@ -58,12 +58,12 @@
     .menu-toggle{display:none;border:0;background:transparent;color:white;font-size:1.55rem;cursor:pointer}
 
     .hero{
-      min-height:380px;height:42vh;max-height:460px;
+      min-height:520px;height:520vh;max-height:520px;
       position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)
     }
-    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.03);transition:opacity 1s ease,transform 6s ease}
-    .hero-slide.active{opacity:1;transform:scale(1)}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,21,19,.86) 0%,rgba(20,21,19,.55) 42%,rgba(20,21,19,.12) 78%),linear-gradient(0deg,rgba(20,21,19,.55),transparent 45%)}
+    .hero-slide{position:absolute;inset:0;background-size:contain;background-position:center center;background-repeat:no-repeat;opacity:0;transform:scale(1.03);transition:opacity 1s ease,transform 6s ease;
+}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(20,21,19,.45);}
     .hero-content{position:relative;z-index:2;color:white;padding:0 0 36px;width:min(1180px,calc(100% - 40px));margin:0 auto}
     .hero-kicker{font-size:.78rem;font-weight:800;letter-spacing:.2em;color:#d7dfcf;margin-bottom:16px}
     .hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:.98;max-width:820px;letter-spacing:-.045em}
@@ -180,8 +180,6 @@
 <li><a href="#home">HOME</a></li>
 <li><a href="supplier-portal.html">T2 SUPPLIER PORTAL</a></li>
 <li><a href="#academy">PRODUCT INTEGRITY ACADEMY</a></li>
-<li><a href="#chemical">CHEMICAL COMPLIANCE</a></li>
-<li><a href="#global">GLOBAL COMPLIANCE</a></li>
 <li><a href="#library">COMPLIANCE LIBRARY</a></li>
 <li><a href="quiz.html">QUIZ CENTER</a></li>
 </ul>
@@ -257,8 +255,8 @@
 <h2 class="section-title">Product Integrity Academy<span>產品誠信學院</span></h2>
 <div class="academy-grid">
 <article class="academy-card"><h3>Product Integrity</h3><div class="zh">產品誠信</div><ul><li>Awareness and shared mindset</li><li>Product safety fundamentals</li><li>Recall learning and case studies</li><li>Consumer trust and brand protection</li></ul></article>
-<article class="academy-card" id="chemical"><h3>Chemical Compliance</h3><div class="zh">化學合規</div><ul><li>RSL Foundations</li><li>PFAS Academy</li><li>Bisphenols Academy</li><li>California Proposition 65</li><li>RSL Quiz Center</li></ul></article>
-<article class="academy-card" id="global"><h3>Global Compliance</h3><div class="zh">全球合規</div><ul><li>Chemical Compliance</li><li>China GB Compliance</li><li>International Compliance</li><li>eFiling Center</li></ul></article>
+<h3>Chemical Compliance</h3><div class="zh">化學合規</div><ul><li>RSL Foundations</li><li>PFAS Academy</li><li>Bisphenols Academy</li><li>California Proposition 65</li><li>RSL Quiz Center</li></ul></article>
+<h3>Global Compliance</h3><div class="zh">全球合規</div><ul><li>Chemical Compliance</li><li>China GB Compliance</li><li>International Compliance</li><li>eFiling Center</li></ul></article>
 </div>
 </div>
 </section>
