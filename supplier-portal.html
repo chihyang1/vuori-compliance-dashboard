@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>T2 Supplier Portal</title>
+<script src='https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js'></script>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f5f2ea;color:#20211f}
+header{background:#20211f;color:#fff;padding:18px 24px} .container{max-width:1200px;margin:auto;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #ddd;padding:18px;border-radius:16px}
+.btn{display:inline-block;padding:10px 16px;background:#20211f;color:#fff;border-radius:999px;text-decoration:none}
+</style></head><body>
+<header><h2>T2 Supplier Portal</h2></header>
+<div class='container'>
+<h3 id='count'>Loading suppliers...</h3>
+<div id='grid' class='grid'></div>
+</div>
+<script>
+Papa.parse('Supplier_Portal_Key_Map.csv',{
+ download:true,header:true,skipEmptyLines:true,
+ complete:(r)=>{
+  const rows=r.data||[];
+  document.getElementById('count').textContent=`${rows.length} Connected Suppliers`;
+  const g=document.getElementById('grid');
+  g.innerHTML=rows.map(s=>`<div class='card'>
+   <h3>${s['Supplier Portal Key']||''}</h3>
+   <p>Articles: ${s['Article Count']||0}</p>
+   <p>Mapped: ${s['Mapped Article Count']||0} | Unmapped: ${s['Unmapped Article Count']||0}</p>
+   <a class='btn' href='supplier-detail.html?supplier=${encodeURIComponent(s['Supplier Portal Key']||'')}'>Open Workspace</a>
+  </div>`).join('');
+ }
+});
+</script></body></html>
