@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Product Integrity &amp; T2 Materials Compliance Platform" name="description"/>
+<title>Product Integrity &amp; T2 Compliance Platform</title>
+<style>
+    :root{
+      --ink:#20211f;
+      --sage:#66725a;
+      --sage-dark:#4f5946;
+      --sage-light:#e4e8df;
+      --sand:#d9d0c0;
+      --cream:#f5f2ea;
+      --white:#ffffff;
+      --rust:#b56d4a;
+      --gold:#b99a54;
+      --red:#a7493f;
+      --gray:#6e6b65;
+      --line:#ddd7cb;
+      --shadow:0 16px 40px rgba(32,33,31,.08);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Segoe UI","Noto Sans TC",Arial,sans-serif;
+      background:var(--cream);
+      color:var(--ink);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+
+    .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .eyebrow{
+      color:var(--sage);font-size:.76rem;font-weight:800;
+      letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px
+    }
+    .section-title{font-size:clamp(2rem,4vw,3.25rem);line-height:1.08;letter-spacing:-.035em}
+    .section-title span{display:block;color:var(--sage);font-size:.54em;margin-top:10px;letter-spacing:0}
+    .muted{color:var(--gray)}
+
+    .site-header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(32,33,31,.94);backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.1)
+    }
+    .nav-wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{color:white;font-weight:800;letter-spacing:.08em;white-space:nowrap}
+    .brand small{display:block;color:#cad0c4;font-size:.62rem;letter-spacing:.14em;margin-top:2px}
+    .nav-links{display:flex;align-items:center;gap:22px;list-style:none}
+    .nav-links a{color:#f4f1ea;font-size:.82rem;font-weight:650;white-space:nowrap;transition:.2s}
+    .nav-links a:hover,.nav-links a:focus{color:#d7dfcf}
+    .menu-toggle{display:none;border:0;background:transparent;color:white;font-size:1.55rem;cursor:pointer}
+
+    .hero{
+      min-height:360px;height:360px;max-height:360px;
+      position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)
+    }
+    .hero-slide{position:absolute;inset:0;background-size:contain;background-position:center center;background-repeat:no-repeat;opacity:0;transform:scale(1.03);transition:opacity 1s ease,transform 6s ease}
+    .hero-slide.active{opacity:1;transform:scale(1)}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(20,21,19,.25)}
+    .hero-content{position:relative;z-index:2;color:white;padding:0 0 40px;width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .hero-kicker{font-size:.78rem;font-weight:800;letter-spacing:.2em;color:#d7dfcf;margin-bottom:16px}
+    .hero h1{font-size:clamp(2rem,3vw,3.8rem);line-height:1.0;max-width:700px;letter-spacing:-.045em}
+    .hero h1 span{display:block;color:#e9e3d8;font-size:.42em;margin-top:10px;letter-spacing:-.01em}
+    .hero p{max-width:760px;color:#f1eee8;font-size:clamp(.95rem,1.5vw,1.1rem);margin-top:22px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;font-size:.9rem;font-weight:750;border:1px solid transparent;transition:.2s;cursor:pointer}
+    .btn-primary{background:white;color:var(--ink)}
+    .btn-primary:hover{background:#e8ece3;transform:translateY(-2px)}
+    .btn-ghost{color:white;border-color:rgba(255,255,255,.48);background:rgba(255,255,255,.06)}
+    .btn-ghost:hover{background:rgba(255,255,255,.15)}
+    .slide-dots{position:absolute;z-index:3;right:30px;bottom:30px;display:flex;gap:8px}
+    .slide-dot{width:28px;height:4px;border:0;border-radius:8px;background:rgba(255,255,255,.35);cursor:pointer}
+    .slide-dot.active{background:white}
+
+    .quick-strip{position:relative;z-index:4;margin-top:-18px}
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .quick-item{padding:18px 20px;border-right:1px solid var(--line);min-height:132px;transition:.2s}
+    .quick-item:last-child{border-right:0}
+    .quick-item:hover{background:#f9f8f4}
+    .quick-number{font-size:.72rem;font-weight:800;letter-spacing:.12em;color:var(--sage)}
+    .quick-item h3{font-size:1.12rem;margin:8px 0 5px}
+    .quick-item p{font-size:.86rem;color:var(--gray)}
+
+    section{padding:92px 0}
+    .intro-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:65px;align-items:center}
+    .intro-copy p{font-size:1.06rem;color:var(--gray);margin-top:24px;max-width:540px}
+    .vision-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .vision-card{background:white;border:1px solid var(--line);border-radius:18px;padding:25px;min-height:185px;box-shadow:0 10px 24px rgba(32,33,31,.05)}
+    .vision-card:nth-child(2){border-top:4px solid var(--rust)}
+    .vision-card:nth-child(1){border-top:4px solid var(--sage)}
+    .vision-card:nth-child(3){border-top:4px solid var(--gold)}
+    .vision-card b{font-size:.72rem;letter-spacing:.12em;color:var(--gray)}
+    .vision-card h3{margin:16px 0 9px;font-size:1.2rem}
+    .vision-card p{font-size:.88rem;color:var(--gray)}
+
+    .portal-section{background:var(--ink);color:white}
+    .portal-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}
+    .portal-head .section-title span{color:#cbd3c5}
+    .portal-head p{max-width:500px;color:#c8c7c2}
+    .portal-panel{background:#2a2b28;border:1px solid #41423e;border-radius:26px;padding:28px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px}
+    .portal-search{background:#1f201e;border:1px solid #464842;border-radius:18px;padding:24px}
+    .search-row{display:flex;gap:10px;margin:18px 0 20px}
+    .search-row input{flex:1;min-width:0;background:#2e302c;border:1px solid #4c5048;color:white;border-radius:12px;padding:13px 15px;outline:none}
+    .search-row input:focus{border-color:#9aaa8d}
+    .supplier-tags{display:flex;flex-wrap:wrap;gap:9px}
+    .supplier-tag{border:1px solid #535750;background:#30322e;color:#e9ece5;border-radius:999px;padding:8px 12px;font-size:.8rem}
+    .supplier-tag.hidden{display:none}
+    .portal-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .stat{border-radius:16px;padding:22px;background:#f3f0e8;color:var(--ink);min-height:134px}
+    .stat strong{display:block;font-size:2.25rem;line-height:1;margin-bottom:10px}
+    .stat span{font-size:.82rem;color:var(--gray)}
+    .stat.warning{background:#eee4cd}.stat.alert{background:#ead7d1}
+
+    .academy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+    .academy-card{background:white;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:0 10px 26px rgba(32,33,31,.05);position:relative;overflow:hidden}
+    .academy-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:5px;background:var(--sage)}
+    .academy-card:nth-child(2)::before{background:var(--rust)}
+    .academy-card:nth-child(3)::before{background:var(--gold)}
+    .academy-card h3{font-size:1.25rem;margin-bottom:4px}
+    .academy-card .zh{font-size:.9rem;color:var(--sage);font-weight:700;margin-bottom:18px}
+    .academy-card ul{list-style:none;display:grid;gap:10px;color:var(--gray);font-size:.9rem}
+    .academy-card li{padding-left:18px;position:relative}
+    .academy-card li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--sage)}
+
+    .library{background:#ebe7dd}
+    .library-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:36px}
+    .library-card{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;min-height:150px}
+    .library-card .num{font-size:.72rem;font-weight:800;color:var(--sage);letter-spacing:.12em}
+    .library-card h3{font-size:1rem;margin:14px 0 8px}
+    .library-card p{font-size:.82rem;color:var(--gray)}
+
+    .rules-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start;margin-top:35px}
+    .rule-list{display:grid;gap:13px}
+    .rule{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;background:white;border:1px solid var(--line);border-radius:16px;padding:18px}
+    .rule span{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--sage);color:white;font-size:.8rem;font-weight:800}
+    .rule:nth-child(4) span{background:var(--red)}
+    .rule h3{font-size:1rem;margin-bottom:4px}.rule p{font-size:.86rem;color:var(--gray)}
+    .record-card{background:var(--ink);color:white;border-radius:22px;padding:28px}
+    .record-card h3{font-size:1.35rem}.record-card .zh{color:#ced4c9;margin-top:3px}
+    .field-list{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:22px}
+    .field-list span{background:#30312e;border:1px solid #474843;border-radius:10px;padding:10px 12px;font-size:.8rem;color:#ece9e2}
+    .record-key{margin-top:18px;color:#f0cfc7;font-weight:750;font-size:.86rem}
+
+    .cta{padding:84px 0;background:var(--sage);color:white;text-align:center}
+    .cta h2{font-size:clamp(2rem,4vw,3.3rem);letter-spacing:-.03em}
+    .cta p{max-width:700px;margin:16px auto 28px;color:#eef1eb}
+
+    footer{background:#171815;color:#d7d6d1;padding:30px 0}
+    .footer-wrap{display:flex;justify-content:space-between;gap:20px;font-size:.8rem}
+
+    @media(max-width:1040px){
+      .nav-links{position:absolute;left:0;right:0;top:72px;background:#20211f;display:none;flex-direction:column;align-items:flex-start;padding:22px 24px;border-top:1px solid #3d3e39}
+      .nav-links.open{display:flex}.menu-toggle{display:block}
+      .quick-grid{grid-template-columns:repeat(2,1fr)}.quick-item:nth-child(2){border-right:0}.quick-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .intro-grid,.portal-panel,.rules-grid{grid-template-columns:1fr}
+      .academy-grid{grid-template-columns:1fr 1fr}.library-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:700px){
+      .hero{height:320px;min-height:320px;max-height:320px}.hero-content{padding-bottom:70px}.slide-dots{right:20px;bottom:20px}
+      .quick-grid,.vision-flow,.academy-grid,.portal-stats,.library-grid{grid-template-columns:1fr}
+      .quick-item{border-right:0;border-bottom:1px solid var(--line)}.quick-item:last-child{border-bottom:0}
+      section{padding:68px 0}.portal-head{display:block}.portal-head p{margin-top:18px}.field-list{grid-template-columns:1fr}
+      .footer-wrap{display:block;text-align:center}.footer-wrap div+div{margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="#home">PRODUCT INTEGRITY<small>T2 MATERIALS COMPLIANCE PLATFORM</small></a>
+<button aria-expanded="false" aria-label="Open menu" class="menu-toggle">☰</button>
+<ul class="nav-links">
+<li><a href="#home">HOME</a></li>
+<li><a href="supplier-portal.html">T2 SUPPLIER PORTAL</a></li>
+<li><a href="#academy">PRODUCT INTEGRITY ACADEMY</a></li>
+<li><a href="#library">COMPLIANCE LIBRARY</a></li>
+<li><a href="quiz.html">QUIZ CENTER</a></li>
+</ul>
+</div>
+</header>
+<main>
+<section aria-label="Lifestyle learning banner" class="hero" id="home">
+<div class="hero-slide active" style="background-image:url('images/Run.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Surf.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Hike.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Train.jpg')"></div>
+<div class="hero-slide" style="background-image:url('images/Chill.jpg')"></div>
+<div class="hero-content">
+<div class="hero-kicker">PRODUCT INTEGRITY &amp; T2 COMPLIANCE PLATFORM</div>
+<h1>Learn. Protect. Comply.<span>產品誠信與布料合規平台</span></h1>
+<p>Building awareness. Reducing risk. Enabling better products.<br/>建立意識 · 降低風險 · 打造更好的產品</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#academy">Start Learning</a>
+<a class="btn btn-ghost" href="supplier-portal.html">Open T2 Supplier Portal</a>
+</div>
+</div>
+<div aria-label="Hero slides" class="slide-dots"></div>
+</section>
+<div class="quick-strip">
+<div class="container quick-grid">
+<a class="quick-item" href="#academy"><span class="quick-number">01 · EDUCATION</span><h3>Product Integrity Academy</h3><p>Awareness, safety, recall learning and brand protection.</p></a>
+<a class="quick-item" href="#library"><span class="quick-number">02 · KNOWLEDGE</span><h3>Compliance Library</h3><p>Curated learning materials organized by business priority.</p></a>
+<a class="quick-item" href="supplier-portal.html"><span class="quick-number">03 · EXECUTION</span><h3>T2 Supplier Portal</h3><p>Supplier-specific Article, PO and RSL evidence records.</p></a>
+<a class="quick-item" href="#rules"><span class="quick-number">04 · GOVERNANCE</span><h3>Compliance Rule Engine</h3><p>365-day validity, 30-day alert and action status.</p></a>
+</div>
+</div>
+<section>
+<div class="container intro-grid">
+<div class="intro-copy">
+<div class="eyebrow">ONE PLATFORM</div>
+<h2 class="section-title">From knowledge to verifiable compliance<span>將知識轉化為可驗證的 Article 層級合規</span></h2>
+<p>The platform connects education, evidence and control so teams can learn, find the right information, verify Fabric Article coverage and act on compliance gaps.</p>
+</div>
+<div class="vision-flow">
+<article class="vision-card"><b>EDUCATION</b><h3>Academy</h3><p>Product Integrity, Chemical Compliance, Global Compliance and quizzes.</p></article>
+<article class="vision-card"><b>EXECUTION</b><h3>Supplier Portal</h3><p>T2 supplier workspaces, Fabric Articles, PO data and SGS SMART links.</p></article>
+<article class="vision-card"><b>GOVERNANCE</b><h3>Rule Engine</h3><p>Validity control, expiry alerts and required actions.</p></article>
+</div>
+</div>
+</section>
+<section class="portal-section" id="portal">
+<div class="container">
+<div class="portal-head">
+<div><div class="eyebrow" style="color:#cbd3c5">COMPLIANCE EXECUTION</div><h2 class="section-title">T2 Fabric Supplier Portal<span>T2 布料供應商入口</span></h2></div>
+<p>Each approved supplier is designed to access its own workspace for ordered Fabric Articles, RSL evidence and compliance status.</p>
+</div>
+<div class="portal-panel">
+<div class="portal-search">
+<h3>Supplier Directory · 供應商目錄</h3>
+<div class="search-row"><input aria-label="Search supplier" id="supplierSearch" placeholder="Search supplier / 搜尋供應商" type="search"/></div>
+<div class="supplier-tags" id="supplierTags">
+<span class="supplier-tag">Toray</span><span class="supplier-tag">Manteco</span><span class="supplier-tag">Far Eastern</span><span class="supplier-tag">Eclat</span><span class="supplier-tag">Teijin</span><span class="supplier-tag">Carvico</span><span class="supplier-tag">Polartec</span><span class="supplier-tag">Youngone</span><span class="supplier-tag">Toyota</span><span class="supplier-tag">Pacific Textiles</span>
+</div>
+<a class="btn btn-primary" href="supplier-portal.html" style="margin-top:24px">View All <span id="supplierButtonCount">0</span> Suppliers</a>
+</div>
+<div class="portal-stats">
+<div class="stat"><strong id="supplierCount">0</strong><span>T2 Fabric Suppliers<br/>T2 布料供應商</span></div>
+<div class="stat"><strong id="articleCount">0</strong><span>Fabric Articles<br/>布料 Article</span></div>
+<div class="stat warning"><strong id="validCount">0</strong><span>Valid Reports<br/>有效 RSL 報告</span></div>
+<div class="stat alert"><strong id="actionCount">0</strong><span>Action Required<br/>Expiring + Expired + Missing</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="academy">
+<div class="container">
+<div class="eyebrow">EDUCATION</div>
+<h2 class="section-title">Product Integrity Academy<span>產品誠信學院</span></h2>
+<div class="academy-grid">
+<article class="academy-card"><h3>Product Integrity</h3><div class="zh">產品誠信</div><ul><li>Awareness and shared mindset</li><li>Product safety fundamentals</li><li>Recall learning and case studies</li><li>Consumer trust and brand protection</li></ul></article>
+<article class="academy-card" id="chemical"><h3>Chemical Compliance</h3><div class="zh">化學合規</div><ul><li>RSL Foundations</li><li>PFAS Academy</li><li>Bisphenols Academy</li><li>California Proposition 65</li><li>RSL Quiz Center</li></ul></article>
+<article class="academy-card" id="global"><h3>Global Compliance</h3><div class="zh">全球合規</div><ul><li>Chemical Compliance</li><li>China GB Compliance</li><li>International Compliance</li><li>eFiling Center</li></ul></article>
+</div>
+</div>
+</section>
+<section class="library" id="library">
+<div class="container">
+<div class="eyebrow">SINGLE SOURCE OF TRUTH</div>
+<h2 class="section-title">Compliance Library<span>合規知識庫</span></h2>
+<div class="library-grid">
+<a class="library-card" href="library.html#chemical"><span class="num">01</span><h3>Chemical Compliance</h3><p>RSL · PFAS · Bisphenols · Prop 65</p></a>
+<a class="library-card" href="library.html#china"><span class="num">02</span><h3>China Compliance</h3><p>GB testing · Market entry · Reporting</p></a>
+<a class="library-card" href="library.html#global"><span class="num">03</span><h3>Global Compliance</h3><p>GPSR · REACH · Future EU programs</p></a>
+<a class="library-card" href="library.html#efiling"><span class="num">04</span><h3>eFiling Center</h3><p>Overview · Registry · CSV · Flammability</p></a>
+<a class="library-card" href="library.html#integrity"><span class="num">05</span><h3>Product Integrity</h3><p>Awareness · Safety · Recall cases</p></a>
+</div>
+</div>
+</section>
+<section id="rules">
+<div class="container">
+<div class="eyebrow">CONTROL LOGIC</div>
+<h2 class="section-title">Compliance Rule Engine<span>合規規則引擎</span></h2>
+<div class="rules-grid">
+<div class="rule-list">
+<article class="rule"><span>01</span><div><h3>PO Coverage</h3><p>Every ordered Fabric Article requires one corresponding RSL report.</p></div></article>
+<article class="rule"><span>02</span><div><h3>Validity</h3><p>The RSL report must be within 365 days of the report date.</p></div></article>
+<article class="rule"><span>03</span><div><h3>Early Warning</h3><p>Flag reports within 30 days of expiry.</p></div></article>
+<article class="rule"><span>04</span><div><h3>Action</h3><p>Failed, missing or expired reports require action.</p></div></article>
+</div>
+<aside class="record-card">
+<h3>Fabric Article Master Record</h3><p class="zh">布料 Article 治理模型</p>
+<div class="field-list"><span>Supplier</span><span>Article #</span><span>Material Composition</span><span>PO #</span><span>RSL Report #</span><span>Report Date</span><span>Valid Until</span><span>SGS SMART Link</span><span>Compliance Status</span><span>Notes</span></div>
+<p class="record-key">Primary record key: Supplier + Article #</p>
+</aside>
+</div>
+</div>
+</section>
+<section class="cta">
+<div class="container"><h2>Learn. Protect. Comply.</h2><p>One connected platform for education, supplier evidence and Fabric Article governance.</p><a class="btn btn-primary" href="supplier-portal.html">Enter T2 Supplier Portal</a></div>
+</section>
+</main>
+<footer>
+<div class="container footer-wrap"><div>Product Integrity &amp; T2 Materials Compliance Platform</div><div>Concept POC · Internal Review</div></div>
+</footer>
+<script>
+  const toggle=document.querySelector('.menu-toggle');
+  const nav=document.querySelector('.nav-links');
+  toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open);});
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+  const slides=[...document.querySelectorAll('.hero-slide')];
+  const dots=document.querySelector('.slide-dots');
+  let index=0, timer;
+  slides.forEach((_,i)=>{const b=document.createElement('button');b.className='slide-dot'+(i===0?' active':'');b.setAttribute('aria-label','Show slide '+(i+1));b.addEventListener('click',()=>showSlide(i));dots.appendChild(b)});
+  const dotButtons=[...document.querySelectorAll('.slide-dot')];
+  function showSlide(i){slides[index].classList.remove('active');dotButtons[index].classList.remove('active');index=i;slides[index].classList.add('active');dotButtons[index].classList.add('active');clearInterval(timer);timer=setInterval(nextSlide,5000)}
+  function nextSlide(){showSlide((index+1)%slides.length)}
+  timer=setInterval(nextSlide,5000);
+
+  const supplierSearch=document.getElementById('supplierSearch');
+  supplierSearch.addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();document.querySelectorAll('.supplier-tag').forEach(tag=>tag.classList.toggle('hidden',q&&!tag.textContent.toLowerCase().includes(q)))});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script><script>
+async function updateDashboardKPIs(){
+  const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+  try{
+    const portalResponse=await fetch('supplier-portal.html',{cache:'no-store'});
+    if(!portalResponse.ok)throw new Error('Supplier Portal HTTP '+portalResponse.status);
+    const portalHTML=await portalResponse.text();
+    const portalDoc=new DOMParser().parseFromString(portalHTML,'text/html');
+    const supplierCards=portalDoc.querySelectorAll('article.supplier-card').length;
+    setText('supplierCount',supplierCards);
+    setText('supplierButtonCount',supplierCards);
+  }catch(error){
+    console.error('Supplier KPI update failed:',error);
+    setText('supplierCount','--');
+    setText('supplierButtonCount','');
+  }
+  try{
+    let csvResponse=await fetch('Fabric_Records_Master_Upload_v3.csv',{cache:'no-store'});
+    if(!csvResponse.ok) csvResponse=await fetch('Fabric_Records_Master_Upload_v2.csv',{cache:'no-store'});
+    if(!csvResponse.ok)throw new Error('CSV HTTP '+csvResponse.status);
+    const csvText=await csvResponse.text();
+    const parsed=Papa.parse(csvText,{header:true,skipEmptyLines:true});
+    const rows=parsed.data;
+    let valid=0,expiring=0,expired=0,missing=0,review=0;
+    rows.forEach(row=>{
+      const status=(row['Compliance Status']||'').trim();
+      if(status==='Valid')valid++;
+      else if(status==='Expiring')expiring++;
+      else if(status==='Expired')expired++;
+      else if(status==='Missing RSL Report')missing++;
+      else if(status==='Review Required')review++;
+    });
+    setText('articleCount',rows.length);
+    setText('validCount',valid);
+    setText('actionCount',expiring+expired+missing+review);
+  }catch(error){
+    console.error('CSV KPI update failed:',error);
+    setText('articleCount','--');setText('validCount','--');setText('actionCount','--');
+  }
+}
+window.addEventListener('load',updateDashboardKPIs);
+</script></body>
+</html>
