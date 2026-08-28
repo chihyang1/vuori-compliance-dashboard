@@ -49,6 +49,34 @@ const parentSuppliers = [
             )
             .filter(Boolean)
     )
-].length;);setText('validCount',valid);setText('expiringCount',expiring);setText('missingCount',missing);setText('actionCount',action)}catch(error){console.error('Dashboard KPI update failed:',error);['supplierCount','articleCount','validCount','expiringCount','missingCount','actionCount'].forEach(id=>setText(id,'--'))}}
+].length;);let valid = 0;
+let expiring = 0;
+let missing = 0;
+let action = 0;
+fabricRows.forEach(row => {
+const status = String(
+row['Compliance Status'] ||
+row['Status'] ||
+''
+).trim();
+if(status === 'Valid'){
+valid++;
+}else{
+17
+action++;
+}
+if(status === 'Expiring'){
+expiring++;
+}
+if(status === 'No RSL Reports'){
+missing++;
+}
+});
+setText('supplierCount', parentSuppliers);
+setText('articleCount', fabricRows.length);
+setText('validCount', valid);
+setText('expiringCount', expiring);
+setText('missingCount', missing);
+setText('actionCount', action);}catch(error){console.error('Dashboard KPI update failed:',error);['supplierCount','articleCount','validCount','expiringCount','missingCount','actionCount'].forEach(id=>setText(id,'--'))}}
 window.addEventListener('load',updateDashboardKPIs);
 </script></body></html>
