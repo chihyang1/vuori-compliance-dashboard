@@ -79,6 +79,30 @@ setText('validCount', valid);
 setText('expiringCount', expiring);
 setText('missingCount', missing);
 setText('actionCount', action);
-                                                                                                                                                                                                                                                                               }catch(error){console.error('Dashboard KPI update failed:',error);['supplierCount','articleCount','validCount','expiringCount','missingCount','actionCount'].forEach(id=>setText(id,'--'))}}
-window.addEventListener('load',updateDashboardKPIs);
+
+}catch(error){
+
+console.error(
+
+'Dashboard KPI update failed:',
+
+error
+);
+ 
+[
+'supplierCount',
+'articleCount',
+'validCount',
+'expiringCount',
+'missingCount',
+'actionCount'
+].forEach(id=>setText(id,'--'));
+}
+ 
+}
+
+window.addEventListener(
+'load',
+updateDashboardKPIs
+);
 </script></body></html>
