@@ -1,0 +1,6 @@
+# Query: Review affected records.
+
+1 result - 1 file
+
+efiling.html:
+  46: function renderQuality(){const items=qualityItems();document.getElementById('qualityCards').innerHTML=items.map(x=>`<div class="quality"><strong>${x.rows.length}</strong><h3>${esc(x.name)}</h3><p>${x.rows.length?'Review the records.':'No exception found.'}</p></div>`).join('');const exceptions=[];items.forEach(x=>x.rows.forEach(r=>exceptions.push({...r,'Quality Issue':x.name})));simpleTable('qualityTable',exceptions,['Quality Issue','Version ID','Primary Product ID','Product Name (Model)','Manufacturer Name','Lab 1 Test Report ID'])}
