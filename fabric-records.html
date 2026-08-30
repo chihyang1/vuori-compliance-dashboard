@@ -78,7 +78,7 @@ $('createCase').onclick=()=>{const c=collect();if(!c.report||!c.reportDate||!c.s
 async function sha256(v){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));return[...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join('')}function showProtected(){if(localStorage.getItem(REMEMBER_KEY)){const x=JSON.parse(localStorage.getItem(REMEMBER_KEY));if(x.expires>Date.now()){localStorage.setItem(AUTH_KEY,'yes')}else{localStorage.removeItem(REMEMBER_KEY);localStorage.removeItem(AUTH_KEY)}}$('accessGate').style.display='none';$('protectedContent').style.display='block';if(!dataLoaded){dataLoaded=true;load()}}async function unlock(){if(await sha256($('accessPassword').value)!==PASSWORD_HASH){$('accessError').textContent='Incorrect password';$('accessPassword').select();return}$('accessError').textContent='';sessionStorage.setItem(AUTH_KEY,'yes');if($('rememberDevice').checked){localStorage.setItem(AUTH_KEY,'yes');localStorage.setItem(REMEMBER_KEY,JSON.stringify({expires:Date.now()+30*24*60*60*1000}))}showProtected()}$('accessButton').onclick=unlock;$('accessPassword').onkeydown=e=>{if(e.key==='Enter')unlock()};$('logoutButton').onclick=()=>{sessionStorage.removeItem(AUTH_KEY);localStorage.removeItem(AUTH_KEY);localStorage.removeItem(REMEMBER_KEY);location.reload()};if(sessionStorage.getItem(AUTH_KEY)==='yes'||localStorage.getItem(AUTH_KEY)==='yes')showProtected();
 </script>
 
-<script src="sgs-rsl-v37.js"></script>
+<script src="sgs-rsl-v38.js"></script>
 
 </body>
 </html>
