@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SGS Parser Regression Lab</title>
+<style>
+:root{--ink:#1f211f;--olive:#59644e;--paper:#f5f2e9;--card:#fff;--line:#d9d4c8;--pass:#25704b;--fail:#ad3d32;--review:#9a6b19;--muted:#6d6b63}
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 Arial,sans-serif;color:var(--ink);background:var(--paper)}
+header{background:#1d201d;color:#fff;padding:24px 30px;border-bottom:6px solid var(--olive)}header h1{margin:0;font-size:26px}header p{margin:6px 0 0;color:#d9ddcf}
+main{max-width:1500px;margin:auto;padding:24px}.toolbar,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px #0000000b}.toolbar{padding:18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.drop{border:2px dashed #b8b2a4;border-radius:12px;padding:20px;text-align:center;background:#faf8f2}.drop strong{display:block;font-size:17px}.drop small{color:var(--muted)}
+button,.button{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:11px 18px;font-weight:700;cursor:pointer}.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.kpi{padding:16px}.kpi b{font-size:28px;display:block}.kpi span{color:var(--muted)}
+.filters{display:flex;gap:10px;align-items:center;margin-bottom:12px}.filters input,.filters select{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}.filters input{min-width:280px}
+.tablewrap{overflow:auto}.card table{width:100%;border-collapse:collapse}.card th,.card td{text-align:left;padding:12px;border-bottom:1px solid #ece8df;vertical-align:top}.card th{position:sticky;top:0;background:#f7f5ef;z-index:1}.status{display:inline-block;padding:4px 9px;border-radius:999px;font-weight:700;font-size:12px}.PASS{background:#e3f2e9;color:var(--pass)}.FAIL{background:#fae5e2;color:var(--fail)}.REVIEW{background:#fff0ce;color:var(--review)}.PENDING,.RUNNING{background:#e9ecef;color:#555}.detail{white-space:pre-wrap;font-family:ui-monospace,monospace;font-size:12px;max-width:420px}.progress{height:10px;background:#ddd7cb;border-radius:99px;overflow:hidden;margin-top:12px}.progress>div{height:100%;width:0;background:var(--olive);transition:width .2s}.note{margin-top:14px;color:var(--muted);font-size:13px}.hidden{display:none!important}
+@media(max-width:900px){.toolbar{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}.filters{align-items:stretch;flex-direction:column}.filters input{min-width:0}}
+</style>
+</head>
+<body>
+<header><h1>SGS Parser Regression Lab</h1><p>Batch-test <b>sgs-rsl-v40.js</b> against known failure reports before deployment.</p></header>
+<main>
+<section class="toolbar">
+  <label class="drop" id="dropZone"><strong>Select a folder of SGS PDF reports</strong><small>Local processing only. PDFs are not uploaded.</small><input id="folderInput" type="file" accept="application/pdf,.pdf" webkitdirectory multiple hidden></label>
+  <div class="actions"><button id="selectBtn">Choose Folder</button><button id="runBtn" disabled>Run All</button><button id="stopBtn" class="secondary" disabled>Stop</button><button id="csvBtn" class="secondary" disabled>Export CSV</button><button id="jsonBtn" class="secondary" disabled>Export JSON</button></div>
+  <div style="grid-column:1/-1"><div id="runLabel">No files selected</div><div class="progress"><div id="bar"></div></div></div>
+</section>
+<section class="kpis">
+ <div class="card kpi"><b id="totalKpi">0</b><span>Total PDFs</span></div><div class="card kpi"><b id="passKpi">0</b><span>Passed</span></div><div class="card kpi"><b id="failKpi">0</b><span>Failed</span></div><div class="card kpi"><b id="reviewKpi">0</b><span>Needs Review</span></div><div class="card kpi"><b id="rateKpi">0%</b><span>Pass Rate</span></div>
+</section>
+<div class="filters"><input id="search" placeholder="Search file, report number, chemical..."><select id="statusFilter"><option value="ALL">All statuses</option><option>PASS</option><option>FAIL</option><option>REVIEW</option><option>PENDING</option></select><button id="clearBtn" class="secondary">Clear Results</button></div>
+<section class="card tablewrap"><table><thead><tr><th>Status</th><th>PDF</th><th>Report #</th><th>Expected</th><th>Actual</th><th>Difference</th><th>Time</th></tr></thead><tbody id="rows"><tr><td colspan="7">Choose a folder to begin.</td></tr></tbody></table></section>
+<p class="note">PASS requires the same normalized substance, result, limit and component. Unknown report numbers are marked REVIEW instead of FAIL. The page uses an isolated iframe for each PDF so every run starts with a clean V40 state.</p>
+<div id="harnesses" class="hidden"></div>
+</main>
+<script>
+const BASELINE={
+'F690101/LF-CTSAYSA25-09089':[['pH Value','7.7','4.0 - 7.5','1']],
+'F690101/LF-CTSAYSA24-14227':[['Bisphenol S (BPS), CAS 80-09-1','122 mg/kg','100 mg/kg','1']],
+'SL12400368353901TX':[['Bisphenol F (BPF), CAS 620-92-8','18.76 ppm','1 ppm','1']],
+'SL12500270938801TX-1':[['Total Organic Fluorine (TOF)','140 mg/kg','50 mg/kg','1']],
+'SL12500270938901TX':[['Total Organic Fluorine (TOF)','100 mg/kg','Not Detected','2'],['Total Organic Fluorine (TOF)','78.0 mg/kg','Not Detected','3']],
+'SL12500281244001TX':[['Total Organic Fluorine (TOF)','75 mg/kg','50 mg/kg','1']],
+'SL42404271346501TX':[['Bisphenol A (BPA), CAS 80-05-7','2.00 ppm','1 ppm','5'],['Bisphenol A (BPA), CAS 80-05-7','1.20 ppm','1 ppm','1+5']],
+'SL52405252010601TX':[['Bisphenol F (BPF), CAS 620-92-8','46.86 ppm','1 ppm','1']],
+'SL52405252279801TX':[['Bisphenol S (BPS), CAS 80-09-1','810.05 ppm','100 ppm','1']],
+'SL52405263069901TX':[['Bisphenol F (BPF), CAS 620-92-8','82.50 ppm','1 ppm','1']],
+'SL52405263071901TX':[['Bisphenol F (BPF), CAS 620-92-8','69.51 ppm','1 ppm','1']],
+'SL52415315329201TX':[['Bisphenol F (BPF), CAS 620-92-8','52.10 ppm','1 ppm','1']],
+'SL52425369852901TX':[['Bisphenol F (BPF), CAS 620-92-8','11.50 ppm','1 ppm','1a'],['Bisphenol F (BPF), CAS 620-92-8','7.37 ppm','1 ppm','1a+1c']],
+'SL52505272300001TX':[['Bisphenol F (BPF), CAS 620-92-8','10.60 ppm','1 ppm','1'],['Bisphenol F (BPF), CAS 620-92-8','4.38 ppm','1 ppm','1+2']],
+'SL52515314691301TX':[['Total Organic Fluorine (TOF)','321 mg/kg','50 mg/kg','1']],
+'TR2605610':[['Bisphenol F (BPF), CAS 620-92-8','17 mg/kg','1 mg/kg','A1']],
+'TX12034/2025/CR':[['Bisphenol S (BPS), CAS 80-09-1','203 ppm','100 ppm','1']],
+'TX21928/2025/AC':[['Bisphenol S (BPS), CAS 80-09-1','1600 ppm','100 ppm','1'],['Bisphenol S (BPS), CAS 80-09-1','798 ppm','100 ppm','2']],
+'TX21932/2025/AC':[['Bisphenol S (BPS), CAS 80-09-1','616 ppm','100 ppm','1'],['Bisphenol F (BPF), CAS 620-92-8','5.34 ppm','1 ppm','1']],
+'TX22151/2025/JU':[['Bisphenol S (BPS), CAS 80-09-1','1010 ppm','100 ppm','1']],
+'TX22512/2025/LI':[['Bisphenol S (BPS), CAS 80-09-1','222 ppm','100 ppm','1']],
+'TX22519/2025/LI':[['Bisphenol F (BPF), CAS 620-92-8','8.40 ppm','1 ppm','1+2']],
+'TX50759/2025/JU':[['Bisphenol S (BPS), CAS 80-09-1','6860 mg/kg','200 mg/kg','1']],
+'TX60810/2025/UL':[['Total AP + APEO','155 mg/kg','100 mg/kg','1']],
+'TX72209/2024/CT':[['Bisphenol F (BPF), CAS 620-92-8','4.88 ppm','1 ppm','1']],
+'TX72435/2024/LI':[['Bisphenol F (BPF), CAS 620-92-8','8.38 ppm','1 ppm','1']],
+'TX80687/2024/ER':[['Bisphenol F (BPF), CAS 620-92-8','75.4 ppm','1 ppm','1'],['Chromium (Cr), CAS 7440-47-3','3.53 mg/kg','2 mg/kg','1']],
+'TX81048/2024/PL':[['Bisphenol S (BPS), CAS 80-09-1','362 ppm','100 ppm','1']],
+'F690101/LF-CTSAYSA26-11198':[['6:2 FTOH, CAS 647-42-7','6.26 mg/kg','1 mg/kg','1'],['Total PFHxA-related Substances','6.26 mg/kg','1 mg/kg','1']],
+'F690101/LF-CTSAYSA26-11197':[['8:2 FTOH, CAS 678-39-7','2.01 mg/kg','1 mg/kg','1'],['Total PFOA-related Substances','2.01 mg/kg','1 mg/kg','1'],['10:2 FTOH, CAS 865-86-1','0.51 mg/kg','0.26 mg/kg','1'],['Total C9-C14 PFCA-related Substances','2.63 mg/kg','0.26 mg/kg','1']],
+'F690101/LF-CTSAYSA26-11395':[['8:2 FTOH, CAS 678-39-7','1.05 mg/kg','1 mg/kg','2 (BOTANICAL)'],['Total PFOA-related Substances','1.05 mg/kg','1 mg/kg','2 (BOTANICAL)'],['10:2 FTOH, CAS 865-86-1','0.30 mg/kg','0.26 mg/kg','2 (BOTANICAL)'],['Total C9-C14 PFCA-related Substances','0.64 mg/kg','0.26 mg/kg','1 (BLACK)'],['Total C9-C14 PFCA-related Substances','1.35 mg/kg','0.26 mg/kg','2 (BOTANICAL)'],['Total C9-C14 PFCA-related Substances','0.81 mg/kg','0.26 mg/kg','3 (INK)']]
+};
+const $=id=>document.getElementById(id);let tests=[],stop=false;
+const normalize=v=>String(v??'').toLowerCase().replace(/\s+/g,' ').trim();
+const key=x=>[x.substance||x[0],x.result||x[1],x.limit||x[2],x.component||x[3]||''].map(normalize).join('|');
+const show=a=>(a||[]).map(x=>`${x.substance||x[0]} | ${x.result||x[1]} | ${x.limit||x[2]}${(x.component||x[3])?` | C:${x.component||x[3]}`:''}`).join('\n')||'—';
+function harness(){const f=document.createElement('iframe');f.style.display='none';f.srcdoc=`<!doctype html><html><body><input id="pdfFile" type="file"><button id="analyzePdf"></button><input id="report"><input id="reportDate"><input id="supplier"><input id="article"><input id="po"><input id="lot"><div class="field"><input id="substance"></div><div class="field"><input id="result"></div><div class="field"><input id="limit"></div><input id="workflow"><div id="parseAlert" class="hidden"></div><div id="parseBar"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"><\/script><script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';<\/script><script src="sgs-rsl-v40.js?v=401"><\/script></body></html>`;$('harnesses').appendChild(f);return f}
+async function runOne(t){const start=performance.now(),f=harness();await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Harness load timeout')),15000);f.onload=()=>{clearTimeout(timer);resolve()}});const w=f.contentWindow,d=new DataTransfer();d.items.add(t.file);w.document.getElementById('pdfFile').files=d.files;w.document.getElementById('analyzePdf').click();await new Promise((resolve,reject)=>{let n=0;const x=setInterval(()=>{n++;const msg=w.document.getElementById('parseAlert')?.textContent||'';if(msg){clearInterval(x);resolve()}else if(n>300){clearInterval(x);reject(Error('Parser timeout'))}},100)});const report=w.document.getElementById('report').value.trim(),actual=JSON.parse(JSON.stringify(w.v40FailedItems||[])),expected=(BASELINE[report]||[]).map(x=>({substance:x[0],result:x[1],limit:x[2],component:x[3]||''}));f.remove();const e=new Set(expected.map(key)),a=new Set(actual.map(key)),missing=[...e].filter(x=>!a.has(x)),extra=[...a].filter(x=>!e.has(x));return{report,actual,expected,status:!expected.length?'REVIEW':(!missing.length&&!extra.length?'PASS':'FAIL'),difference:!expected.length?'No baseline for this report':[`Missing: ${missing.join('; ')||'none'}`,`Extra: ${extra.join('; ')||'none'}`].join('\n'),ms:Math.round(performance.now()-start)}}
+function render(){const q=normalize($('search').value),sf=$('statusFilter').value,view=tests.filter(t=>(sf==='ALL'||t.status===sf)&&(!q||normalize([t.file.name,t.report,show(t.actual),show(t.expected)].join(' ')).includes(q)));$('rows').innerHTML=view.length?view.map(t=>`<tr><td><span class="status ${t.status}">${t.status}</span></td><td>${esc(t.file.name)}</td><td>${esc(t.report||'—')}</td><td class="detail">${esc(show(t.expected))}</td><td class="detail">${esc(show(t.actual))}</td><td class="detail">${esc(t.difference||'—')}</td><td>${t.ms?`${t.ms} ms`:'—'}</td></tr>`).join(''):'<tr><td colspan="7">No matching results.</td></tr>';const total=tests.length,pass=tests.filter(x=>x.status==='PASS').length,fail=tests.filter(x=>x.status==='FAIL').length,review=tests.filter(x=>x.status==='REVIEW').length;$('totalKpi').textContent=total;$('passKpi').textContent=pass;$('failKpi').textContent=fail;$('reviewKpi').textContent=review;$('rateKpi').textContent=total?`${Math.round(pass/(pass+fail||1)*100)}%`:'0%';$('csvBtn').disabled=!total;$('jsonBtn').disabled=!total}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function runAll(){stop=false;$('runBtn').disabled=true;$('stopBtn').disabled=false;for(let i=0;i<tests.length;i++){if(stop)break;if(tests[i].status!=='PENDING')continue;tests[i].status='RUNNING';render();$('runLabel').textContent=`Running ${i+1} of ${tests.length}: ${tests[i].file.name}`;try{Object.assign(tests[i],await runOne(tests[i]))}catch(e){tests[i].status='FAIL';tests[i].difference=e.message;tests[i].ms=0}const done=tests.filter(x=>!['PENDING','RUNNING'].includes(x.status)).length;$('bar').style.width=`${done/tests.length*100}%`;render()}$('runBtn').disabled=false;$('stopBtn').disabled=true;$('runLabel').textContent=stop?'Stopped':'Completed'}
+function download(name,type,data){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function csv(){const cell=v=>`"${String(v??'').replace(/"/g,'""')}"`;return ['Status,PDF,Report,Expected,Actual,Difference,Milliseconds',...tests.map(t=>[t.status,t.file.name,t.report,show(t.expected),show(t.actual),t.difference,t.ms].map(cell).join(','))].join('\r\n')}
+$('selectBtn').onclick=()=>$('folderInput').click();$('folderInput').onchange=e=>{tests=[...e.target.files].filter(f=>/\.pdf$/i.test(f.name)).map(file=>({file,status:'PENDING',report:'',expected:[],actual:[],difference:'',ms:0}));$('runBtn').disabled=!tests.length;$('runLabel').textContent=`${tests.length} PDF(s) ready`;$('bar').style.width='0';render()};$('runBtn').onclick=runAll;$('stopBtn').onclick=()=>stop=true;$('search').oninput=render;$('statusFilter').onchange=render;$('clearBtn').onclick=()=>{tests=[];$('folderInput').value='';$('runBtn').disabled=true;$('bar').style.width='0';$('runLabel').textContent='No files selected';render()};$('csvBtn').onclick=()=>download('parser-regression-results.csv','text/csv;charset=utf-8','\uFEFF'+csv());$('jsonBtn').onclick=()=>download('parser-regression-results.json','application/json',JSON.stringify(tests.map(({file,...x})=>({pdf:file.name,...x})),null,2));
+</script>
+</body></html>
