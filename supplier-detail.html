@@ -305,13 +305,17 @@
       });
     }
 
-    function renderPendingList() {
-      const reviewQueue = pending
-        .map((record, index) => ({record, index}))
-        .filter(item => item.record.status === 'Pending Review')
-        .reverse();
+   function renderPendingList() {
 
-      byId('pendingCount').textContent = reviewQueue.length;
+const reviewQueue = pending
+     .map((record, index) => ({record, index}))
+     .filter(item =>
+         item.record.status === 'Pending Review' ||
+         item.record.status === 'Rejected'
+    )
+    .reverse();
+
+ byId('pendingCount').textContent = reviewQueue.length;
 
       if (!reviewQueue.length) {
         byId('pendingList').innerHTML = '<div class="empty-pending">No records are waiting for review.</div>';
