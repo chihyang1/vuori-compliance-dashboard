@@ -565,23 +565,7 @@ combine();
 closeReview();
 
 }
-      if (reviewIndex === null || !pending[reviewIndex]) return;
-      if (!byId('rRejectReason').value.trim()) {
-        alert('Rejection reason is required');
-        byId('rRejectReason').focus();
-        return;
-      }
-      if (!saveReviewChanges(true)) return;
-      const record = pending[reviewIndex];
-      record.status = 'Rejected';
-      record.reviewedBy = REVIEWER;
-      record.reviewDate = nowISO();
-      record.auditTrail.push({action:'Rejected', by:REVIEWER, date:record.reviewDate, reason:record.rejectReason});
-      persistPending();
-      combine();
-      closeReview();
-    }
-
+      
     byId('closeReviewBtn').onclick = closeReview;
     byId('saveReviewBtn').onclick = () => saveReviewChanges(false);
     byId('approveBtn').onclick = approvePending;
