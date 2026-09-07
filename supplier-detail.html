@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T2 Supplier Compliance Workspace</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    :root{--ink:#20211f;--sage:#66725a;--cream:#f5f2ea;--white:#fff;--line:#ddd7cb;--gray:#6e6b65;--amber:#ad7b34;--red:#a7493f;--shadow:0 14px 36px rgba(32,33,31,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Segoe UI,Noto Sans TC,Arial,sans-serif;background:var(--cream);color:var(--ink)}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1220px,calc(100% - 40px));margin:auto}
+    header{position:sticky;top:0;z-index:100;background:#20211f;color:#fff}
+    .nav{min-height:72px;display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:850;letter-spacing:.08em}
+    .brand small{display:block;color:#cbd3c5;font-size:.62rem}
+    .links{display:flex;gap:22px;list-style:none}
+    .links a{font-weight:750;font-size:.82rem}
+    .hero{padding:48px 0;background:linear-gradient(120deg,#20211f,#66725a);color:#fff}
+    .hero h1{font-size:clamp(2.5rem,6vw,5rem);margin:0}
+    .hero p{color:#dedfd9}
+    .metrics{margin-top:-22px}
+    .metric-grid{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .metric{padding:20px;border-right:1px solid var(--line)}
+    .metric strong{font-size:2rem;color:var(--sage)}
+    .metric span{display:block;color:var(--gray);font-size:.75rem}
+    main{padding:55px 0 80px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin-bottom:28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .btn,.upload,.export{padding:11px 17px;border-radius:10px;font-weight:800;cursor:pointer;font-family:inherit}
+    .upload{background:var(--sage);color:#fff}
+    .upload input{display:none}
+    .btn{border:1px solid var(--ink);background:#fff}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .btn-approve{background:#dbe8dc;border-color:#53705a;color:#29432f}
+    .btn-reject{background:#f4dddd;border-color:#a7493f;color:#7b2f28}
+    .toolbar{display:grid;grid-template-columns:1fr auto auto;gap:12px;background:#fff;padding:14px;border-radius:16px}
+    .toolbar input,.toolbar select{padding:12px;border:1px solid var(--line);border-radius:10px}
+    .export{background:var(--ink);color:#fff;border:0}
+    .table-wrap{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:auto}
+    table{width:100%;min-width:1120px;border-collapse:collapse;font-size:.79rem}
+    th{background:#ece8df;text-align:left;padding:13px 12px}
+    td{padding:13px 12px;border-bottom:1px solid #ece8df;vertical-align:middle}
+    .status{display:inline-flex;border-radius:999px;padding:6px 9px;font-weight:800;white-space:nowrap}
+    .active,.approved{background:#e3ece2;color:#416047}
+    .expiring{background:#f3e7cf;color:#895f22}
+    .missing,.expired,.rejected{background:#eedbd7;color:#884136}
+    .process{background:#dfe9ed;color:#3d6170}
+    .po-cell{max-width:220px}
+    .po-summary{display:flex;gap:8px;align-items:center;white-space:nowrap}
+    .po-toggle{border:0;background:#e9ece5;color:#405743;border-radius:999px;padding:4px 8px;font-weight:800;cursor:pointer}
+    .po-list{display:none;margin-top:8px;padding:10px;background:#f5f2ea;border-radius:9px;max-height:150px;overflow:auto}
+    .po-list.open{display:block}
+    .po-list span{display:block}
+    .instruction{max-width:260px;line-height:1.35}
+    .pending{background:#eee3d6;color:#7a4900;border-radius:999px;padding:6px 10px;font-weight:800}
+    .pending-list{margin-top:16px;display:grid;gap:8px}
+    .pending-row{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .pending-meta{color:var(--gray);font-size:.78rem;margin-top:4px}
+    .empty-pending{color:var(--gray);padding:10px 0}
+    .modal,.lock{display:none;position:fixed;inset:0;background:rgba(20,21,19,.82);z-index:1000;align-items:center;justify-content:center;padding:20px}
+    .card{background:#fff;border-radius:18px;padding:24px;width:min(720px,100%);max-height:92vh;overflow:auto}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .grid label{font-size:.75rem;font-weight:800}
+    .grid input,.grid textarea{width:100%;padding:10px;margin-top:5px;border:1px solid var(--line);border-radius:9px;font-family:inherit}
+    .grid textarea{min-height:88px;resize:vertical}
+    .wide{grid-column:1/-1}
+    .review-info{padding:10px 12px;background:#f5f2ea;border-radius:10px;margin:0 0 14px;color:var(--gray);font-size:.82rem;line-height:1.5}
+    .audit{margin-top:14px;padding:12px;background:#f8f6f1;border:1px solid var(--line);border-radius:10px;font-size:.78rem}
+    .audit strong{display:block;margin-bottom:6px}
+    .audit-item{padding:5px 0;border-top:1px solid #e8e2d7}
+    .audit-item:first-of-type{border-top:0}
+    .lock .card{width:min(420px,100%);text-align:center}
+    .lock input{width:100%;padding:12px;margin:15px 0;border:1px solid var(--line);border-radius:9px}
+    @media(max-width:800px){.links{display:none}.metric-grid{grid-template-columns:1fr 1fr}.toolbar{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.pending-row{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html">PRODUCT INTEGRITY<small>T2 MATERIALS COMPLIANCE PLATFORM</small></a>
+      <ul class="links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="supplier-portal.html">SUPPLIER PORTAL</a></li>
+        <li><a href="index.html#academy">ACADEMY</a></li>
+        <li><a href="library.html">LIBRARY</a></li>
+        <li><a href="quiz.html">QUIZ CENTER</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div>SUPPLIER COMPLIANCE WORKSPACE</div>
+      <h1 id="supplierTitle">SUPPLIER</h1>
+      <p>Fabric Article governance, PO coverage monitoring, RSL validity tracking and TRF # evidence links</p>
+    </div>
+  </section>
+
+  <div class="metrics">
+    <div class="container metric-grid">
+      <div class="metric"><strong id="mTotal">0</strong><span>Ordered Fabric Articles</span></div>
+      <div class="metric"><strong id="mValid">0</strong><span>Valid / Approved Reports</span></div>
+      <div class="metric"><strong id="mExpiring">0</strong><span>Expiring Within 30 Days</span></div>
+      <div class="metric"><strong id="mMissing">0</strong><span>Missing Reports</span></div>
+      <div class="metric"><strong id="mAction">0</strong><span>Actions Required</span></div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <section class="panel">
+        <h2>Supplier Data Submission</h2>
+        <p>Imported and manually entered records are saved in this browser as Pending Review.</p>
+        <div class="actions">
+          <label class="upload">Import CSV<input id="supplierCsv" type="file" accept=".csv"></label>
+          <button class="btn" id="openManual">Add Fabric Record</button>
+          <span class="pending">Pending Review: <span id="pendingCount">0</span></span>
+        </div>
+        <div class="pending-list" id="pendingList"></div>
+      </section>
+
+      <section>
+        <h2>Fabric Article Master Records</h2>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search Article #, composition, PO or RSL report">
+          <select id="statusFilter">
+            <option value="ALL">All Statuses</option>
+            <option>Valid</option>
+            <option>Approved</option>
+            <option>Expiring</option>
+            <option>Expired</option>
+            <option>No RSL Report</option>
+            <option>Review Required</option>
+            <option>Pending Review</option>
+            <option>Rejected</option>
+          </select>
+          <button class="export" id="exportBtn">Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Article #</th><th>Material Composition</th><th>PO #</th><th>RSL Report #</th><th>Report Date</th><th>Valid Until</th><th>Compliance Status</th><th>TRF #</th><th>Supplier Instruction</th>
+              </tr>
+            </thead>
+            <tbody id="body"></tbody>
+          </table>
+          <div id="empty" style="padding:40px;text-align:center">No Fabric Article records loaded</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="lock" id="lock">
+    <div class="card">
+      <h2>Workspace Access</h2>
+      <p>Enter the supplier access code</p>
+      <input id="code" type="password">
+      <button class="btn" id="unlock">Unlock Workspace</button>
+      <div id="lockError" style="color:#a7493f"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="card">
+      <h2>Add Fabric Record</h2>
+      <div class="grid">
+        <label>Article #<input id="fArticle"></label>
+        <label>Material Composition<input id="fComposition"></label>
+        <label>PO #<input id="fPO"></label>
+        <label>RSL Report #<input id="fReport"></label>
+        <label>Report Date<input id="fDate" type="date"></label>
+        <label>Valid Until<input id="fValid" type="date"></label>
+        <label>TRF #<input id="fSmart"></label>
+        <label class="wide">Notes<textarea id="fNotes"></textarea></label>
+      </div>
+      <div class="actions" style="justify-content:flex-end;margin-top:16px">
+        <button class="btn" id="cancel">Cancel</button>
+        <button class="export" id="save">Save Pending Record</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="reviewModal">
+    <div class="card">
+      <h2>Review Fabric Record</h2>
+      <p class="review-info" id="reviewInfo">Review and edit the submitted information before approval or rejection.</p>
+      <div class="grid">
+        <label>Article #<input id="rArticle"></label>
+        <label>Material Composition<input id="rComposition"></label>
+        <label>PO #<input id="rPO"></label>
+        <label>RSL Report #<input id="rReport"></label>
+        <label>Report Date<input id="rDate" type="date"></label>
+        <label>Valid Until<input id="rValid" type="date"></label>
+        <label>TRF #<input id="rTRF"></label>
+        <label class="wide">Review Notes<textarea id="rNotes"></textarea></label>
+        <label class="wide">Rejection Reason<textarea id="rRejectReason" placeholder="Required only when rejecting"></textarea></label>
+      </div>
+      <div class="audit" id="auditBox" style="display:none"><strong>Audit Trail</strong><div id="auditList"></div></div>
+      <div class="actions" style="justify-content:flex-end;margin-top:16px">
+        <button class="btn" id="closeReviewBtn">Cancel</button>
+        <button class="btn" id="saveReviewBtn">Save Changes</button>
+        <button class="btn btn-approve" id="approveBtn">Approve</button>
+        <button class="btn btn-reject" id="rejectBtn">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const supplier = (new URLSearchParams(location.search).get('supplier') || 'Supplier').trim();
+    const key = supplier.toUpperCase();
+    const STORE = 'vuoriPending_' + key.replace(/[^A-Z0-9]+/g, '_');
+    const REVIEWER = 'Vuori';
+
+    const byId = id => document.getElementById(id);
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+    const nowISO = () => new Date().toISOString();
+
+    byId('supplierTitle').textContent = key;
+
+    const lock = byId('lock');
+    const expected = key.replace(/[^A-Z0-9]+/g, '') + '2026';
+    if (sessionStorage.getItem('unlock_' + key) !== 'yes') lock.style.display = 'flex';
+
+    byId('unlock').onclick = () => {
+      if (byId('code').value.trim().toUpperCase() === expected) {
+        sessionStorage.setItem('unlock_' + key, 'yes');
+        lock.style.display = 'none';
+      } else {
+        byId('lockError').textContent = 'Incorrect access code';
+      }
+    };
+
+    let master = [];
+    let pending = JSON.parse(localStorage.getItem(STORE) || '[]');
+    let records = [];
+    let reviewIndex = null;
+
+    pending = pending.map(record => ({
+      ...record,
+      status: record.status || 'Pending Review',
+      notes: record.notes || '',
+      rejectReason: record.rejectReason || '',
+      auditTrail: Array.isArray(record.auditTrail) ? record.auditTrail : []
+    }));
+
+    function persistPending() {
+      localStorage.setItem(STORE, JSON.stringify(pending));
+    }
+
+    function getField(row, names) {
+      for (const name of names) {
+        if (row[name] !== undefined && row[name] !== null && String(row[name]).trim() !== '') return row[name];
+      }
+      return '';
+    }
+
+    function instruction(status) {
+      if (status === 'No RSL Report') return 'Submit RSL report';
+      if (status === 'Expired') return 'RSL report expired';
+      if (status === 'Expiring') return 'Renew RSL report before expiry';
+      if (status === 'Review Required') return 'Contact Vuori Compliance team';
+      if (status === 'Pending Review') return 'Pending Vuori review';
+      if (status === 'Approved') return 'Approved and ready for publishing';
+      if (status === 'Rejected') return 'Correct submission and resubmit';
+      return 'Select 3 darkest colors for composite testing';
+    }
+
+    function statusClass(status) {
+      if (status === 'Valid') return 'active';
+      if (status === 'Approved') return 'approved';
+      if (status === 'Expiring') return 'expiring';
+      if (status === 'Review Required' || status === 'Pending Review') return 'process';
+      if (status === 'Expired') return 'expired';
+      if (status === 'Rejected') return 'rejected';
+      return 'missing';
+    }
+
+    function po(value) {
+      const values = String(value || '').split(/\s*;\s*|\s*,\s*/).filter(Boolean);
+      const id = 'p' + Math.random().toString(36).slice(2);
+      if (!values.length) return '';
+      return `<div class="po-summary">${esc(values[0])}${values.length > 1 ? `<button class="po-toggle" data-id="${id}">+${values.length - 1} More</button>` : ''}</div>${values.length > 1 ? `<div class="po-list" id="${id}">${values.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}`;
+    }
+
+    function render(list) {
+      byId('body').innerHTML = list.map(record => `<tr>
+        <td>${esc(record.article)}</td>
+        <td>${esc(record.composition)}</td>
+        <td class="po-cell">${po(record.po)}</td>
+        <td>${esc(record.report)}</td>
+        <td>${esc(record.date)}</td>
+        <td>${esc(record.valid)}</td>
+        <td><span class="status ${statusClass(record.status)}">● ${esc(record.status)}</span></td>
+        <td>${esc(record.smart)}</td>
+        <td class="instruction">${esc(instruction(record.status))}</td>
+      </tr>`).join('');
+
+      byId('empty').style.display = list.length ? 'none' : 'block';
+      document.querySelectorAll('.po-toggle').forEach(button => {
+        button.onclick = () => byId(button.dataset.id).classList.toggle('open');
+      });
+    }
+
+    function renderPendingList() {
+      const reviewQueue = pending
+        .map((record, index) => ({record, index}))
+        .filter(item => item.record.status === 'Pending Review')
+        .reverse();
+
+      byId('pendingCount').textContent = reviewQueue.length;
+
+      if (!reviewQueue.length) {
+        byId('pendingList').innerHTML = '<div class="empty-pending">No records are waiting for review.</div>';
+        return;
+      }
+
+      byId('pendingList').innerHTML = reviewQueue.map(({record, index}) => `<div class="pending-row">
+        <div>
+          <b>${esc(record.article || 'Untitled article')}</b> · Pending Review
+          <div class="pending-meta">${esc(record.report || 'No RSL report #')} ${record.valid ? `· Valid until ${esc(record.valid)}` : ''}</div>
+        </div>
+        <button class="btn" data-review-index="${index}">Review</button>
+      </div>`).join('');
+
+      document.querySelectorAll('[data-review-index]').forEach(button => {
+        button.onclick = () => reviewPending(Number(button.dataset.reviewIndex));
+      });
+    }
+
+    function combine() {
+      records = [...master, ...pending];
+      const count = status => records.filter(record => record.status === status).length;
+      byId('mTotal').textContent = records.length;
+      byId('mValid').textContent = count('Valid') + count('Approved');
+      byId('mExpiring').textContent = count('Expiring');
+      byId('mMissing').textContent = count('No RSL Report');
+      byId('mAction').textContent = records.filter(record => ['Expiring','Expired','No RSL Report','Review Required','Pending Review','Rejected'].includes(record.status)).length;
+      renderPendingList();
+      apply();
+    }
+
+    function apply() {
+      const query = byId('search').value.toLowerCase();
+      const filter = byId('statusFilter').value;
+      render(records.filter(record => (!query || Object.values(record).join(' ').toLowerCase().includes(query)) && (filter === 'ALL' || record.status === filter)));
+    }
+
+    byId('search').oninput = apply;
+    byId('statusFilter').onchange = apply;
+
+    Papa.parse('Fabric Records Master.csv', {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: result => {
+        master = result.data
+          .filter(row => String(getField(row, ['Supplier Portal Key','T2 Supplier Name'])).trim().toUpperCase() === key)
+          .map(row => ({
+            article: getField(row, ['Article #','Fabric Article','Article Number']),
+            composition: getField(row, ['Material Composition','Composition']),
+            po: getField(row, ['PO #','PO Number']),
+            report: getField(row, ['RSL Report #','Report Number']),
+            date: getField(row, ['Report Date']),
+            valid: getField(row, ['Valid Until','Expiry Date','Expiration Date']),
+            status: getField(row, ['Compliance Status','Status']) || 'Review Required',
+            smart: getField(row, ['TRF #','SMART Link'])
+          }));
+        combine();
+      },
+      error: () => combine()
+    });
+
+    byId('supplierCsv').onchange = event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      Papa.parse(file, {
+        header: true,
+        skipEmptyLines: true,
+        complete: result => {
+          const importedAt = nowISO();
+          const imported = result.data
+            .filter(row => getField(row, ['Article #','Fabric Article','Article Number']))
+            .map(row => ({
+              article: getField(row, ['Article #','Fabric Article','Article Number']),
+              composition: getField(row, ['Material Composition','Composition']),
+              po: getField(row, ['PO #','PO Number']),
+              report: getField(row, ['RSL Report #','Report Number']),
+              date: getField(row, ['Report Date']),
+              valid: getField(row, ['Valid Until','Expiry Date','Expiration Date']),
+              status: 'Pending Review',
+              smart: getField(row, ['TRF #','SMART Link']),
+              notes: '',
+              rejectReason: '',
+              auditTrail: [{action:'Imported', by:key, date:importedAt}]
+            }));
+          pending.push(...imported);
+          persistPending();
+          event.target.value = '';
+          combine();
+        }
+      });
+    };
+
+    byId('openManual').onclick = () => byId('modal').style.display = 'flex';
+    byId('cancel').onclick = () => byId('modal').style.display = 'none';
+
+    byId('save').onclick = () => {
+      if (!byId('fArticle').value.trim()) return alert('Article # is required');
+      const createdAt = nowISO();
+      pending.push({
+        article: byId('fArticle').value.trim(),
+        composition: byId('fComposition').value.trim(),
+        po: byId('fPO').value.trim(),
+        report: byId('fReport').value.trim(),
+        date: byId('fDate').value,
+        valid: byId('fValid').value,
+        status: 'Pending Review',
+        smart: byId('fSmart').value.trim(),
+        notes: byId('fNotes').value.trim(),
+        rejectReason: '',
+        auditTrail: [{action:'Created manually', by:key, date:createdAt}]
+      });
+      persistPending();
+      ['fArticle','fComposition','fPO','fReport','fDate','fValid','fSmart','fNotes'].forEach(id => byId(id).value = '');
+      combine();
+      byId('modal').style.display = 'none';
+    };
+
+    function reviewPending(index) {
+      const record = pending[index];
+      if (!record) return;
+      reviewIndex = index;
+      byId('rArticle').value = record.article || '';
+      byId('rComposition').value = record.composition || '';
+      byId('rPO').value = record.po || '';
+      byId('rReport').value = record.report || '';
+      byId('rDate').value = record.date || '';
+      byId('rValid').value = record.valid || '';
+      byId('rTRF').value = record.smart || '';
+      byId('rNotes').value = record.notes || '';
+      byId('rRejectReason').value = record.rejectReason || '';
+      byId('reviewInfo').textContent = `Current status: ${record.status || 'Pending Review'}. Review and edit the submitted information before approval or rejection.`;
+      const trail = Array.isArray(record.auditTrail) ? record.auditTrail : [];
+      byId('auditBox').style.display = trail.length ? 'block' : 'none';
+      byId('auditList').innerHTML = trail.map(item => `<div class="audit-item">${esc(item.action)} · ${esc(item.by || '')} · ${esc(item.date || '')}</div>`).join('');
+      const canDecide = record.status === 'Pending Review';
+      byId('approveBtn').disabled = !canDecide;
+      byId('rejectBtn').disabled = !canDecide;
+      byId('reviewModal').style.display = 'flex';
+    }
+
+    function collectReviewValues() {
+      return {
+        article: byId('rArticle').value.trim(),
+        composition: byId('rComposition').value.trim(),
+        po: byId('rPO').value.trim(),
+        report: byId('rReport').value.trim(),
+        date: byId('rDate').value,
+        valid: byId('rValid').value,
+        smart: byId('rTRF').value.trim(),
+        notes: byId('rNotes').value.trim(),
+        rejectReason: byId('rRejectReason').value.trim()
+      };
+    }
+
+    function closeReview() {
+      reviewIndex = null;
+      byId('reviewModal').style.display = 'none';
+    }
+
+    function saveReviewChanges(keepOpen = false) {
+      if (reviewIndex === null || !pending[reviewIndex]) return false;
+      const values = collectReviewValues();
+      if (!values.article) {
+        alert('Article # is required');
+        return false;
+      }
+      const record = pending[reviewIndex];
+      const before = JSON.stringify({article:record.article,composition:record.composition,po:record.po,report:record.report,date:record.date,valid:record.valid,smart:record.smart,notes:record.notes,rejectReason:record.rejectReason});
+      const after = JSON.stringify(values);
+      Object.assign(record, values);
+      record.auditTrail = Array.isArray(record.auditTrail) ? record.auditTrail : [];
+      if (before !== after) record.auditTrail.push({action:'Edited during review', by:REVIEWER, date:nowISO()});
+      persistPending();
+      combine();
+      if (!keepOpen) closeReview();
+      return true;
+    }
+
+    function approvePending() {
+      if (reviewIndex === null || !pending[reviewIndex]) return;
+      if (!saveReviewChanges(true)) return;
+      const record = pending[reviewIndex];
+      record.status = 'Approved';
+      record.reviewedBy = REVIEWER;
+      record.reviewDate = nowISO();
+      record.rejectReason = '';
+      record.auditTrail.push({action:'Approved', by:REVIEWER, date:record.reviewDate});
+      persistPending();
+      combine();
+      closeReview();
+    }
+
+    function rejectPending() {
+      if (reviewIndex === null || !pending[reviewIndex]) return;
+      if (!byId('rRejectReason').value.trim()) {
+        alert('Rejection reason is required');
+        byId('rRejectReason').focus();
+        return;
+      }
+      if (!saveReviewChanges(true)) return;
+      const record = pending[reviewIndex];
+      record.status = 'Rejected';
+      record.reviewedBy = REVIEWER;
+      record.reviewDate = nowISO();
+      record.auditTrail.push({action:'Rejected', by:REVIEWER, date:record.reviewDate, reason:record.rejectReason});
+      persistPending();
+      combine();
+      closeReview();
+    }
+
+    byId('closeReviewBtn').onclick = closeReview;
+    byId('saveReviewBtn').onclick = () => saveReviewChanges(false);
+    byId('approveBtn').onclick = approvePending;
+    byId('rejectBtn').onclick = rejectPending;
+
+    [byId('modal'), byId('reviewModal')].forEach(modalElement => {
+      modalElement.addEventListener('click', event => {
+        if (event.target !== modalElement) return;
+        if (modalElement === byId('reviewModal')) closeReview();
+        else modalElement.style.display = 'none';
+      });
+    });
+
+    byId('exportBtn').onclick = () => {
+      const headers = ['Article #','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
+      const rows = records.map(record => [record.article,record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,instruction(record.status),record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
+      const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(new Blob(['\ufeff' + csv], {type:'text/csv'}));
+      link.href = url;
+      link.download = key + '_Fabric_Records.csv';
+      link.click();
+      URL.revokeObjectURL(url);
+    };
+
+    combine();
+  </script>
+</body>
+</html>
