@@ -1,4 +1,4 @@
-/* SGS RSL Parser V4.0.1 Official - integrated TR hotfix */
+/* SGS RSL Parser V4.1 Official - strengthened generic SGS table parser */
 (()=>{'use strict';
 const $=id=>document.getElementById(id),clean=v=>String(v??'').replace(/\u00a0/g,' ').replace(/[‐‑‒–—−]/g,'-').replace(/\s+/g,' ').trim();
 const esc=v=>clean(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
