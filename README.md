@@ -1,2 +1,2 @@
 # vuori-compliance-dashboard
-Vuori Compliance Control Tower POC
+Vuori Compliance Control Tower
