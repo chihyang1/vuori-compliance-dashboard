@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4G7RS6S2E"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V4G7RS6S2E');</script>
+<!-- Microsoft Clarity -->
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','yyf3xigl2q');</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Product Integrity Library</title>
@@ -25,5 +31,10 @@ footer{background:#171815;color:#d4d4cf;padding:24px;text-align:center;font-size
 <div class="card"><h2>eFiling Center</h2><div class="doc"><span>eFiling Overview Presentation</span><a href="academy/eFiling Overview Presentation.pdf" target="_blank">Open PDF</a></div><div class="doc"><span>eFiling Product Registry for Adding Collection</span><a href="academy/eFiling Product Registry for Adding Collection.pdf" target="_blank">Open PDF</a></div><div class="doc"><span>eFiling User Guide for CSV Upload</span><a href="academy/eFiling User Guide for CSV Upload.pdf" target="_blank">Open PDF</a></div><div class="doc"><span>Flammability Requirements Overview</span><a href="academy/Flammability Requirements Overview.pdf" target="_blank">Open PDF</a></div></div>
 </div></div></main>
 <footer>VUORI · Product Integrity Platform · Compliance Library</footer>
+
+<script>
+if(typeof gtag==='function'){gtag('event','library_open',{page_name:'Product Integrity Library'});}
+document.querySelectorAll('.doc a').forEach(a=>a.addEventListener('click',()=>{if(typeof gtag==='function'){gtag('event','library_document_open',{document_name:a.parentElement?.querySelector('span')?.textContent||'Document'});}}));
+</script>
 </body>
 </html>

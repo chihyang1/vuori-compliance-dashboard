@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4G7RS6S2E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V4G7RS6S2E');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyf3xigl2q");
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>T2 Supplier Compliance Workspace</title>
@@ -222,6 +235,9 @@
   <script>
     const supplier = (new URLSearchParams(location.search).get('supplier') || 'Supplier').trim();
     const key = supplier.toUpperCase();
+    if (typeof gtag === 'function') {
+      gtag('event', 'supplier_workspace_open', {supplier_name:key,page_name:document.title});
+    }
     const STORE = 'vuoriPending_' + key.replace(/[^A-Z0-9]+/g, '_');
     const REVIEWER = 'Vuori';
 
@@ -450,6 +466,9 @@
       const record = pending[index];
       if (!record) return;
       reviewIndex = index;
+      if (typeof gtag === 'function') {
+        gtag('event', 'trf_review_open', {supplier_name:key,article_number:record.article||'',trf_number:record.smart||''});
+      }
       byId('rArticle').value = record.article || '';
       byId('rComposition').value = record.composition || '';
       byId('rPO').value = record.po || '';
@@ -599,6 +618,9 @@ closeReview();
     });
 
     byId('exportBtn').onclick = () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'csv_download', {supplier_name:key,record_count:records.length});
+      }
       const headers = ['Article #','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
       const rows = records.map(record => [record.article,record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',instruction(record.status),record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
       const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');

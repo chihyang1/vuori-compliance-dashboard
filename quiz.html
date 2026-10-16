@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4G7RS6S2E"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js',new Date());
+gtag('config','G-V4G7RS6S2E');
+</script>
+<!-- Microsoft Clarity -->
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script','yyf3xigl2q');</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Vuori Product Integrity Academy | Quiz Center</title>
@@ -21,5 +32,16 @@ header{position:sticky;top:0;z-index:100;background:rgba(32,33,31,.98);border-bo
 <div class="quiz-card"><div class="badge">CHEMICAL TRENDS</div><h3>Section 2</h3><p>Deep dive into emerging chemical compliance topics.</p><ul><li>PFAS</li><li>Bisphenols</li><li>Formaldehyde</li><li>Chemical Risk Management</li><li>Emerging Regulations</li><li>Best Practices</li></ul><a class="btn" target="_blank" rel="noopener noreferrer" href="https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?origin=NeoPortalPage&subpage=design&id=BLJfSp2k90CSZSruuzcJXDdz5V5d0ktNiQTTjHyO-uJUOFE3TDZUUUdEQ1pXQzI3Sk1JOTY0M0dUSiQlQCN0PWcu">Start Quiz →</a></div>
 </div></div></section>
 <footer>VUORI · Product Integrity Platform · Quiz Center</footer>
+
+<script>
+if(typeof gtag==='function'){gtag('event','quiz_center_open',{page_name:'Quiz Center'});} 
+document.querySelectorAll('.btn').forEach(btn=>btn.addEventListener('click',()=>{
+ if(typeof gtag==='function'){
+  const name=btn.closest('.quiz-card')?.querySelector('h3')?.textContent||'Quiz';
+  gtag('event','quiz_start',{quiz_name:name});
+ }
+}));
+</script>
 </body>
+
 </html>

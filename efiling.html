@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V4G7RS6S2E"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js',new Date());
+gtag('config','G-V4G7RS6S2E');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyf3xigl2q");</script>
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vuori CPSC eFiling Control Tower</title>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -10,7 +21,7 @@
 <body>
 <div class="lock" id="lock"><div class="lock-card"><div class="eyebrow" style="color:#66725a">RESTRICTED ACCESS</div><h2>CPSC eFiling Control Tower</h2><p>Product Integrity internal workspace</p><input id="password" type="password" placeholder="Enter access password" autocomplete="current-password"><button class="btn dark" id="unlock">ACCESS EFILING</button><div class="error" id="lockError"></div><p style="font-size:.72rem;color:#6e6b65">Access is retained only for this browser tab.</p></div></div>
 <header><div class="container nav"><a class="brand" href="index.html" aria-label="Vuori home"><img src="vuori-wordmark-white.png" alt="Vuori"></a><nav class="links"><a href="index.html">HOME</a><a href="t1-garment-portal.html">T1 GARMENT PORTAL</a><a class="active" href="efiling.html">EFILING</a><a href="supplier-portal.html">T2 FABRIC PORTAL</a><a href="fabric-records.html">FABRIC RECORDS</a><a href="academy.html">ACADEMY</a><a href="quiz.html">QUIZ CENTER</a><a href="library.html">LIBRARY</a></nav></div></header>
-<section class="hero"><div class="container"><div class="eyebrow">CPSC PRODUCT REGISTRY · ACE ALIGNMENT</div><h1>eFiling Control Tower</h1><p>Product-based oversight for Vuori as Importer of Adult Wearing Apparel. Upload one current master CSV to refresh the registry, flammability reporting scope, factory and laboratory analysis, and data-quality review.</p><div class="sourcebar"><span class="pill">Scope: July 2026 to January 2027 imports</span><span class="pill">Primary key: Version ID</span><span class="pill">Blank Testing Exclusions = Tested · CPSC Reported</span></div></div></section>
+<section class="hero"><div class="container"><div class="eyebrow">CPSC PRODUCT REGISTRY · ACE ALIGNMENT</div><h1>eFiling Control Tower</h1><p>Product-based oversight for Vuori as Importer of Adult Wearing Apparel. Upload one current master CSV to refresh the registry, flammability reporting scope, factory and laboratory analysis, and data-quality review.</p><div class="sourcebar"><span class="pill">Scope: July to December 2026 imports</span><span class="pill">Primary key: Version ID</span><span class="pill">Blank Testing Exclusions = Tested · CPSC Reported</span></div></div></section>
 <main class="container">
 <div class="toolbar"><label class="btn sage" for="upload">Upload Master CSV</label><input id="upload" type="file" accept=".csv,text/csv" hidden><button class="btn" id="downloadMaster">Download Full Master</button><button class="btn" id="downloadFiltered">Download Current View</button><button class="btn" id="downloadTested">Download Tested List</button><button class="btn" id="downloadQuality">Download Quality Exceptions</button><div class="filebox"><b id="fileName">Loading master...</b><br><span id="fileMeta"></span></div></div>
 <div class="tabs"><button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="master">Master List</button><button class="tab" data-tab="tested">Flammability Filing List</button><button class="tab" data-tab="analysis">Manufacturer & Lab Analysis</button><button class="tab" data-tab="quality">Data Quality</button><button class="tab" data-tab="flexport">Flexport Import Monitor</button></div>
@@ -22,6 +33,7 @@
 </main><footer><div class="container">VUORI · Product Integrity Platform · CPSC eFiling Control Tower · Internal Review</div></footer>
 <div class="modal" id="modal"><div class="modal-card"><div class="modal-head"><div><div class="eyebrow" style="color:#66725a">FULL RECORD · 69 SOURCE FIELDS</div><h2 id="detailTitle"></h2></div><button class="btn" id="closeModal">Close</button></div><div class="details" id="details"></div></div></div>
 <script>
+if(typeof gtag==='function'){gtag('event','efiling_open',{page_name:'eFiling Control Tower'});}
 const MASTER_FILE='Vuori eFiling Master.csv', FLEXPORT_FILE='flexport-imports.csv', REQUIRED=['Version ID','Primary Product ID','Product Name (Model)','Manufacturer Name','Lab 1 Name','Lab 1 Test Report ID','Lab 1 Component Description','Last Test Date','Testing Exclusions'];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let rows=[],filtered=[],sortKey='',sortDir=1,page=1,pageSize=25,activeList='master',currentFile='',flexRows=[],flexFiltered=[];
 const lock=document.getElementById('lock');if(sessionStorage.getItem('efiling_access')==='yes')lock.style.display='none';function tryUnlock(){if(document.getElementById('password').value==='Vuori2026!'){sessionStorage.setItem('efiling_access','yes');lock.style.display='none'}else document.getElementById('lockError').textContent='Incorrect access password'}document.getElementById('unlock').onclick=tryUnlock;document.getElementById('password').addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock()});
@@ -54,7 +66,7 @@ function flexDate(v){let m=String(v||'').trim().match(/^(\d{1,2})\/(\d{1,2})\/(\
 function flexState(r){let a=flexDate(r['Arrival Date']),today=new Date();today.setHours(0,0,0,0);if(a&&a<=today)return'Arrived';if(a&&a>today)return'In Transit';return'Entry Filed'}
 function flexClass(x){return x==='Arrived'?'arrived':x==='In Transit'?'transit':'filed'}
 function flexKey(r){return['Entry Number','Broker Ref. No.','Part Number','Primary HTS','CPSC Product ID Number','CPSC Product ID Version Number'].map(k=>String(r[k]||'').trim().toUpperCase()).join('|')}
-function mismatchSet(){return new Set()}
+function mismatchSet(){const normalizePartNumber=v=>{v=String(v||'').trim().toUpperCase();if(v.includes('/'))v=v.split('/')[0].trim();return v};const mismatches=new Set();flexRows.forEach(r=>{const partNumber=normalizePartNumber(r['Part Number']);const productId=String(r['CPSC Product ID Number']||'').trim().toUpperCase();if(partNumber&&productId&&partNumber!==productId)mismatches.add(`${partNumber}|${productId}`)});return mismatches}
 async function loadFlex(){try{let x=await fetch(FLEXPORT_FILE,{cache:'no-store'});if(!x.ok)throw Error('Flexport CSV not found at '+FLEXPORT_FILE);flexRows=clean(Papa.parse(await x.text(),{header:true,skipEmptyLines:'greedy'}).data);document.getElementById('flexName').textContent=FLEXPORT_FILE;document.getElementById('flexMeta').textContent=flexRows.length+' rows · refreshed '+new Date().toLocaleString();document.getElementById('flexHTS').innerHTML='<option value="">All HTS Codes</option>'+[...new Set(flexRows.map(r=>r['Primary HTS']).filter(Boolean))].sort().map(x=>`<option>${esc(x)}</option>`).join('');document.querySelectorAll('.flex-filters input,.flex-filters select').forEach(x=>x.oninput=filterFlex);filterFlex()}catch(e){document.getElementById('flexName').textContent='Flexport data unavailable';document.getElementById('flexMeta').textContent=e.message;document.getElementById('flexTable').innerHTML='<div class="card empty">Upload <b>flexport-imports.csv</b> beside efiling.html.</div>'}}
 function filterFlex(){let q=document.getElementById('flexSearch').value.toLowerCase(),st=document.getElementById('flexStatus').value,h=document.getElementById('flexHTS').value;flexFiltered=flexRows.filter(r=>{let z=Object.values(r).join(' ').toLowerCase();return(!q||z.includes(q))&&(!st||flexState(r)===st)&&(!h||r['Primary HTS']===h)});renderFlex()}
 function openFlexDetail(index){
