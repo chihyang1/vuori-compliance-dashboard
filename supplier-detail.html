@@ -271,6 +271,7 @@
       ...record,
       status: record.status || 'Pending Review',
       materialName: record.materialName || '',
+      supplierInstruction: record.supplierInstruction || '',
       testedColor: record.testedColor || '',
       notes: record.notes || '',
       rejectReason: record.rejectReason || '',
@@ -288,14 +289,18 @@
       return '';
     }
 
+    // Legacy status helper retained for compatibility; Master Records display uses CSV Supplier Instruction.
     function instruction(status) {
-      if (status === 'No RSL Report') return 'Submit RSL report';
-      if (status === 'Expired') return 'RSL report expired';
-      if (status === 'Expiring') return 'Renew RSL report before expiry';
-      if (status === 'Review Required') return 'Contact Vuori Compliance team';
-      if (status === 'Pending Review') return 'Pending Vuori review';
-      if (status === 'Approved') return 'Approved and ready for publishing';
-      if (status === 'Rejected') return 'Correct submission and resubmit';
+      const normalized = String(status || '').trim().toLowerCase();
+      if (normalized.includes('invalid')) return 'When Report is invalid - it needs to be tested';
+      if (normalized === 'no rsl report' || normalized === 'missing rsl report') return 'Testing required';
+      if (normalized === 'expired') return 'Testing required before use';
+      if (normalized === 'expiring') return 'Renew testing before expiration';
+      if (normalized === 'review required') return 'Contact Vuori Compliance team';
+      if (normalized === 'pending review') return 'Pending Vuori review';
+      if (normalized === 'approved') return 'Approved and ready for publishing';
+      if (normalized === 'rejected') return 'Correct submission and resubmit';
+      if (normalized === 'valid') return 'Use existing valid report';
       return 'Select 3 darkest colors for composite testing';
     }
 
@@ -328,7 +333,7 @@
         <td><span class="status ${statusClass(record.status)}">● ${esc(record.status)}</span></td>
         <td>${esc(record.smart)}</td>
         <td>${esc(record.testedColor)}</td>
-        <td class="instruction">${esc(instruction(record.status))}</td>
+        <td class="instruction">${esc(record.supplierInstruction || '')}</td>
       </tr>`).join('');
 
       byId('empty').style.display = list.length ? 'none' : 'block';
@@ -402,7 +407,8 @@
             valid: getField(row, ['Valid Until','Expiry Date','Expiration Date']),
             status: getField(row, ['Compliance Status','Status']) || 'Review Required',
             smart: getField(row, ['TRF #','SMART Link']),
-            testedColor: getField(row, ['Tested Color','Test Color','Color Tested'])
+            testedColor: getField(row, ['Tested Color','Test Color','Color Tested']),
+            supplierInstruction: getField(row, ['Supplier Instruction'])
           }));
         combine();
       },
@@ -430,6 +436,7 @@
               status: 'Pending Review',
               smart: getField(row, ['TRF #','SMART Link']),
               testedColor: getField(row, ['Tested Color','Test Color','Color Tested']),
+              supplierInstruction: getField(row, ['Supplier Instruction']),
               notes: '',
               rejectReason: '',
               auditTrail: [{action:'Imported', by:key, date:importedAt}]
@@ -631,7 +638,7 @@ closeReview();
         gtag('event', 'csv_download', {supplier_name:key,record_count:records.length});
       }
       const headers = ['Article #','Material Name','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
-      const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',instruction(record.status),record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
+      const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',record.supplierInstruction || '',record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
       const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
       const link = document.createElement('a');
       const url = URL.createObjectURL(new Blob(['\ufeff' + csv], {type:'text/csv'}));
