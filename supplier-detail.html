@@ -143,7 +143,7 @@
       <section>
         <h2>Fabric Article Master Records</h2>
         <div class="toolbar">
-          <input id="search" type="search" placeholder="Search Article #, composition, PO or RSL report">
+          <input id="search" type="search" placeholder="Search Article #, material name, composition, PO or RSL report">
           <select id="statusFilter">
             <option value="ALL">All Statuses</option>
             <option>Valid</option>
@@ -161,7 +161,7 @@
           <table>
             <thead>
               <tr>
-                <th>Article #</th><th>Material Composition</th><th>PO #</th><th>RSL Report #</th><th>Report Date</th><th>Valid Until</th><th>Compliance Status</th><th>TRF #</th><th>Tested Color</th><th>Supplier Instruction</th>
+                <th>Article #</th><th>Material Name</th><th>Material Composition</th><th>PO #</th><th>RSL Report #</th><th>Report Date</th><th>Valid Until</th><th>Compliance Status</th><th>TRF #</th><th>Tested Color</th><th>Supplier Instruction</th>
               </tr>
             </thead>
             <tbody id="body"></tbody>
@@ -189,6 +189,7 @@
       <h2>Add Fabric Record</h2>
       <div class="grid">
         <label>Article #<input id="fArticle"></label>
+        <label>Material Name<input id="fMaterialName"></label>
         <label>Material Composition<input id="fComposition"></label>
         <label>PO #<input id="fPO"></label>
         <label>RSL Report #<input id="fReport"></label>
@@ -211,6 +212,7 @@
       <p class="review-info" id="reviewInfo">Review and edit the submitted information before approval or rejection.</p>
       <div class="grid">
         <label>Article #<input id="rArticle"></label>
+        <label>Material Name<input id="rMaterialName"></label>
         <label>Material Composition<input id="rComposition"></label>
         <label>PO #<input id="rPO"></label>
         <label>RSL Report #<input id="rReport"></label>
@@ -268,6 +270,7 @@
     pending = pending.map(record => ({
       ...record,
       status: record.status || 'Pending Review',
+      materialName: record.materialName || '',
       testedColor: record.testedColor || '',
       notes: record.notes || '',
       rejectReason: record.rejectReason || '',
@@ -316,6 +319,7 @@
     function render(list) {
       byId('body').innerHTML = list.map(record => `<tr>
         <td>${esc(record.article)}</td>
+        <td>${esc(record.materialName || '')}</td>
         <td>${esc(record.composition)}</td>
         <td class="po-cell">${po(record.po)}</td>
         <td>${esc(record.report)}</td>
@@ -390,6 +394,7 @@
           .filter(row => String(getField(row, ['Supplier Portal Key','T2 Supplier Name'])).trim().toUpperCase() === key)
           .map(row => ({
             article: getField(row, ['Article #','Fabric Article','Article Number']),
+            materialName: getField(row, ['Material Name']),
             composition: getField(row, ['Material Composition','Composition']),
             po: getField(row, ['PO #','PO Number']),
             report: getField(row, ['RSL Report #','Report Number']),
@@ -416,6 +421,7 @@
             .filter(row => getField(row, ['Article #','Fabric Article','Article Number']))
             .map(row => ({
               article: getField(row, ['Article #','Fabric Article','Article Number']),
+            materialName: getField(row, ['Material Name']),
               composition: getField(row, ['Material Composition','Composition']),
               po: getField(row, ['PO #','PO Number']),
               report: getField(row, ['RSL Report #','Report Number']),
@@ -444,6 +450,7 @@
       const createdAt = nowISO();
       pending.push({
         article: byId('fArticle').value.trim(),
+        materialName: byId('fMaterialName').value.trim(),
         composition: byId('fComposition').value.trim(),
         po: byId('fPO').value.trim(),
         report: byId('fReport').value.trim(),
@@ -457,7 +464,7 @@
         auditTrail: [{action:'Created manually', by:key, date:createdAt}]
       });
       persistPending();
-      ['fArticle','fComposition','fPO','fReport','fDate','fValid','fSmart','fTestedColor','fNotes'].forEach(id => byId(id).value = '');
+      ['fArticle','fMaterialName','fComposition','fPO','fReport','fDate','fValid','fSmart','fTestedColor','fNotes'].forEach(id => byId(id).value = '');
       combine();
       byId('modal').style.display = 'none';
     };
@@ -470,6 +477,7 @@
         gtag('event', 'trf_review_open', {supplier_name:key,article_number:record.article||'',trf_number:record.smart||''});
       }
       byId('rArticle').value = record.article || '';
+      byId('rMaterialName').value = record.materialName || '';
       byId('rComposition').value = record.composition || '';
       byId('rPO').value = record.po || '';
       byId('rReport').value = record.report || '';
@@ -496,6 +504,7 @@
     function collectReviewValues() {
       return {
         article: byId('rArticle').value.trim(),
+        materialName: byId('rMaterialName').value.trim(),
         composition: byId('rComposition').value.trim(),
         po: byId('rPO').value.trim(),
         report: byId('rReport').value.trim(),
@@ -521,7 +530,7 @@
         return false;
       }
       const record = pending[reviewIndex];
-      const before = JSON.stringify({article:record.article,composition:record.composition,po:record.po,report:record.report,date:record.date,valid:record.valid,smart:record.smart,testedColor:record.testedColor,notes:record.notes,rejectReason:record.rejectReason});
+      const before = JSON.stringify({article:record.article,materialName:record.materialName,composition:record.composition,po:record.po,report:record.report,date:record.date,valid:record.valid,smart:record.smart,testedColor:record.testedColor,notes:record.notes,rejectReason:record.rejectReason});
       const after = JSON.stringify(values);
       Object.assign(record, values);
       record.auditTrail = Array.isArray(record.auditTrail) ? record.auditTrail : [];
@@ -621,8 +630,8 @@ closeReview();
       if (typeof gtag === 'function') {
         gtag('event', 'csv_download', {supplier_name:key,record_count:records.length});
       }
-      const headers = ['Article #','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
-      const rows = records.map(record => [record.article,record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',instruction(record.status),record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
+      const headers = ['Article #','Material Name','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
+      const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',instruction(record.status),record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
       const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
       const link = document.createElement('a');
       const url = URL.createObjectURL(new Blob(['\ufeff' + csv], {type:'text/csv'}));
