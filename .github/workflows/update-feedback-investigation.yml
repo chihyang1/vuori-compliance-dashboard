@@ -1,0 +1,67 @@
+name: Update Feedback Investigation
+
+on:
+  workflow_dispatch:
+    inputs:
+      record_id:
+        description: Record ID
+        required: true
+        type: string
+      status:
+        description: Investigation Status
+        required: true
+        type: string
+      detail_b64:
+        description: Base64 encoded Investigation Detail
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feedback-investigation-write
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update CSV safely
+        env:
+          RECORD_ID: ${{ inputs.record_id }}
+          STATUS: ${{ inputs.status }}
+          DETAIL_B64: ${{ inputs.detail_b64 }}
+        run: |
+          python3 - <<'PY'
+          import base64, csv, os, pathlib, sys
+          path = pathlib.Path('feedback_investigation_table.csv')
+          allowed = {'Open','Under Investigation','Vendor CAPA Issued','Resolved','Solved'}
+          rid = os.environ['RECORD_ID'].strip()
+          status = os.environ['STATUS'].strip()
+          if status not in allowed:
+              sys.exit('Invalid status')
+          detail = base64.b64decode(os.environ.get('DETAIL_B64','')).decode('utf-8') if os.environ.get('DETAIL_B64') else ''
+          if len(detail) > 5000:
+              sys.exit('Investigation detail is too long')
+          with path.open('r', encoding='utf-8-sig', newline='') as f:
+              rows = list(csv.DictReader(f))
+              fields = list(rows[0].keys()) if rows else []
+          matches = [r for r in rows if (r.get('Record ID') or '').strip() == rid]
+          if len(matches) != 1:
+              sys.exit(f'Expected exactly one record for Record ID {rid}; found {len(matches)}')
+          matches[0]['Investigation Status'] = status
+          matches[0]['Investigation Detail'] = detail
+          with path.open('w', encoding='utf-8-sig', newline='') as f:
+              w=csv.DictWriter(f, fieldnames=fields)
+              w.writeheader(); w.writerows(rows)
+          PY
+      - name: Commit update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feedback_investigation_table.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "Update feedback investigation record ${{ inputs.record_id }}"
+          git push
