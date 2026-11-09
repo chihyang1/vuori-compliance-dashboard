@@ -24,8 +24,8 @@ const gate=document.getElementById('gate'),content=document.getElementById('cont
 function unlock(){gate.style.display='none';content.classList.add('show');sessionStorage.setItem(KEY,'1')}
 if(sessionStorage.getItem(KEY)==='1')unlock();
 form.addEventListener('submit',e=>{e.preventDefault();if(input.value==='Vuori2026!'){error.textContent='';unlock()}else{error.textContent='Incorrect password. Please try again.';input.select()}});
-
-
+document.getElementById('menu').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 </script>
 <script src="./site-footer.js"></script>
 <script>(function(){const b=document.querySelector('.unified-site-menu'),n=document.querySelector('.unified-site-links');if(!b||!n)return;b.addEventListener('click',()=>n.classList.toggle('open'));n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>n.classList.remove('open')));})();</script></body></html>
