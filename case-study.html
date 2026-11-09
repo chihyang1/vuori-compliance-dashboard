@@ -16,7 +16,7 @@
 
 <main>
 <section class="gate" id="gate"><form class="card" id="loginForm"><div class="eyebrow">RESTRICTED ACCESS</div><h1>Case Study</h1><p>Enter the password to access internal product integrity case studies.</p><div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required autofocus></div><button class="submit" type="submit">Open Case Study</button><div class="error" id="error" role="alert" aria-live="polite"></div></form></section>
-<section class="content" id="content"><div class="container"><div class="hero"><div class="eyebrow">CASE STUDY LIBRARY</div><h1>Product Integrity in Practice</h1><p>Use this space to document investigation logic, evidence, root cause, corrective action and lessons learned.</p></div><div class="study-grid"><article class="study"><span>01 · INVESTIGATION</span><h2>Product Feedback</h2><p>Connect field feedback with style, fabric, supplier and testing evidence.</p><a href="feedback-investigation.html">Open Investigation →</a></article><article class="study"><span>02 · COMPLIANCE</span><h2>Chemical & Product Safety</h2><p>Capture evidence-based case studies for RSL, PFAS, eFiling and physical testing.</p></article><article class="study"><span>03 · IMPROVEMENT</span><h2>CAPA & Prevention</h2><p>Translate confirmed causes into corrective and preventive actions with clear ownership.</p></article></div></div></section>
+<section class="content" id="content"><div class="container"><div class="hero"><div class="eyebrow">CASE STUDY LIBRARY</div><h1>Product Integrity in Practice</h1><p>Use this space to document investigation logic, evidence, root cause, corrective action and lessons learned.</p></div><div class="study-grid"><article class="study"><span>01 · INVESTIGATION</span><h2>Product Feedback</h2><p>Connect field feedback with style, fabric, supplier and testing evidence.</p><a href="feedback-investigation.html">Open Investigation →</a></article><article class="study"><span>02 · COMPLIANCE</span><h2>Chemical & Product Safety</h2><p>Capture evidence-based case studies for RSL, PFAS, eFiling and physical testing.</p></article><article class="study"><span>03 · IMPROVEMENT</span><h2>CAPA & Prevention</h2><p>Translate confirmed causes into corrective and preventive actions with clear ownership.</p><a href="case-library.html">Open Case →</a></article></div></div></section>
 </main>
 <script>
 const KEY='vuoriCaseStudyAccess';
@@ -24,8 +24,8 @@ const gate=document.getElementById('gate'),content=document.getElementById('cont
 function unlock(){gate.style.display='none';content.classList.add('show');sessionStorage.setItem(KEY,'1')}
 if(sessionStorage.getItem(KEY)==='1')unlock();
 form.addEventListener('submit',e=>{e.preventDefault();if(input.value==='Vuori2026!'){error.textContent='';unlock()}else{error.textContent='Incorrect password. Please try again.';input.select()}});
-document.getElementById('menu').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
-document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
+
+
 </script>
 <script src="./site-footer.js"></script>
 <script>(function(){const b=document.querySelector('.unified-site-menu'),n=document.querySelector('.unified-site-links');if(!b||!n)return;b.addEventListener('click',()=>n.classList.toggle('open'));n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>n.classList.remove('open')));})();</script></body></html>
