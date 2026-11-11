@@ -1,4 +1,4 @@
-/* SGS RSL Parser V4.2.4 Official - metadata auto-fill engine */
+/* SGS RSL Parser V4.2.5 Official - metadata and extractable-heavy-metals engine */
 (()=>{'use strict';
 const $=id=>document.getElementById(id),clean=v=>String(v??'').replace(/\u00a0/g,' ').replace(/[‐-‒–—−]/g,'-').replace(/\s+/g,' ').trim();
 const esc=v=>clean(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
@@ -109,7 +109,69 @@ function parseBisphenolsV42(t){
   return unique(out);
 }
 
-function generic(t){
+function parseExtractableHeavyMetalsV425(t){
+    const out=[];
+    const metals=[
+      {name:'Antimony (Sb)',cas:'7440-36-0'},
+      {name:'Arsenic (As)',cas:'7440-38-2'},
+      {name:'Barium (Ba)',cas:'7440-39-3'},
+      {name:'Cadmium (Cd)',cas:'7440-43-9'},
+      {name:'Chromium (Cr)',cas:'7440-47-3'},
+      {name:'Hexavalent Chromium (Cr VI)',cas:'18540-29-9'},
+      {name:'Cobalt (Co)',cas:'7440-48-4'},
+      {name:'Copper (Cu)',cas:'7440-50-8'},
+      {name:'Lead (Pb)',cas:'7439-92-1'},
+      {name:'Mercury (Hg)',cas:'7439-97-6'},
+      {name:'Nickel (Ni)',cas:'7440-02-0'},
+      {name:'Selenium (Se)',cas:'7782-49-2'}
+    ];
+    const source=String(t||'');
+    const componentMeta={};
+    const componentRe=/\b([A-Z])\s+(\d+)\s+Fabric\s+Textile\s+(.+?)\s+Type\s+[A-Z]\b/gi;
+    let componentMatch;
+    while((componentMatch=componentRe.exec(source))!==null){
+      const color=clean(componentMatch[3]).replace(/\s+(?:Sample Photo|Test Item\(s\)|CAS No\.).*$/i,'');
+      componentMeta[componentMatch[2]]=`${componentMatch[2]} / Specimen ${componentMatch[1]}${color?` / ${color}`:''}`;
+    }
+    const starts=[];const sectionRe=/Extractable\s+Heavy\s+Metal(?:s)?(?:\s*\([^)]*\))?\s*[-–—]?\s*Textiles?/gi;let sectionMatch;
+    while((sectionMatch=sectionRe.exec(source))!==null)starts.push(sectionMatch.index);
+    for(let si=0;si<starts.length;si++){
+      const end=si+1<starts.length?starts[si+1]:source.length;
+      const section=source.slice(starts[si],end);
+      const header=section.match(/Test\s*Item\(s\)\s+CAS\s*No\.?\s+Unit\(s\)\s+RL\s+([\s\S]*?)\s+Requirement/i);
+      if(!header)continue;
+      const components=[];
+      const componentToken=/\b\d+[a-z]?(?:\s*\+\s*\d+[a-z]?)*\b/gi;let token;
+      while((token=componentToken.exec(header[1]))!==null)components.push(clean(token[0]).replace(/\s*\+\s*/g,'+'));
+      if(!components.length)continue;
+      const table=section.slice((header.index||0)+header[0].length).split(/\bConclusion\b/i)[0];
+      for(let mi=0;mi<metals.length;mi++){
+        const metal=metals[mi];
+        const cas=metal.cas.replace(/-/g,'\\-');
+        const nextCas=metals.filter((_,i)=>i!==mi).map(x=>x.cas.replace(/-/g,'\\-')).join('|');
+        const rowRe=new RegExp(`${cas}\\s+(mg\\/kg|ppm)\\s+(\\d+(?:\\.\\d+)?)\\s+([\\s\\S]*?)(?=(?:${nextCas})|$)`,'i');
+        const row=table.match(rowRe);if(!row)continue;
+        const unit=clean(row[1]);
+        const rowValues=String(row[3]).match(/ND|N\.D\.|<?\d+(?:\.\d+)?\s*#?/gi)||[];
+        if(rowValues.length<components.length+1)continue;
+        const requirementRaw=rowValues[rowValues.length-1],requirement=num(requirementRaw);
+        if(requirement===null)continue;
+        rowValues.slice(0,components.length).forEach((raw,index)=>{
+          if(/^(?:ND|N\.D\.)$/i.test(clean(raw)))return;
+          const result=num(raw);if(result===null||result<=requirement)return;
+          const component=components[index]||'';
+          const displayComponent=componentMeta[component]||component;
+          const notes=[];
+          if(/#/.test(raw))notes.push('SGS # exceed-limit mark');
+          notes.push(`RL ${row[2]} ${unit}`);
+          notes.push('Extractable Heavy Metals individual-result table');
+          out.push(mk(`${metal.name}, CAS ${metal.cas}`,`${result} ${unit}`,`${requirement} ${unit}`,displayComponent,notes.join('; ')));
+        });
+      }
+    }
+    return unique(out);
+  }
+  function generic(t){
   const out=[];
 
   function values(s){
@@ -263,7 +325,7 @@ function knownItems(t,r=''){
 function parse(t){
   const r=reportNo(t),known=knownItems(t,r);
   if(known.length)return known;
-  return unique([...parseBisphenolsV42(t),...generic(t)]);
+  return unique([...parseBisphenolsV42(t),...parseExtractableHeavyMetalsV425(t),...generic(t)]);
 }
 function ui(){let h=$('failedItemsRows');if(h)return h;const b=$('substance');if(!b)return null;['substance','result','limit'].forEach(id=>$(id)?.closest('.field')?.style.setProperty('display','none'));const w=document.createElement('div');w.className='field full';w.innerHTML='<label>Failed Items *</label><div id="failedItemsRows"></div><button type="button" class="btn" id="addFailedItemV40">+ Add Failed Item</button>';b.closest('.field').parentElement.insertBefore(w,b.closest('.field'));$('addFailedItemV40').onclick=()=>{failedItems.push(mk('','',''));render()};return $('failedItemsRows')}
 function sync(){const x=failedItems[0]||{};if($('substance'))$('substance').value=x.substance||'';if($('result'))$('result').value=x.result||'';if($('limit'))$('limit').value=x.limit||'';window.v40FailedItems=failedItems;window.v39FailedItems=failedItems;window.v38FailedItems=failedItems;window.v37FailedItems=failedItems}
@@ -292,19 +354,20 @@ async function analyze(){
     if(msg){
       const filled=['reportDate','supplier','article','po','lot'].filter(k=>meta[k]).length;
       msg.textContent=failedItems.length
-        ?`V4.2.4 completed for ${r||'this report'}. ${failedItems.length} failed item(s) found and ${filled}/5 metadata fields filled. Verify against the PDF.`
-        :`V4.2.4 found no verified failed result in ${r||'this report'}. ${filled}/5 metadata fields filled. Add failed items manually.`;
+        ?`V4.2.5 completed for ${r||'this report'}. ${failedItems.length} failed item(s) found and ${filled}/5 metadata fields filled. Verify against the PDF.`
+        :`V4.2.5 found no verified failed result in ${r||'this report'}. ${filled}/5 metadata fields filled. Add failed items manually.`;
       msg.classList.remove('hidden');
     }
   }catch(e){
-    console.error('SGS RSL V4.2.4',e);
+    console.error('SGS RSL V4.2.5',e);
     if(msg){msg.textContent='PDF parsing failed. Enter the result manually.';msg.classList.remove('hidden')}
   }
 }
 function install(){ui();render();const b=$('analyzePdf');if(b){b.onclick=null;b.replaceWith(b.cloneNode(true));$('analyzePdf').onclick=analyze}}
-window.SGSRSLV424={parse,parseBisphenolsV42,reportNo,extractMetadata,knownItems};
-window.SGSRSLV423=window.SGSRSLV424;
-window.SGSRSLV422=window.SGSRSLV424;
-window.SGSRSLV421=window.SGSRSLV424;
-window.SGSRSLV42=window.SGSRSLV424;
+window.SGSRSLV425={parse,parseBisphenolsV42,parseExtractableHeavyMetalsV425,reportNo,extractMetadata,knownItems};
+  window.SGSRSLV424=window.SGSRSLV425;
+window.SGSRSLV423=window.SGSRSLV425;
+window.SGSRSLV422=window.SGSRSLV425;
+window.SGSRSLV421=window.SGSRSLV425;
+window.SGSRSLV42=window.SGSRSLV425;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install()})();
