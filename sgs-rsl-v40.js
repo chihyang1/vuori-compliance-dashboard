@@ -1,4 +1,4 @@
-/* SGS RSL Parser V4.2.5 Official - metadata and extractable-heavy-metals engine */
+/* SGS RSL Parser V4.2.6 Official - metadata and extractable-heavy-metals engine */
 (()=>{'use strict';
 const $=id=>document.getElementById(id),clean=v=>String(v??'').replace(/\u00a0/g,' ').replace(/[‐-‒–—−]/g,'-').replace(/\s+/g,' ').trim();
 const esc=v=>clean(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
@@ -109,7 +109,7 @@ function parseBisphenolsV42(t){
   return unique(out);
 }
 
-function parseExtractableHeavyMetalsV425(t){
+function parseExtractableHeavyMetalsV426(t){
     const out=[];
     const metals=[
       {name:'Antimony (Sb)',cas:'7440-36-0'},
@@ -325,7 +325,7 @@ function knownItems(t,r=''){
 function parse(t){
   const r=reportNo(t),known=knownItems(t,r);
   if(known.length)return known;
-  return unique([...parseBisphenolsV42(t),...parseExtractableHeavyMetalsV425(t),...generic(t)]);
+  return unique([...parseBisphenolsV42(t),...parseExtractableHeavyMetalsV426(t),...generic(t)]);
 }
 function ui(){let h=$('failedItemsRows');if(h)return h;const b=$('substance');if(!b)return null;['substance','result','limit'].forEach(id=>$(id)?.closest('.field')?.style.setProperty('display','none'));const w=document.createElement('div');w.className='field full';w.innerHTML='<label>Failed Items *</label><div id="failedItemsRows"></div><button type="button" class="btn" id="addFailedItemV40">+ Add Failed Item</button>';b.closest('.field').parentElement.insertBefore(w,b.closest('.field'));$('addFailedItemV40').onclick=()=>{failedItems.push(mk('','',''));render()};return $('failedItemsRows')}
 function sync(){const x=failedItems[0]||{};if($('substance'))$('substance').value=x.substance||'';if($('result'))$('result').value=x.result||'';if($('limit'))$('limit').value=x.limit||'';window.v40FailedItems=failedItems;window.v39FailedItems=failedItems;window.v38FailedItems=failedItems;window.v37FailedItems=failedItems}
@@ -354,20 +354,20 @@ async function analyze(){
     if(msg){
       const filled=['reportDate','supplier','article','po','lot'].filter(k=>meta[k]).length;
       msg.textContent=failedItems.length
-        ?`V4.2.5 completed for ${r||'this report'}. ${failedItems.length} failed item(s) found and ${filled}/5 metadata fields filled. Verify against the PDF.`
-        :`V4.2.5 found no verified failed result in ${r||'this report'}. ${filled}/5 metadata fields filled. Add failed items manually.`;
+        ?`V4.2.6 completed for ${r||'this report'}. ${failedItems.length} failed item(s) found and ${filled}/5 metadata fields filled. Verify against the PDF.`
+        :`V4.2.6 found no verified failed result in ${r||'this report'}. ${filled}/5 metadata fields filled. Add failed items manually.`;
       msg.classList.remove('hidden');
     }
   }catch(e){
-    console.error('SGS RSL V4.2.5',e);
+    console.error('SGS RSL V4.2.6',e);
     if(msg){msg.textContent='PDF parsing failed. Enter the result manually.';msg.classList.remove('hidden')}
   }
 }
 function install(){ui();render();const b=$('analyzePdf');if(b){b.onclick=null;b.replaceWith(b.cloneNode(true));$('analyzePdf').onclick=analyze}}
-window.SGSRSLV425={parse,parseBisphenolsV42,parseExtractableHeavyMetalsV425,reportNo,extractMetadata,knownItems};
-  window.SGSRSLV424=window.SGSRSLV425;
-window.SGSRSLV423=window.SGSRSLV425;
-window.SGSRSLV422=window.SGSRSLV425;
-window.SGSRSLV421=window.SGSRSLV425;
-window.SGSRSLV42=window.SGSRSLV425;
+window.SGSRSLV426={parse,parseBisphenolsV42,parseExtractableHeavyMetalsV426,reportNo,extractMetadata,knownItems};
+  window.SGSRSLV424=window.SGSRSLV426;
+window.SGSRSLV423=window.SGSRSLV426;
+window.SGSRSLV422=window.SGSRSLV426;
+window.SGSRSLV421=window.SGSRSLV426;
+window.SGSRSLV42=window.SGSRSLV426;
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install()})();
