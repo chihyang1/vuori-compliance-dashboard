@@ -8,6 +8,9 @@ function norm(t){return clean(t).replace(/Conclu\s*s\s*ion/gi,'Conclusion').repl
 function reportNo(t){const src=String(t||'');const labeled=[/Job\s+No\.?\s*\/\s*Report\s+No\.?\s*:?\s*(TR\s*\d(?:\s*\d){6})/i,/Textile\s+Laboratory\s+Test\s+Report\s+No\.?\s*:?\s*(TX\s*[A-Z]?\s*\d(?:\s*\d){3,4}\s*\/\s*\d(?:\s*\d){3}\s*\/\s*[A-Z]\s*[A-Z])/i,/Textile\s+Laboratory\s+Test\s+Report\s+No\.?\s*:?\s*(SL\s*\d(?:\s*\d){13}\s*TX(?:\s*-\s*\d+)?)/i,/Textile\s+Laboratory\s+Test\s+Report\s+No\.?\s*:?\s*(F\s*\d(?:\s*\d){5}\s*\/\s*LF\s*-\s*CTSAYSA\s*\d(?:\s*\d)\s*-\s*\d(?:\s*\d){4})/i];for(const p of labeled){const m=src.match(p);if(m)return m[1].replace(/\s+/g,'').toUpperCase()}const head=src.slice(0,5000),general=[/\bTR\s*\d(?:\s*\d){6}\b/i,/\bF\s*\d(?:\s*\d){5}\s*\/\s*LF\s*-\s*CTSAYSA\s*\d(?:\s*\d)\s*-\s*\d(?:\s*\d){4}\b/i,/\bTX\s*[A-Z]?\s*\d(?:\s*\d){3,4}\s*\/\s*\d(?:\s*\d){3}\s*\/\s*[A-Z]\s*[A-Z]\b/i,/\bSL\s*\d(?:\s*\d){13}\s*TX(?:\s*-\s*\d+)?\b/i];for(const p of general){const m=head.match(p);if(m)return m[0].replace(/\s+/g,'').toUpperCase()}return''}
 function unique(a){const s=new Set;return a.filter(x=>{const k=[x.substance,x.result,x.limit].join('|');if(s.has(k))return false;s.add(k);return true})}
 const K={
+'SL01261004202401TX':[
+['Chromium (Cr), CAS 7440-47-3','4.62 mg/kg','2.0 mg/kg','3 / Specimen C / Navy']
+],
 'TX81776/2025/JU':[
 ['Arsenic (As), CAS 7440-38-2 - SGS Interim Fail','57.1 mg/kg','100 mg/kg','1+2'],
 ['Cadmium (Cd), CAS 7440-43-9','229 mg/kg','40 mg/kg','3'],
