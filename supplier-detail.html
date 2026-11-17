@@ -147,7 +147,7 @@
           <table>
             <thead>
               <tr>
-                <th>Article #</th><th>Material Name</th><th>Material Composition</th><th>PO #</th><th>RSL Report #</th><th>Report Date</th><th>Valid Until</th><th>Compliance Status</th><th>TRF #</th><th>Tested Color</th><th>Supplier Instruction</th>
+                <th>Article #</th><th>Material Name</th><th>Material Composition</th><th>VALO Styles</th><th>PO #</th><th>RSL Report #</th><th>Report Date</th><th>Valid Until</th><th>Compliance Status</th><th>TRF #</th><th>Tested Color</th><th>Supplier Instruction</th>
               </tr>
             </thead>
             <tbody id="body"></tbody>
@@ -415,6 +415,7 @@
               article: getField(row, ['Article #','Fabric Article','Article Number']),
             materialName: getField(row, ['Material Name']),
               composition: getField(row, ['Material Composition','Composition']),
+              valoStyles: getField(row, ['VALO Styles','VALO Style']),
               po: getField(row, ['PO #','PO Number']),
               report: getField(row, ['RSL Report #','Report Number']),
               date: getField(row, ['Report Date']),
@@ -623,8 +624,8 @@ closeReview();
       if (typeof gtag === 'function') {
         gtag('event', 'csv_download', {supplier_name:key,record_count:records.length});
       }
-      const headers = ['Article #','Material Name','Material Composition','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
-      const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',record.supplierInstruction || '',record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
+      const headers = ['Article #','Material Name','Material Composition','VALO Styles','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
+      const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.valoStyles || '',record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',record.supplierInstruction || '',record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
       const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
       const link = document.createElement('a');
       const url = URL.createObjectURL(new Blob(['\ufeff' + csv], {type:'text/csv'}));
