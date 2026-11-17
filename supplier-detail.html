@@ -2,22 +2,6 @@
 <html lang="en">
 <head>
   <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V4G7RS6S2E"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-V4G7RS6S2E');
-  </script>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yyf3xigl2q");
-  </script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>T2 Supplier Compliance Workspace</title>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
     :root{--ink:#20211f;--sage:#66725a;--cream:#f5f2ea;--white:#fff;--line:#ddd7cb;--gray:#6e6b65;--amber:#ad7b34;--red:#a7493f;--shadow:0 14px 36px rgba(32,33,31,.08)}
     *{box-sizing:border-box}
@@ -223,9 +207,6 @@
   <script>
     const supplier = (new URLSearchParams(location.search).get('supplier') || 'Supplier').trim();
     const key = supplier.toUpperCase();
-    if (typeof gtag === 'function') {
-      gtag('event', 'supplier_workspace_open', {supplier_name:key,page_name:document.title});
-    }
     const STORE = 'vuoriPending_' + key.replace(/[^A-Z0-9]+/g, '_');
     const REVIEWER = 'Vuori';
 
@@ -233,15 +214,59 @@
     const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
     const nowISO = () => new Date().toISOString();
 
+    const parseCsvText = text => {
+      const rows = [];
+      let row = [], field = '', quoted = false;
+      text = String(text || '').replace(/^\uFEFF/, '');
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (quoted) {
+          if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
+          else if (ch === '"') quoted = false;
+          else field += ch;
+        } else {
+          if (ch === '"') quoted = true;
+          else if (ch === ',') { row.push(field); field = ''; }
+          else if (ch === '\n') { row.push(field.replace(/\r$/, '')); rows.push(row); row = []; field = ''; }
+          else field += ch;
+        }
+      }
+      if (field.length || row.length) { row.push(field.replace(/\r$/, '')); rows.push(row); }
+      if (!rows.length) return [];
+      const headers = rows.shift().map(h => String(h || '').trim());
+      return rows.filter(r => r.some(v => String(v || '').trim())).map(r => Object.fromEntries(headers.map((h, i) => [h, r[i] ?? ''])));
+    };
+
+    const loadCsv = (source, options = {}) => {
+      const finish = text => { try { options.complete && options.complete({data: parseCsvText(text)}); } catch (error) { options.error && options.error(error); } };
+      if (source instanceof File || source instanceof Blob) {
+        const reader = new FileReader();
+        reader.onload = () => finish(reader.result);
+        reader.onerror = () => options.error && options.error(reader.error);
+        reader.readAsText(source);
+        return;
+      }
+      fetch(source).then(r => { if (!r.ok) throw new Error('CSV load failed: ' + r.status); return r.text(); }).then(finish).catch(error => options.error && options.error(error));
+    };
+
     byId('supplierTitle').textContent = key;
 
     const lock = byId('lock');
     const expected = key.replace(/[^A-Z0-9]+/g, '') + '2026';
-    if (sessionStorage.getItem('unlock_' + key) !== 'yes') lock.style.display = 'flex';
+    const storageKey = 'unlock_' + key;
+    function safeGetStorage(type, name, fallback) {
+      try { const storage = window[type]; return storage ? (storage.getItem(name) ?? fallback) : fallback; }
+      catch (error) { return fallback; }
+    }
+    function safeSetStorage(type, name, value) {
+      try { const storage = window[type]; if (storage) storage.setItem(name, value); }
+      catch (error) { /* Storage is unavailable in sandboxed previews. */ }
+    }
+    if (safeGetStorage('sessionStorage', storageKey, null) !== 'yes') lock.style.display = 'flex';
 
     byId('unlock').onclick = () => {
       if (byId('code').value.trim().toUpperCase() === expected) {
-        sessionStorage.setItem('unlock_' + key, 'yes');
+        safeSetStorage('sessionStorage', storageKey, 'yes');
         lock.style.display = 'none';
       } else {
         byId('lockError').textContent = 'Incorrect access code';
@@ -249,7 +274,9 @@
     };
 
     let master = [];
-    let pending = JSON.parse(localStorage.getItem(STORE) || '[]');
+    let pending = [];
+    try { pending = JSON.parse(safeGetStorage('localStorage', STORE, '[]') || '[]'); }
+    catch (error) { pending = []; }
     let records = [];
     let reviewIndex = null;
 
@@ -266,7 +293,7 @@
     }));
 
     function persistPending() {
-      localStorage.setItem(STORE, JSON.stringify(pending));
+      safeSetStorage('localStorage', STORE, JSON.stringify(pending));
     }
 
     function getField(row, names) {
@@ -313,6 +340,7 @@
         <td>${esc(record.article)}</td>
         <td>${esc(record.materialName || '')}</td>
         <td>${esc(record.composition)}</td>
+        <td>${esc(record.valoStyles || '')}</td>
         <td class="po-cell">${po(record.po)}</td>
         <td>${esc(record.report)}</td>
         <td>${esc(record.date)}</td>
@@ -377,7 +405,7 @@
     byId('search').oninput = apply;
     byId('statusFilter').onchange = apply;
 
-    Papa.parse('Fabric Records Master.csv', {
+    loadCsv('Fabric Records Master.csv', {
       download: true,
       header: true,
       skipEmptyLines: true,
@@ -388,6 +416,7 @@
             article: getField(row, ['Article #','Fabric Article','Article Number']),
             materialName: getField(row, ['Material Name']),
             composition: getField(row, ['Material Composition','Composition']),
+            valoStyles: getField(row, ['VALO Styles','VALO Style']),
             po: getField(row, ['PO #','PO Number']),
             report: getField(row, ['RSL Report #','Report Number']),
             date: getField(row, ['Report Date']),
@@ -405,7 +434,7 @@
     byId('supplierCsv').onchange = event => {
       const file = event.target.files[0];
       if (!file) return;
-      Papa.parse(file, {
+      loadCsv(file, {
         header: true,
         skipEmptyLines: true,
         complete: result => {
@@ -468,9 +497,6 @@
       const record = pending[index];
       if (!record) return;
       reviewIndex = index;
-      if (typeof gtag === 'function') {
-        gtag('event', 'trf_review_open', {supplier_name:key,article_number:record.article||'',trf_number:record.smart||''});
-      }
       byId('rArticle').value = record.article || '';
       byId('rMaterialName').value = record.materialName || '';
       byId('rComposition').value = record.composition || '';
@@ -622,9 +648,6 @@ closeReview();
     });
 
     byId('exportBtn').onclick = () => {
-      if (typeof gtag === 'function') {
-        gtag('event', 'csv_download', {supplier_name:key,record_count:records.length});
-      }
       const headers = ['Article #','Material Name','Material Composition','VALO Styles','PO #','RSL Report #','Report Date','Valid Until','Compliance Status','TRF #','Tested Color','Supplier Instruction','Reviewed By','Review Date','Review Notes','Rejection Reason'];
       const rows = records.map(record => [record.article,record.materialName || '',record.composition,record.valoStyles || '',record.po,record.report,record.date,record.valid,record.status,record.smart,record.testedColor || '',record.supplierInstruction || '',record.reviewedBy || '',record.reviewDate || '',record.notes || '',record.rejectReason || '']);
       const csv = [headers, ...rows].map(row => row.map(value => '"' + String(value ?? '').replaceAll('"','""') + '"').join(',')).join('\n');
