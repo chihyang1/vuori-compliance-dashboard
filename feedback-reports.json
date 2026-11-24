@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "period": "Jan-Feb 2026",
+    "label": "JANUARY - FEBRUARY 2026",
+    "title": "Product Feedback",
+    "pdf": "feedback-reports/Product Feedback Jan-Feb 2026.pdf"
+  },
+  {
+    "period": "Mar-Apr 2026",
+    "label": "MARCH - APRIL 2026",
+    "title": "Product Feedback",
+    "pdf": "feedback-reports/Product Feedback Mar-Apr 2026.pdf"
+  },
+  {
+    "period": "May-June 2026",
+    "label": "MAY - JUNE 2026",
+    "title": "Product Feedback",
+    "pdf": "feedback-reports/Product Feedback May-June 2026.pdf"
+  },
+  {
+    "period": "July-August 2026",
+    "label": "JULY - AUGUST 2026",
+    "title": "Product Feedback",
+    "pdf": "feedback-reports/Product Feedback July-August 2026.pdf"
+  },
+  {
+    "period": "Sept-Oct 2026",
+    "label": "SEPTEMBER - OCTOBER 2026",
+    "title": "Product Feedback",
+    "pdf": "feedback-reports/Product Feedback Sept-Oct 2026.pdf"
+  }
+]
