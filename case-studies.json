@@ -3,7 +3,7 @@
     {
       "order": 1,
       "tag": "CASE 1",
-      "title": "BIOFLEX LAB107AW Color Shading",
+      "title": "BIOFLEX-LAB107AW - Color Shading",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 1-BIOFLEX-LAB107AW - Color Shading.pdf"
     },
@@ -24,14 +24,14 @@
     {
       "order": 4,
       "tag": "CASE 4",
-      "title": "Dye Transfer in High Temperature Container Storage",
+      "title": "Dye Transfer in High-Temperature Container Storage",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 4-Dye Transfer in High-Temperature Container Storage.pdf"
     },
     {
       "order": 5,
       "tag": "CASE 5",
-      "title": "EJ161330MS1 Cosmetic Snagging",
+      "title": "EJ161330MS1 - Cosmetic Snagging",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 5-EJ161330MS1 - Cosmetic Snagging.pdf"
     },
@@ -45,49 +45,49 @@
     {
       "order": 7,
       "tag": "CASE 7",
-      "title": "KP04570JA0 Color Bleeding",
+      "title": "KP04570JA0 - Color Bleeding",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 7-KP04570JA0 - Color Bleeding.pdf"
     },
     {
       "order": 8,
       "tag": "CASE 8",
-      "title": "KP04570JA0 Easy Creas Marks",
+      "title": "KP04570JA0 - Easy Creas Marks",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"
     },
     {
       "order": 9,
       "tag": "CASE 9",
-      "title": "Sports Bra Sample Received with Observation",
+      "title": "Sports Bra-Sample Received with Observation",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 9-Sports Bra-Sample Received with Observation.pdf"
     },
     {
       "order": 10,
       "tag": "CASE 10",
-      "title": "SW D AD002 (CSD) Pilling",
+      "title": "SW-D-AD002 (CSD) - Pilling",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"
     },
     {
       "order": 11,
       "tag": "CASE 11",
-      "title": "Youngtex DOE",
+      "title": "Youngtex-DOE",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 11-Youngtex-DOE.pdf"
     },
     {
       "order": 12,
       "tag": "CASE 12",
-      "title": "VW1321 Energy Tee Long Discoloration",
+      "title": "VW1321 Energy Tee Long - Discoloration",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 12-VW1321 Energy Tee Long - Discoloration.pdf"
     },
     {
       "order": 13,
       "tag": "CASE 13",
-      "title": "GWC K018 CTQ Appearance after Washing Failure",
+      "title": "GWC-K018 CTQ - Appearance after Washing Failure",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 13-GWC-K018 CTQ - Appearance after Washing Failure.pdf"
     }
