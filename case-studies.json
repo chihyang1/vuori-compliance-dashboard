@@ -57,13 +57,6 @@
       "file": "case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"
     },
     {
-      "order": 9,
-      "tag": "CASE 9",
-      "title": "Sports Bra-Sample Received with Observation",
-      "description": "New case study report. Update this description in case-studies.json when needed.",
-      "file": "case-reports/Case 9-Sports Bra-Sample Received with Observation.pdf"
-    },
-    {
       "order": 10,
       "tag": "CASE 10",
       "title": "SW-D-AD002 (CSD) - Pilling",
