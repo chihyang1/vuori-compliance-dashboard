@@ -57,11 +57,25 @@
       "file": "case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"
     },
     {
+      "order": 9,
+      "tag": "CASE 9",
+      "title": "Sports Bra - Sample Received with Observation",
+      "description": "Sports Bra - Sample Received with Observation case study and investigation report.",
+      "file": "case-reports/Case 9-Sports Bra - Sample Received with Observation.pdf"
+    },
+    {
       "order": 10,
       "tag": "CASE 10",
       "title": "SW-D-AD002 (CSD) - Pilling",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"
+    },
+    {
+      "order": 11,
+      "tag": "CASE 11",
+      "title": "Youngtex - DOE",
+      "description": "Youngtex - DOE case study and investigation report.",
+      "file": "case-reports/Case 11-Youngtex - DOE.pdf"
     },
     {
       "order": 12,
