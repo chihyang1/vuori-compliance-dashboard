@@ -1,92 +1,92 @@
 {
   "cases": [
     {
-      "order": 13,
-      "tag": "NEW CASE",
+      "order": 1,
+      "tag": "CASE 1",
       "title": "BIOFLEX LAB107AW Color Shading",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 1-BIOFLEX-LAB107AW - Color Shading.pdf"
     },
     {
-      "order": 14,
-      "tag": "NEW CASE",
+      "order": 2,
+      "tag": "CASE 2",
       "title": "Chicken Claw",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 2-Chicken Claw.pdf"
     },
     {
-      "order": 15,
-      "tag": "NEW CASE",
+      "order": 3,
+      "tag": "CASE 3",
       "title": "Downside of Garment Dyed & Washed Garment",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 3-Downside of Garment Dyed & Washed Garment.pdf"
     },
     {
-      "order": 16,
-      "tag": "NEW CASE",
+      "order": 4,
+      "tag": "CASE 4",
       "title": "Dye Transfer in High Temperature Container Storage",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 4-Dye Transfer in High-Temperature Container Storage.pdf"
     },
     {
-      "order": 17,
-      "tag": "NEW CASE",
+      "order": 5,
+      "tag": "CASE 5",
       "title": "EJ161330MS1 Cosmetic Snagging",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 5-EJ161330MS1 - Cosmetic Snagging.pdf"
     },
     {
-      "order": 18,
-      "tag": "NEW CASE",
+      "order": 6,
+      "tag": "CASE 6",
       "title": "Fabric Side to Side Shade Variation Handling Guideline",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 6-Fabric Side to Side Shade Variation Handling Guideline.pdf"
     },
     {
-      "order": 19,
-      "tag": "NEW CASE",
+      "order": 7,
+      "tag": "CASE 7",
       "title": "KP04570JA0 Color Bleeding",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 7-KP04570JA0 - Color Bleeding.pdf"
     },
     {
-      "order": 20,
-      "tag": "NEW CASE",
+      "order": 8,
+      "tag": "CASE 8",
       "title": "KP04570JA0 Easy Creas Marks",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"
     },
     {
-      "order": 21,
-      "tag": "NEW CASE",
+      "order": 9,
+      "tag": "CASE 9",
       "title": "Sports Bra Sample Received with Observation",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 9-Sports Bra-Sample Received with Observation.pdf"
     },
     {
-      "order": 22,
-      "tag": "NEW CASE",
+      "order": 10,
+      "tag": "CASE 10",
       "title": "SW D AD002 (CSD) Pilling",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"
     },
     {
-      "order": 23,
-      "tag": "NEW CASE",
+      "order": 11,
+      "tag": "CASE 11",
       "title": "Youngtex DOE",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 11-Youngtex-DOE.pdf"
     },
     {
-      "order": 24,
-      "tag": "NEW CASE",
+      "order": 12,
+      "tag": "CASE 12",
       "title": "VW1321 Energy Tee Long Discoloration",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 12-VW1321 Energy Tee Long - Discoloration.pdf"
     },
     {
-      "order": 25,
-      "tag": "NEW CASE",
+      "order": 13,
+      "tag": "CASE 13",
       "title": "GWC K018 CTQ Appearance after Washing Failure",
       "description": "New case study report. Update this description in case-studies.json when needed.",
       "file": "case-reports/Case 13-GWC-K018 CTQ - Appearance after Washing Failure.pdf"
