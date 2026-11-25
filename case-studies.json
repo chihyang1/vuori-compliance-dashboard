@@ -71,13 +71,6 @@
       "file": "case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"
     },
     {
-      "order": 11,
-      "tag": "CASE 11",
-      "title": "Youngtex-DOE",
-      "description": "New case study report. Update this description in case-studies.json when needed.",
-      "file": "case-reports/Case 11-Youngtex-DOE.pdf"
-    },
-    {
       "order": 12,
       "tag": "CASE 12",
       "title": "VW1321 Energy Tee Long - Discoloration",
