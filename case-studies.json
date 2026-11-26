@@ -83,6 +83,13 @@
       "title": "VW1321 Energy Tee Long - Discoloration",
       "description": "Paper-packaging contact discoloration investigation covering laundry response, UV fluorescence, BHT verification, OBA behavior and preventive detection methods.",
       "file": "case-reports/Case 12-VW1321 Energy Tee Long - Discoloration.pdf"
+    },
+    {
+      "order": 13,
+      "tag": "CASE 13",
+      "title": "GWC-K018 CTQ - Appearance after Washing Failure",
+      "description": "GWC-K018 CTQ - Appearance after Washing Failure case study and investigation report.",
+      "file": "case-reports/Case 13-GWC-K018 CTQ - Appearance after Washing Failure.pdf"
     }
   ]
 }
