@@ -1,17 +1,88 @@
 {
   "cases": [
-    {"order":1,"tag":"CASE 1","title":"BIOFLEX-LAB107AW - Color Shading","description":"Nylon/spandex color-shading investigation involving dye chemistry and wicking finish.","file":"case-reports/Case 1-BIOFLEX-LAB107AW - Color Shading.pdf"},
-    {"order":2,"tag":"CASE 2","title":"Chicken Claw","description":"Polyester satin irregular-luster investigation, corrective action and verification plan.","file":"case-reports/Case 2-Chicken Claw.pdf"},
-    {"order":3,"tag":"CASE 3","title":"Downside of Garment Dyed & Washed Garment","description":"Quality risks and approval controls for garment-dyed and washed products.","file":"case-reports/Case 3-Downside of Garment Dyed & Washed Garment.pdf"},
-    {"order":4,"tag":"CASE 4","title":"Dye Transfer in High-Temperature Container Storage","description":"Container storage temperature, packaging and dye-transfer risk assessment.","file":"case-reports/Case 4-Dye Transfer in High-Temperature Container Storage.pdf"},
-    {"order":5,"tag":"CASE 5","title":"EJ161330MS1 - Cosmetic Snagging","description":"Fine-gauge single-jersey snagging review and technical root-cause questions.","file":"case-reports/Case 5-EJ161330MS1 - Cosmetic Snagging.pdf"},
-    {"order":6,"tag":"CASE 6","title":"Fabric Side to Side Shade Variation Handling Guideline","description":"Inspection, grouping, cutting, utilization and control guideline.","file":"case-reports/Case 6-Fabric Side to Side Shade Variation Handling Guideline.pdf"},
-    {"order":7,"tag":"CASE 7","title":"KP04570JA0 - Color Bleeding","description":"Nylon 66 and elastane dye-bleeding assessment with fixation analysis.","file":"case-reports/Case 7-KP04570JA0 - Color Bleeding.pdf"},
-    {"order":8,"tag":"CASE 8","title":"KP04570JA0 - Easy Creas Marks","description":"Pressure and folding-mark assessment for high-stretch nylon/Lycra double knit.","file":"case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"},
-    {"order":9,"tag":"CASE 9","title":"Sports Bra-Sample Received with Observation","description":"Localized indentation and wrinkle observation linked to external pressure.","file":"case-reports/Case 9-Sports Bra-Sample Received with Observation.pdf"},
-    {"order":10,"tag":"CASE 10","title":"SW-D-AD002 (CSD) - Pilling","description":"Bulk pilling inconsistency review and yarn/finishing recommendations.","file":"case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"},
-    {"order":11,"tag":"CASE 11","title":"Youngtex-DOE","description":"Color-fastness DOE covering temperature sensitivity and predictive-test limits.","file":"case-reports/Case 11-Youngtex-DOE.pdf"},
-    {"order":12,"tag":"CASE 12","title":"VW1321 Energy Tee Long - Discoloration","description":"Paper-packaging contact discoloration investigation covering laundry response, UV fluorescence, BHT verification, OBA behavior and preventive detection methods.","file":"case-reports/Case 12-VW1321 Energy Tee Long - Discoloration.pdf"},
-    {"order":13,"tag":"CASE 13","title":"GWC-K018 CTQ - Appearance after Washing Failure","description":"GWC-K018 appearance-after-washing investigation covering pilling and fuzzing development from fabric through finished garment stages.","file":"case-reports/Case 13-GWC-K018 CTQ - Appearance after Washing Failure.pdf"}
+    {
+      "order": 1,
+      "tag": "CASE 1",
+      "title": "BIOFLEX-LAB107AW - Color Shading",
+      "description": "Nylon/spandex color-shading investigation involving dye chemistry and wicking finish.",
+      "file": "case-reports/Case 1-BIOFLEX-LAB107AW - Color Shading.pdf"
+    },
+    {
+      "order": 2,
+      "tag": "CASE 2",
+      "title": "Chicken Claw",
+      "description": "Polyester satin irregular-luster investigation, corrective action and verification plan.",
+      "file": "case-reports/Case 2-Chicken Claw.pdf"
+    },
+    {
+      "order": 3,
+      "tag": "CASE 3",
+      "title": "Downside of Garment Dyed & Washed Garment",
+      "description": "Quality risks and approval controls for garment-dyed and washed products.",
+      "file": "case-reports/Case 3-Downside of Garment Dyed & Washed Garment.pdf"
+    },
+    {
+      "order": 4,
+      "tag": "CASE 4",
+      "title": "Dye Transfer in High-Temperature Container Storage",
+      "description": "Container storage temperature, packaging and dye-transfer risk assessment.",
+      "file": "case-reports/Case 4-Dye Transfer in High-Temperature Container Storage.pdf"
+    },
+    {
+      "order": 5,
+      "tag": "CASE 5",
+      "title": "EJ161330MS1 - Cosmetic Snagging",
+      "description": "Fine-gauge single-jersey snagging review and technical root-cause questions.",
+      "file": "case-reports/Case 5-EJ161330MS1 - Cosmetic Snagging.pdf"
+    },
+    {
+      "order": 6,
+      "tag": "CASE 6",
+      "title": "Fabric Side to Side Shade Variation Handling Guideline",
+      "description": "Inspection, grouping, cutting, utilization and control guideline.",
+      "file": "case-reports/Case 6-Fabric Side to Side Shade Variation Handling Guideline.pdf"
+    },
+    {
+      "order": 7,
+      "tag": "CASE 7",
+      "title": "KP04570JA0 - Color Bleeding",
+      "description": "Nylon 66 and elastane dye-bleeding assessment with fixation analysis.",
+      "file": "case-reports/Case 7-KP04570JA0 - Color Bleeding.pdf"
+    },
+    {
+      "order": 8,
+      "tag": "CASE 8",
+      "title": "KP04570JA0 - Easy Creas Marks",
+      "description": "Pressure and folding-mark assessment for high-stretch nylon/Lycra double knit.",
+      "file": "case-reports/Case 8-KP04570JA0 - Easy Creas Marks.pdf"
+    },
+    {
+      "order": 9,
+      "tag": "CASE 9",
+      "title": "Sports Bra - Sample Received with Observation",
+      "description": "Sports Bra - Sample Received with Observation case study and investigation report.",
+      "file": "case-reports/Case 9-Sports Bra - Sample Received with Observation.pdf"
+    },
+    {
+      "order": 10,
+      "tag": "CASE 10",
+      "title": "SW-D-AD002 (CSD) - Pilling",
+      "description": "Bulk pilling inconsistency review and yarn/finishing recommendations.",
+      "file": "case-reports/Case 10-SW-D-AD002 (CSD) - Pilling.pdf"
+    },
+    {
+      "order": 11,
+      "tag": "CASE 11",
+      "title": "Youngtex - DOE",
+      "description": "Youngtex - DOE case study and investigation report.",
+      "file": "case-reports/Case 11-Youngtex - DOE.pdf"
+    },
+    {
+      "order": 12,
+      "tag": "CASE 12",
+      "title": "VW1321 Energy Tee Long - Discoloration",
+      "description": "Paper-packaging contact discoloration investigation covering laundry response, UV fluorescence, BHT verification, OBA behavior and preventive detection methods.",
+      "file": "case-reports/Case 12-VW1321 Energy Tee Long - Discoloration.pdf"
+    }
   ]
 }
