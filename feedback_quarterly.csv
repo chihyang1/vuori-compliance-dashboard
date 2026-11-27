@@ -1,44 +1,69 @@
 ﻿Style Number,Issue Category,Complaint Count,Market Region,Feedback Period,Style Name,Source Page
-VW4414,Dye Transfer,2,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
-VW4414,Stain,1,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
-VW4414,Stitching,8,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
-VW4363,Snagging,1,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
-VW4363,Stitching,4,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
-VW4363,Tearing,2,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
+V4036,Manufacturing Error,4,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 32""",13
+V4036-30,Tearing,2,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 30""",13
+V4036-MW32,Stitching,1,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 32"" (Moonwash)",13
 V8123,Other,1,Global,Jan-Feb 2026,Vuori Crew Sock,8
 V8123,Pilling,1,Global,Jan-Feb 2026,Vuori Crew Sock,8
 V8123,Tearing,4,Global,Jan-Feb 2026,Vuori Crew Sock,8
+VW4130,Dye Transfer,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Fabric Thinning,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Logo,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Manufacturing Error,2,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Other,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Pilling,11,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Product Inconsistency,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Snagging,9,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Stain,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Stitching,129,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130,Tearing,17,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
+VW4130-L,Pilling,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Long,14
+VW4130-L,Snagging,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Long,14
+VW4130-L,Stitching,10,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Long,14
+VW4130-L,Tearing,2,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Long,14
+VW4130-S,Manufacturing Error,1,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
+VW4130-S,Pilling,2,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
+VW4130-S,Snagging,2,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
+VW4130-S,Stitching,22,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
+VW4130-S,Tearing,3,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
+VW4309,Drawstring,7,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Manufacturing Error,1,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Odor,1,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Other,1,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Pilling,3,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Snagging,5,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Stitching,80,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309,Tearing,7,Global,Jan-Feb 2026,Daily Form Legging,15
+VW4309-L,Drawstring,1,Global,Jan-Feb 2026,Daily Form Legging-Long,15
+VW4309-L,Pilling,1,Global,Jan-Feb 2026,Daily Form Legging-Long,15
+VW4309-L,Snagging,1,Global,Jan-Feb 2026,Daily Form Legging-Long,15
+VW4309-L,Stitching,14,Global,Jan-Feb 2026,Daily Form Legging-Long,15
+VW4309-L,Tearing,1,Global,Jan-Feb 2026,Daily Form Legging-Long,15
+VW4309-S,Drawstring,2,Global,Jan-Feb 2026,Daily Form Legging-Short,15
+VW4309-S,Pilling,1,Global,Jan-Feb 2026,Daily Form Legging-Short,15
+VW4309-S,Snagging,2,Global,Jan-Feb 2026,Daily Form Legging-Short,15
+VW4309-S,Stitching,25,Global,Jan-Feb 2026,Daily Form Legging-Short,15
+VW4309-S,Tearing,2,Global,Jan-Feb 2026,Daily Form Legging-Short,15
+VW4363,Snagging,1,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
+VW4363,Stitching,4,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
+VW4363,Tearing,2,Global,Jan-Feb 2026,Vuori AllTheFeels Corset Legging,7
+VW4414,Dye Transfer,2,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
+VW4414,Stain,1,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
+VW4414,Stitching,8,Global,Jan-Feb 2026,Vuori AllTheForm Flare,6
+VW4463,Pilling,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
+VW4463,Snagging,2,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
+VW4463,Stitching,2,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
 VW4463-S,Pilling,2,Global,Jan-Feb 2026,Halo Easy Wideleg Pant-Short,10
 VW4463-S,Product Inconsistency,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant-Short,10
 VW4463-S,Stain,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant-Short,10
 VW4463-S,Stitching,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant-Short,10
 VW4463-S,Tearing,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant-Short,10
-VW4463,Pilling,1,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
-VW4463,Snagging,2,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
-VW4463,Stitching,2,Global,Jan-Feb 2026,Halo Easy Wideleg Pant,11
-V4036,Manufacturing Error,4,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 32""",13
-V4036-30,Tearing,2,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 30""",13
-V4036-MW32,Stitching,1,Global,Jan-Feb 2026,"Vuori Vintage Jean Classic Fit 32"" (Moonwash)",13
-VW4130,Unspecified - PDF aggregate only,174,Global,Jan-Feb 2026,Vuori AllTheForm Legging,14
-VW4130-L,Unspecified - PDF aggregate only,14,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Long,14
-VW4130-S,Unspecified - PDF aggregate only,30,Global,Jan-Feb 2026,Vuori AllTheForm Legging-Short,14
-VW4309,Unspecified - PDF aggregate only,105,Global,Jan-Feb 2026,Daily Form Legging,15
-VW4309-L,Unspecified - PDF aggregate only,18,Global,Jan-Feb 2026,Daily Form Legging-Long,15
-VW4309-S,Unspecified - PDF aggregate only,32,Global,Jan-Feb 2026,Daily Form Legging-Short,15
-VW2068,Discoloration,2,Global,Mar-Apr 2026,Sedona Seams Crew,6
-VW2068,Snagging,2,Global,Mar-Apr 2026,Sedona Seams Crew,6
-VW2068,Stain,1,Global,Mar-Apr 2026,Sedona Seams Crew,6
-VW2068,Tearing,3,Global,Mar-Apr 2026,Sedona Seams Crew,6
+V3075,Drawstring,2,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
+V3075,Stain,2,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
+V3075,Tearing,1,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
 VW1156,Pilling,3,Global,Mar-Apr 2026,Energy Top - Long,7
 VW1156,Product Inconsistency,1,Global,Mar-Apr 2026,Energy Top - Long,7
 VW1156,Snagging,1,Global,Mar-Apr 2026,Energy Top - Long,7
 VW1156,Tearing,1,Global,Mar-Apr 2026,Energy Top - Long,7
-VW4463-L,Manufacturing Error,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
-VW4463-L,Product Inconsistency,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
-VW4463-L,Stitching,2,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
-VW4463-L,Tearing,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
-VW4489,Discoloration,11,Global,Mar-Apr 2026,Women's Vuori Vintage Wideleg Jean (Colors),10
-VW4489,Stitching,1,Global,Mar-Apr 2026,Women's Vuori Vintage Wideleg Jean (Colors),10
 VW1321,Pilling,1,Global,Mar-Apr 2026,Energy Tee Long,11
 VW1321,Snagging,3,Global,Mar-Apr 2026,Energy Tee Long,11
 VW1321,Stain,3,Global,Mar-Apr 2026,Energy Tee Long,11
@@ -48,34 +73,48 @@ VW1502,Discoloration,4,Global,Mar-Apr 2026,Short Sleeve Feather Classic Tee – 
 VW1502,Stain,1,Global,Mar-Apr 2026,Short Sleeve Feather Classic Tee – Garment Dye,12
 VW1502,Stitching,2,Global,Mar-Apr 2026,Short Sleeve Feather Classic Tee – Garment Dye,12
 VW1502,Tearing,1,Global,Mar-Apr 2026,Short Sleeve Feather Classic Tee – Garment Dye,12
+VW2068,Discoloration,2,Global,Mar-Apr 2026,Sedona Seams Crew,6
+VW2068,Snagging,2,Global,Mar-Apr 2026,Sedona Seams Crew,6
+VW2068,Stain,1,Global,Mar-Apr 2026,Sedona Seams Crew,6
+VW2068,Tearing,3,Global,Mar-Apr 2026,Sedona Seams Crew,6
+VW3132,Snagging,1,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
+VW3132,Tearing,1,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
+VW3132,Welding/Bonding,5,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
+VW3162,Product Inconsistency,3,Global,Mar-Apr 2026,"Clementine 2.0 Short 2.5""",18
+VW4463-L,Manufacturing Error,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
+VW4463-L,Product Inconsistency,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
+VW4463-L,Stitching,2,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
+VW4463-L,Tearing,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Long,8
+VW4463-S,Manufacturing Error,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
+VW4463-S,Stain,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
+VW4463-S,Stitching,2,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
+VW4463-S,Tearing,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
+VW4489,Discoloration,11,Global,Mar-Apr 2026,Women's Vuori Vintage Wideleg Jean (Colors),10
+VW4489,Stitching,1,Global,Mar-Apr 2026,Women's Vuori Vintage Wideleg Jean (Colors),10
 VW4503,Manufacturing Error,1,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
 VW4503,Other,1,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
 VW4503,Pilling,1,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
 VW4503,Snagging,2,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
 VW4503,Stitching,2,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
 VW4503,Tearing,1,Global,Mar-Apr 2026,Daily Form Ankle Pant,13
-VW3132,Snagging,1,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
-VW3132,Tearing,1,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
-VW3132,Welding/Bonding,5,Global,Mar-Apr 2026,"Vuori AllTheForm Pckt Short 6""",14
-V3075,Drawstring,2,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
-V3075,Stain,2,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
-V3075,Tearing,1,Global,Mar-Apr 2026,"HardKore Short Lined 5""",15
-VW4463-S,Manufacturing Error,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
-VW4463-S,Stain,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
-VW4463-S,Stitching,2,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
-VW4463-S,Tearing,1,Global,Mar-Apr 2026,Halo Easy Wideleg Pant - Short,16
-VW3162,Product Inconsistency,3,Global,Mar-Apr 2026,"Clementine 2.0 Short 2.5""",18
-V3072,Drawstring,3,Global,May-Jun 2026,"HardKore Short Lined 7""",6
-V3072,Pilling,1,Global,May-Jun 2026,"HardKore Short Lined 7""",6
-V3072,Product Inconsistency,1,Global,May-Jun 2026,"HardKore Short Lined 7""",6
-V3072,Snagging,5,Global,May-Jun 2026,"HardKore Short Lined 7""",6
-V3072,Tearing,3,Global,May-Jun 2026,"HardKore Short Lined 7""",6
-V8087,Tearing,10,Global,May-Jun 2026,Wanderer Backpack,7
+V1109,Manufacturing Error,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
+V1109,Odor,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
+V1109,Pilling,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
+V1109,Snagging,2,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
 V3018,Drawstring,4,Global,May-Jun 2026,"Sunday Performance Short 8""",8
 V3018,Snagging,1,Global,May-Jun 2026,"Sunday Performance Short 8""",8
 V3018,Stitching,4,Global,May-Jun 2026,"Sunday Performance Short 8""",8
 V3018,Tearing,3,Global,May-Jun 2026,"Sunday Performance Short 8""",8
 V3018,Welding/Bonding,5,Global,May-Jun 2026,"Sunday Performance Short 8""",8
+V3072,Drawstring,3,Global,May-Jun 2026,"HardKore Short Lined 7""",6
+V3072,Pilling,1,Global,May-Jun 2026,"HardKore Short Lined 7""",6
+V3072,Product Inconsistency,1,Global,May-Jun 2026,"HardKore Short Lined 7""",6
+V3072,Snagging,5,Global,May-Jun 2026,"HardKore Short Lined 7""",6
+V3072,Tearing,3,Global,May-Jun 2026,"HardKore Short Lined 7""",6
+V3085,Button,2,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
+V3085,Drawstring,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
+V3085,Stain,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
+V3085,Tearing,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
 V3130,Button,9,Global,May-Jun 2026,"Aim Short 8""",11
 V3130,Discoloration,1,Global,May-Jun 2026,"Aim Short 8""",11
 V3130,Odor,2,Global,May-Jun 2026,"Aim Short 8""",11
@@ -84,7 +123,17 @@ V3130,Product Inconsistency,1,Global,May-Jun 2026,"Aim Short 8""",11
 V3130,Retention,1,Global,May-Jun 2026,"Aim Short 8""",11
 V3130,Stain,1,Global,May-Jun 2026,"Aim Short 8""",11
 V3130,Tearing,3,Global,May-Jun 2026,"Aim Short 8""",11
-VW4489,Discoloration,17,Global,May-Jun 2026,"W's Vuori Vintage Wideleg 32"" (Colors)",12
+V4037,Discoloration,6,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 32""",31
+V4037,Retention,1,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 32""",31
+V4037,Stitching,1,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 32""",31
+V4037,Tearing,1,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 32""",31
+V4037-30,Discoloration,1,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 30""",31
+V4041,Discoloration,2,Global,May-Jun 2026,"Benton Twill Pant Classic 32""",31
+V4041-30,Discoloration,2,Global,May-Jun 2026,"Benton Twill Pant Classic 30""",31
+V8087,Tearing,10,Global,May-Jun 2026,Wanderer Backpack,7
+VW1321,Pilling,4,Global,May-Jun 2026,Energy Tee Long,17
+VW1321,Snagging,4,Global,May-Jun 2026,Energy Tee Long,17
+VW1321,Stitching,2,Global,May-Jun 2026,Energy Tee Long,17
 VW1374,Discoloration,1,Global,May-Jun 2026,Pose Support Cami,14
 VW1374,Manufacturing Error,1,Global,May-Jun 2026,Pose Support Cami,14
 VW1374,Odor,1,Global,May-Jun 2026,Pose Support Cami,14
@@ -92,19 +141,51 @@ VW1374,Product Inconsistency,1,Global,May-Jun 2026,Pose Support Cami,14
 VW1374,Stain,3,Global,May-Jun 2026,Pose Support Cami,14
 VW1374,Stitching,5,Global,May-Jun 2026,Pose Support Cami,14
 VW1374,Tearing,4,Global,May-Jun 2026,Pose Support Cami,14
+VW1375,Pilling,2,Global,May-Jun 2026,Halo Cami,24
+VW1375,Tearing,3,Global,May-Jun 2026,Halo Cami,24
+VW1441,Hangtag Damage,1,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1441,Pilling,2,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1441,Product Inconsistency,1,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1441,Stain,1,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1441,Stitching,1,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1441,Tearing,1,Global,May-Jun 2026,Energy Racerback Tank,21
+VW1502,Discoloration,5,Global,May-Jun 2026,Short Sleeve Feather Classic Tee – Garment Dye,22
+VW1502,Stain,1,Global,May-Jun 2026,Short Sleeve Feather Classic Tee – Garment Dye,22
+VW1552,Stain,1,Global,May-Jun 2026,Vuori AllTheForm V-Neck Tank,20
+VW1552,Stitching,6,Global,May-Jun 2026,Vuori AllTheForm V-Neck Tank,20
+VW2068,Discoloration,1,Global,May-Jun 2026,Sedona Seams Crew,23
+VW2068,Snagging,1,Global,May-Jun 2026,Sedona Seams Crew,23
+VW2068,Stain,3,Global,May-Jun 2026,Sedona Seams Crew,23
+VW3132,Drawstring,1,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
+VW3132,Pilling,1,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
+VW3132,Snagging,1,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
+VW3132,Stitching,15,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
+VW3132,Tearing,2,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
+VW3132,Welding/Bonding,2,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
 VW3163,Drawstring,2,Global,May-Jun 2026,"Clementine 2.0 Short 4""",15
 VW3163,Product Inconsistency,6,Global,May-Jun 2026,"Clementine 2.0 Short 4""",15
 VW3163,Snagging,1,Global,May-Jun 2026,"Clementine 2.0 Short 4""",15
 VW3163,Stitching,1,Global,May-Jun 2026,"Clementine 2.0 Short 4""",15
 VW3163,Tearing,3,Global,May-Jun 2026,"Clementine 2.0 Short 4""",15
-VW4503,Drawstring,5,Global,May-Jun 2026,Daily Form Ankle Pant,16
-VW4503,Manufacturing Error,1,Global,May-Jun 2026,Daily Form Ankle Pant,16
-VW4503,Pilling,2,Global,May-Jun 2026,Daily Form Ankle Pant,16
-VW4503,Stitching,2,Global,May-Jun 2026,Daily Form Ankle Pant,16
-VW4503,Tearing,1,Global,May-Jun 2026,Daily Form Ankle Pant,16
-VW1321,Pilling,4,Global,May-Jun 2026,Energy Tee Long,17
-VW1321,Snagging,4,Global,May-Jun 2026,Energy Tee Long,17
-VW1321,Stitching,2,Global,May-Jun 2026,Energy Tee Long,17
+VW4130,Drawstring,3,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Pilling,2,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Snagging,3,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Stain,1,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Stitching,40,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Tearing,6,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4130,Welding/Bonding,4,Global,May-Jun 2026,Vuori AllTheForm Legging,33
+VW4156,Drawstring,1,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4156,Pilling,1,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4156,Snagging,1,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4156,Stitching,13,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4156,Tearing,2,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4156,Welding/Bonding,1,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
+VW4309,Drawstring,3,Global,May-Jun 2026,Daily Form Legging,33
+VW4309,Pilling,2,Global,May-Jun 2026,Daily Form Legging,33
+VW4309,Snagging,2,Global,May-Jun 2026,Daily Form Legging,33
+VW4309,Stitching,35,Global,May-Jun 2026,Daily Form Legging,33
+VW4309,Tearing,5,Global,May-Jun 2026,Daily Form Legging,33
+VW4309,Welding/Bonding,4,Global,May-Jun 2026,Daily Form Legging,33
 VW4463,Manufacturing Error,2,Global,May-Jun 2026,Halo Easy Wideleg Pant,18
 VW4463,Pilling,2,Global,May-Jun 2026,Halo Easy Wideleg Pant,18
 VW4463,Snagging,2,Global,May-Jun 2026,Halo Easy Wideleg Pant,18
@@ -115,57 +196,51 @@ VW4463-L,Manufacturing Error,1,Global,May-Jun 2026,Halo Easy Wideleg Pant - Long
 VW4463-L,Pilling,1,Global,May-Jun 2026,Halo Easy Wideleg Pant - Long,19
 VW4463-L,Snagging,1,Global,May-Jun 2026,Halo Easy Wideleg Pant - Long,19
 VW4463-L,Stitching,1,Global,May-Jun 2026,Halo Easy Wideleg Pant - Long,19
-VW1552,Stain,1,Global,May-Jun 2026,Vuori AllTheForm V-Neck Tank,20
-VW1552,Stitching,6,Global,May-Jun 2026,Vuori AllTheForm V-Neck Tank,20
-VW1441,Hangtag Damage,1,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1441,Pilling,2,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1441,Product Inconsistency,1,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1441,Stain,1,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1441,Stitching,1,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1441,Tearing,1,Global,May-Jun 2026,Energy Racerback Tank,21
-VW1502,Discoloration,5,Global,May-Jun 2026,Short Sleeve Feather Classic Tee – Garment Dye,22
-VW1502,Stain,1,Global,May-Jun 2026,Short Sleeve Feather Classic Tee – Garment Dye,22
-VW2068,Discoloration,1,Global,May-Jun 2026,Sedona Seams Crew,23
-VW2068,Snagging,1,Global,May-Jun 2026,Sedona Seams Crew,23
-VW2068,Stain,3,Global,May-Jun 2026,Sedona Seams Crew,23
-VW1375,Pilling,2,Global,May-Jun 2026,Halo Cami,24
-VW1375,Tearing,3,Global,May-Jun 2026,Halo Cami,24
+VW4489,Discoloration,17,Global,May-Jun 2026,"W's Vuori Vintage Wideleg 32"" (Colors)",12
 VW4497,Discoloration,1,Global,May-Jun 2026,Trestles Twill Crop Wideleg Pant,25
 VW4497,Product Inconsistency,1,Global,May-Jun 2026,Trestles Twill Crop Wideleg Pant,25
 VW4497,Snagging,2,Global,May-Jun 2026,Trestles Twill Crop Wideleg Pant,25
 VW4497,Stain,1,Global,May-Jun 2026,Trestles Twill Crop Wideleg Pant,25
 VW4497,Tearing,1,Global,May-Jun 2026,Trestles Twill Crop Wideleg Pant,25
+VW4503,Drawstring,5,Global,May-Jun 2026,Daily Form Ankle Pant,16
+VW4503,Manufacturing Error,1,Global,May-Jun 2026,Daily Form Ankle Pant,16
+VW4503,Pilling,2,Global,May-Jun 2026,Daily Form Ankle Pant,16
+VW4503,Stitching,2,Global,May-Jun 2026,Daily Form Ankle Pant,16
+VW4503,Tearing,1,Global,May-Jun 2026,Daily Form Ankle Pant,16
 VW4532,Stitching,4,Global,May-Jun 2026,Skyline Legging,26
 VW4532,Tearing,1,Global,May-Jun 2026,Skyline Legging,26
-V1109,Manufacturing Error,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
-V1109,Odor,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
-V1109,Pilling,1,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
-V1109,Snagging,2,Global,May-Jun 2026,S/S Gamepoint Tee - Relaxed,27
-V3085,Button,2,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
-V3085,Drawstring,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
-V3085,Stain,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
-V3085,Tearing,1,Global,May-Jun 2026,"Aim Elastic Waist Short 7""",28
-V4037,Unspecified - PDF aggregate only,9,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 32""",31
-V4037-30,Unspecified - PDF aggregate only,1,Global,May-Jun 2026,"Benton Twill Pant Athl Slim 30""",31
-V4041,Unspecified - PDF aggregate only,2,Global,May-Jun 2026,"Benton Twill Pant Classic 32""",31
-V4041-30,Unspecified - PDF aggregate only,2,Global,May-Jun 2026,"Benton Twill Pant Classic 30""",31
-VW3132,Unspecified - PDF aggregate only,22,Global,May-Jun 2026,"Vuori AllTheForm Pckt Short 6""",33
-VW4130,Unspecified - PDF aggregate only,59,Global,May-Jun 2026,Vuori AllTheForm Legging,33
-VW4156,Unspecified - PDF aggregate only,19,Global,May-Jun 2026,Vuori AllTheForm Pkt Legging,33
-VW4309,Unspecified - PDF aggregate only,51,Global,May-Jun 2026,Daily Form Legging,33
-VW4403,Manufacturing Error,3,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
-VW4403,Snagging,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
-VW4403,Stain,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
-VW4403,Stitching,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
-VW4403,Zipper,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
+V1150,Logo,1,Global,Jul-Aug 2026,S/S Strato Breathe Tee,14
+V1150,Product Inconsistency,1,Global,Jul-Aug 2026,S/S Strato Breathe Tee,14
+V1150,Snagging,21,Global,Jul-Aug 2026,S/S Strato Breathe Tee,14
+V1150,Stain,1,Global,Jul-Aug 2026,S/S Strato Breathe Tee,14
+V1156,Logo,1,Global,Jul-Aug 2026,L/S Strato Breathe Tee,14
+V1156,Snagging,4,Global,Jul-Aug 2026,L/S Strato Breathe Tee,14
+V1184,Logo,1,Global,Jul-Aug 2026,Sleeveless Strato Breathe Tank,14
+V1184,Pilling,1,Global,Jul-Aug 2026,Sleeveless Strato Breathe Tank,14
+V1184,Snagging,7,Global,Jul-Aug 2026,Sleeveless Strato Breathe Tank,14
 V3119,Button,2,Global,Jul-Aug 2026,"Coast Short 7""",7
 V3119,Discoloration,10,Global,Jul-Aug 2026,"Coast Short 7""",7
 V3119,Dye Transfer,2,Global,Jul-Aug 2026,"Coast Short 7""",7
 V3119,Stitching,1,Global,Jul-Aug 2026,"Coast Short 7""",7
 V3119,Tearing,1,Global,Jul-Aug 2026,"Coast Short 7""",7
 V3119,Zipper,1,Global,Jul-Aug 2026,"Coast Short 7""",7
-V4087-30,Unspecified - PDF aggregate only,7,Global,Jul-Aug 2026,"Coast Pant Classic Fit 30""",7
-V4087-32,Unspecified - PDF aggregate only,5,Global,Jul-Aug 2026,"Coast Pant Classic Fit 32""",7
+V4087-30,Discoloration,7,Global,Jul-Aug 2026,"Coast Pant Classic Fit 30""",7
+V4087-32,Discoloration,5,Global,Jul-Aug 2026,"Coast Pant Classic Fit 32""",7
+V8087,Tearing,21,Global,Jul-Aug 2026,Wanderer Backpack,20
+VW1099,Discoloration,2,Global,Jul-Aug 2026,Vuori AllTheFeels Bra,10
+VW1156,Manufacturing Error,3,Global,Jul-Aug 2026,Energy Top - Long,19
+VW1156,Pilling,3,Global,Jul-Aug 2026,Energy Top - Long,19
+VW1156,Product Inconsistency,2,Global,Jul-Aug 2026,Energy Top - Long,19
+VW1156,Snagging,1,Global,Jul-Aug 2026,Energy Top - Long,19
+VW1156,Stain,1,Global,Jul-Aug 2026,Energy Top - Long,19
+VW1156,Stitching,1,Global,Jul-Aug 2026,Energy Top - Long,19
+VW123,Manufacturing Error,3,Global,Jul-Aug 2026,Energy Top,19
+VW123,Pilling,3,Global,Jul-Aug 2026,Energy Top,19
+VW123,Product Inconsistency,2,Global,Jul-Aug 2026,Energy Top,19
+VW123,Snagging,2,Global,Jul-Aug 2026,Energy Top,19
+VW123,Stain,1,Global,Jul-Aug 2026,Energy Top,19
+VW123,Stitching,1,Global,Jul-Aug 2026,Energy Top,19
+VW1354,Discoloration,2,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,10
 VW1354,Dye Transfer,1,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
 VW1354,Manufacturing Error,1,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
 VW1354,Other,2,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
@@ -174,33 +249,212 @@ VW1354,Product Inconsistency,1,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
 VW1354,Stain,4,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
 VW1354,Stitching,2,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
 VW1354,Tearing,1,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,9
-VW1099,Discoloration,2,Global,Jul-Aug 2026,Vuori AllTheFeels Bra,10
-VW1354,Discoloration,2,Global,Jul-Aug 2026,Vuori AllTheFeels Tank 2.0,10
+VW1423,Manufacturing Error,1,Global,Jul-Aug 2026,Halo Cross Back Tank,17
+VW1423,Stain,2,Global,Jul-Aug 2026,Halo Cross Back Tank,17
+VW1423,Tearing,2,Global,Jul-Aug 2026,Halo Cross Back Tank,17
+VW1643,Manufacturing Error,2,Global,Jul-Aug 2026,Daily Layered Bra,15
+VW1643,Stain,1,Global,Jul-Aug 2026,Daily Layered Bra,15
+VW1643,Tearing,4,Global,Jul-Aug 2026,Daily Layered Bra,15
 VW3052,Discoloration,2,Global,Jul-Aug 2026,"Vuori AllTheFeels Short 4""",10
+VW3073,Pilling,1,Global,Jul-Aug 2026,"Vuori AllTheForm Short 6""",21
+VW3073,Stain,1,Global,Jul-Aug 2026,"Vuori AllTheForm Short 6""",21
+VW3073,Stitching,27,Global,Jul-Aug 2026,"Vuori AllTheForm Short 6""",21
+VW3073,Tearing,1,Global,Jul-Aug 2026,"Vuori AllTheForm Short 6""",21
 VW3228,Discoloration,1,Global,Jul-Aug 2026,Vuori AllTheForm Mic Short 2.5,10
+VW3295,Drawstring,2,Global,Jul-Aug 2026,"Daily Track Short 5""",16
+VW3295,Stitching,3,Global,Jul-Aug 2026,"Daily Track Short 5""",16
+VW3295,Tearing,1,Global,Jul-Aug 2026,"Daily Track Short 5""",16
 VW4018,Discoloration,3,Global,Jul-Aug 2026,Vuori AllTheFeels Legging,10
 VW4018-S,Discoloration,1,Global,Jul-Aug 2026,Vuori AllTheFeels Legging - S,10
+VW4130,Discoloration,2,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4130,Odor,2,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4130,Pilling,1,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4130,Snagging,2,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4130,Stitching,23,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4130,Tearing,8,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
+VW4156,Stitching,3,Global,Jul-Aug 2026,Vuori AllTheForm Pkt Legging,21
+VW4156,Stitching,13,Global,Jul-Aug 2026,Vuori AllTheForm Pkt Legging,21
+VW4309,Drawstring,2,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4309,Pilling,2,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4309,Snagging,1,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4309,Stain,1,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4309,Stitching,24,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4309,Tearing,5,Global,Jul-Aug 2026,Daily Form Legging,21
+VW4403,Manufacturing Error,3,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
+VW4403,Snagging,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
+VW4403,Stain,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
+VW4403,Stitching,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
+VW4403,Zipper,1,Global,Jul-Aug 2026,Villa Wideleg Trouser,6
 VW4574,Drawstring,1,Global,Jul-Aug 2026,Daily Track Legging,13
 VW4574,Pilling,1,Global,Jul-Aug 2026,Daily Track Legging,13
 VW4574,Snagging,1,Global,Jul-Aug 2026,Daily Track Legging,13
 VW4574,Stitching,8,Global,Jul-Aug 2026,Daily Track Legging,13
 VW4574,Tearing,14,Global,Jul-Aug 2026,Daily Track Legging,13
-V1150,Unspecified - PDF aggregate only,24,Global,Jul-Aug 2026,S/S Strato Breathe Tee,14
-V1156,Unspecified - PDF aggregate only,5,Global,Jul-Aug 2026,L/S Strato Breathe Tee,14
-V1184,Unspecified - PDF aggregate only,9,Global,Jul-Aug 2026,Sleeveless Strato Breathe Tank,14
-VW1643,Manufacturing Error,2,Global,Jul-Aug 2026,Daily Layered Bra,15
-VW1643,Stain,1,Global,Jul-Aug 2026,Daily Layered Bra,15
-VW1643,Tearing,4,Global,Jul-Aug 2026,Daily Layered Bra,15
-VW3295,Drawstring,2,Global,Jul-Aug 2026,"Daily Track Short 5""",16
-VW3295,Stitching,3,Global,Jul-Aug 2026,"Daily Track Short 5""",16
-VW3295,Tearing,1,Global,Jul-Aug 2026,"Daily Track Short 5""",16
-VW1423,Manufacturing Error,1,Global,Jul-Aug 2026,Halo Cross Back Tank,17
-VW1423,Stain,2,Global,Jul-Aug 2026,Halo Cross Back Tank,17
-VW1423,Tearing,2,Global,Jul-Aug 2026,Halo Cross Back Tank,17
-VW1156,Unspecified - PDF aggregate only,11,Global,Jul-Aug 2026,Energy Top - Long,19
-VW123,Unspecified - PDF aggregate only,12,Global,Jul-Aug 2026,Energy Top,19
-V8087,Tearing,21,Global,Jul-Aug 2026,Wanderer Backpack,20
-VW3073,Unspecified - PDF aggregate only,30,Global,Jul-Aug 2026,"Vuori AllTheForm Short 6""",21
-VW4130,Unspecified - PDF aggregate only,38,Global,Jul-Aug 2026,Vuori AllTheForm Legging,21
-VW4156,Unspecified - PDF aggregate only,16,Global,Jul-Aug 2026,Vuori AllTheForm Pkt Legging,21
-VW4309,Unspecified - PDF aggregate only,35,Global,Jul-Aug 2026,Daily Form Legging,21
+V1150,Snagging,2,Global,Sept-Oct 2026,S/S Strato Breathe Tee,9
+V1150,Pilling,1,Global,Sept-Oct 2026,S/S Strato Breathe Tee,9
+V1150,Snagging,13,Global,Sept-Oct 2026,S/S Strato Breathe Tee,9
+V1152,Stain,1,Global,Sept-Oct 2026,L/S Midweight Flannel Shirt,11
+V1156,Snagging,3,Global,Sept-Oct 2026,L/S Strato Breathe Tee,10
+V1184,Snagging,1,Global,Sept-Oct 2026,Sleeveless Strato Breathe Tank,9
+V1184,Snagging,4,Global,Sept-Oct 2026,Sleeveless Strato Breathe Tank,9
+V1184,Stain,1,Global,Sept-Oct 2026,Sleeveless Strato Breathe Tank,9
+V1199,Retention,2,Global,Sept-Oct 2026,L/S Cypress Rugby,9
+V1199,Retention,1,Global,Sept-Oct 2026,L/S Cypress Rugby,9
+V1199,Stain,1,Global,Sept-Oct 2026,L/S Cypress Rugby,9
+V1237,Tearing,1,Global,Sept-Oct 2026,S/S Clearview Tee - Engineered,11
+V2086,Pilling,1,Global,Sept-Oct 2026,Galaxy Full Zip,11
+V2087,Pilling,1,Global,Sept-Oct 2026,Galaxy Crew,11
+V2117,Odor,1,Global,Sept-Oct 2026,Sunday Pullover Hoodie,10
+V2117,Stain,1,Global,Sept-Oct 2026,Sunday Pullover Hoodie,10
+V2118,Tearing,2,Global,Sept-Oct 2026,LW Tech Waffle 1/4 Zip,10
+V2119,Pilling,1,Global,Sept-Oct 2026,Ponto Performance Crew 2.0,10
+V2119,Retention,1,Global,Sept-Oct 2026,Ponto Performance Crew 2.0,10
+V2123,Stitching,12,Global,Sept-Oct 2026,Midweight Rib Sweater Hoodie,9
+V2138,Retention,1,Global,Sept-Oct 2026,Seaside Crew 2.0,11
+V2140,Stain,2,Global,Sept-Oct 2026,Seaside Pullover Hoodie 2.0,9
+V2140,Stain,2,Global,Sept-Oct 2026,Seaside Pullover Hoodie 2.0,9
+V2140,Tearing,1,Global,Sept-Oct 2026,Seaside Pullover Hoodie 2.0,9
+V2164,Logo,2,Global,Sept-Oct 2026,Vuori Logo Crew,10
+V2164,Stitching,1,Global,Sept-Oct 2026,Vuori Logo Crew,10
+V2165,Logo,1,Global,Sept-Oct 2026,Vuori Logo Hoodie,10
+V3112,Logo,1,Global,Sept-Oct 2026,"Kore Breathe Short Lined 7""",9
+V3112,Logo,2,Global,Sept-Oct 2026,"Kore Breathe Short Lined 7""",9
+V3112,Manufacturing Error,2,Global,Sept-Oct 2026,"Kore Breathe Short Lined 7""",9
+V3112-5,Drawstring,1,Global,Sept-Oct 2026,"Kore Breathe Short Lined 5""",10
+V3112-5,Stain,1,Global,Sept-Oct 2026,"Kore Breathe Short Lined 5""",10
+V3116,Tearing,1,Global,Sept-Oct 2026,"Ponto Re/ACTV Short Lined 7""",11
+V3121,Logo,1,Global,Sept-Oct 2026,Crosscourt Pro Short Unlined 7,10
+V3141,Logo,1,Global,Sept-Oct 2026,"Sunday Track Short 6""",9
+V3141,Logo,2,Global,Sept-Oct 2026,"Sunday Track Short 6""",9
+V3141,Stitching,1,Global,Sept-Oct 2026,"Sunday Track Short 6""",9
+V3154,Tearing,1,Global,Sept-Oct 2026,"Ponto Re/ACTV Short Lined 5""",10
+V3155,Drawstring,1,Global,Sept-Oct 2026,"Kore Short X4 Unlined 7""",10
+V4092,Pilling,1,Global,Sept-Oct 2026,"Galaxy Pant 30""",11
+V4107,Manufacturing Error,1,Global,Sept-Oct 2026,"Kore Pant Unlined 30""",11
+V4125,Discoloration,1,Global,Sept-Oct 2026,"Benton Twill EW Pant Relax 30""",10
+V4125,Dye Transfer,1,Global,Sept-Oct 2026,"Benton Twill EW Pant Relax 30""",10
+V4174,Drawstring,1,Global,Sept-Oct 2026,"Kore Jogger 28""",11
+V5055,Manufacturing Error,1,Global,Sept-Oct 2026,Echo Insulated Jacket 3.0,10
+V5055,Tearing,1,Global,Sept-Oct 2026,Echo Insulated Jacket 3.0,10
+V5056,Stain,1,Global,Sept-Oct 2026,Echo Insulated Vest 3.0,11
+V8150,Tearing,2,Global,Sept-Oct 2026,Vuori Arden OS Shoulder Bag,10
+V8169,Stain,1,Global,Sept-Oct 2026,Vuori Arden Crescent Sling,9
+V8169,Odor,1,Global,Sept-Oct 2026,Vuori Arden Crescent Sling,9
+V8169,Stain,2,Global,Sept-Oct 2026,Vuori Arden Crescent Sling,9
+V8220,Stitching,1,Global,Sept-Oct 2026,Micro Stripe Crew Sock,11
+V8241,Stain,1,Global,Sept-Oct 2026,Vuori Logo Dad Hat,11
+VW1355-L,Snagging,1,Global,Sept-Oct 2026,Vuori AllTheFeels Cami Long,11
+VW1416,Stain,1,Global,Sept-Oct 2026,Vuori AllTheForm Logo Tank,10
+VW1416,Snagging,1,Global,Sept-Oct 2026,Vuori AllTheForm Logo Tank,10
+VW1416,Stain,1,Global,Sept-Oct 2026,Vuori AllTheForm Logo Tank,10
+VW1423,Manufacturing Error,1,Global,Sept-Oct 2026,Halo Cross Back Tank,9
+VW1423,Tearing,3,Global,Sept-Oct 2026,Halo Cross Back Tank,9
+VW1443,Tearing,1,Global,Sept-Oct 2026,Everyday Cotton Stretch Tank,9
+VW1443,Snagging,2,Global,Sept-Oct 2026,Everyday Cotton Stretch Tank,9
+VW1443,Tearing,3,Global,Sept-Oct 2026,Everyday Cotton Stretch Tank,9
+VW1476,Tearing,1,Global,Sept-Oct 2026,Everyday Cotton Fitted Tee,9
+VW1476,Stitching,2,Global,Sept-Oct 2026,Everyday Cotton Fitted Tee,9
+VW1476,Tearing,2,Global,Sept-Oct 2026,Everyday Cotton Fitted Tee,9
+VW1480,Stitching,4,Global,Sept-Oct 2026,Energy Classic Tee,9
+VW1480,Tearing,1,Global,Sept-Oct 2026,Energy Classic Tee,9
+VW1513,Tearing,1,Global,Sept-Oct 2026,Vuori AllTheFeels Cami Bra,11
+VW1519,Retention,1,Global,Sept-Oct 2026,Vuori AllTheFeels Twist Bra,11
+VW1532,Tearing,2,Global,Sept-Oct 2026,Elevation Square Neck Cami,10
+VW1560,Snagging,1,Global,Sept-Oct 2026,Vuori AllTheFeels Racerback,11
+VW1609,Retention,1,Global,Sept-Oct 2026,L/S Halo V-Neck Cardigan,10
+VW1609,Stitching,1,Global,Sept-Oct 2026,L/S Halo V-Neck Cardigan,10
+VW1612,Stitching,1,Global,Sept-Oct 2026,Pose Halter,9
+VW1612,Other,1,Global,Sept-Oct 2026,Pose Halter,9
+VW1612,Stitching,4,Global,Sept-Oct 2026,Pose Halter,9
+VW1613,Other,6,Global,Sept-Oct 2026,S/S Heavyweight Cotton Rlx Tee,9
+VW1613,Stitching,1,Global,Sept-Oct 2026,S/S Heavyweight Cotton Rlx Tee,9
+VW1614,Tearing,1,Global,Sept-Oct 2026,Vuori AllTheFeels Linework Tnk,10
+VW1623,Stain,1,Global,Sept-Oct 2026,S/S Halo Retro Tee,11
+VW1627,Stain,1,Global,Sept-Oct 2026,S/S Heavyweight OS Ctn Tee 2.0,10
+VW1638,Stitching,1,Global,Sept-Oct 2026,L/S Everyday Cotton Henley,10
+VW1639,Zipper,1,Global,Sept-Oct 2026,L/S Halo Double Zip Top,11
+VW1643,Manufacturing Error,1,Global,Sept-Oct 2026,Daily Layered Bra,9
+VW1643,Dye Transfer,1,Global,Sept-Oct 2026,Daily Layered Bra,9
+VW1643,Manufacturing Error,2,Global,Sept-Oct 2026,Daily Layered Bra,9
+VW1651,Manufacturing Error,1,Global,Sept-Oct 2026,Everyday Cotton Relaxed Tee,10
+VW1651,Snagging,1,Global,Sept-Oct 2026,Everyday Cotton Relaxed Tee,10
+VW169-L,Product Inconsistency,2,Global,Sept-Oct 2026,Pose Fitted Tee - Long,9
+VW169-L,Product Inconsistency,1,Global,Sept-Oct 2026,Pose Fitted Tee - Long,9
+VW169-L,Tearing,1,Global,Sept-Oct 2026,Pose Fitted Tee - Long,9
+VW2115,Stitching,10,Global,Sept-Oct 2026,OS Cotton Waffle Sweater,9
+VW2115,Snagging,11,Global,Sept-Oct 2026,OS Cotton Waffle Sweater,9
+VW2115,Stitching,20,Global,Sept-Oct 2026,OS Cotton Waffle Sweater,9
+VW2124,Stain,1,Global,Sept-Oct 2026,Restore OS Half Zip,9
+VW2124,Stain,4,Global,Sept-Oct 2026,Restore OS Half Zip,9
+VW2124,Tearing,1,Global,Sept-Oct 2026,Restore OS Half Zip,9
+VW2130,Snagging,1,Global,Sept-Oct 2026,Chunky Knit Crew,10
+VW2182,Stain,1,Global,Sept-Oct 2026,Émilie Cashmere OS Rib Crew,10
+VW2182,Tearing,2,Global,Sept-Oct 2026,Émilie Cashmere OS Rib Crew,10
+VW2190,Stain,2,Global,Sept-Oct 2026,Sedona Classic Pullover Hoodie,9
+VW2190,Stain,3,Global,Sept-Oct 2026,Sedona Classic Pullover Hoodie,9
+VW2190,Stitching,2,Global,Sept-Oct 2026,Sedona Classic Pullover Hoodie,9
+VW2195,Stain,2,Global,Sept-Oct 2026,Restore Essential FZ Hoodie,9
+VW2195,Odor,1,Global,Sept-Oct 2026,Restore Essential FZ Hoodie,9
+VW2195,Stain,2,Global,Sept-Oct 2026,Restore Essential FZ Hoodie,9
+VW2208,Discoloration,1,Global,Sept-Oct 2026,Restore Track Jacket,10
+VW2208,Stain,1,Global,Sept-Oct 2026,Restore Track Jacket,10
+VW2212,Tearing,1,Global,Sept-Oct 2026,Restore OS Crew,9
+VW2212,Manufacturing Error,1,Global,Sept-Oct 2026,Restore OS Crew,9
+VW2212,Tearing,2,Global,Sept-Oct 2026,Restore OS Crew,9
+VW2220,Stain,1,Global,Sept-Oct 2026,Galaxy Funnel Neck Full Zip,11
+VW2237,Zipper,1,Global,Sept-Oct 2026,Émilie Cashmere Rib Double Zip,11
+VW3202,Manufacturing Error,1,Global,Sept-Oct 2026,"Pointelle Seamless Short 4""",10
+VW3280,Pilling,1,Global,Sept-Oct 2026,"Vuori AllTheFeels LW Short 4""",11
+VW3284,Tearing,1,Global,Sept-Oct 2026,Halo Short,10
+VW3287,Pilling,1,Global,Sept-Oct 2026,"Vuori AllTheFeels Short 6""",9
+VW3287,Tearing,3,Global,Sept-Oct 2026,"Vuori AllTheFeels Short 6""",9
+VW3289,Stitching,1,Global,Sept-Oct 2026,"Set Point Short 3.5""",11
+VW3295,Drawstring,1,Global,Sept-Oct 2026,"Daily Track Short 5""",10
+VW4368,Snagging,1,Global,Sept-Oct 2026,Sander Elastic Waist Trouser,11
+VW4381-S,Manufacturing Error,3,Global,Sept-Oct 2026,"W's Vuori Vintage Wideleg 30""",9
+VW4381-S,Manufacturing Error,2,Global,Sept-Oct 2026,"W's Vuori Vintage Wideleg 30""",9
+VW4381-S,Tearing,2,Global,Sept-Oct 2026,"W's Vuori Vintage Wideleg 30""",9
+VW4383,Manufacturing Error,1,Global,Sept-Oct 2026,FormRefined Stirrup Legging,10
+VW4383,Stitching,1,Global,Sept-Oct 2026,FormRefined Stirrup Legging,10
+VW4494,Stitching,7,Global,Sept-Oct 2026,FormRefined Legging,9
+VW4494,Snagging,5,Global,Sept-Oct 2026,FormRefined Legging,9
+VW4494,Stitching,17,Global,Sept-Oct 2026,FormRefined Legging,9
+VW4494-L,Tearing,1,Global,Sept-Oct 2026,FormRefined Legging- Long,11
+VW4494-S,Stitching,1,Global,Sept-Oct 2026,FormRefined Legging- Short,9
+VW4494-S,Stain,1,Global,Sept-Oct 2026,FormRefined Legging- Short,9
+VW4494-S,Stitching,5,Global,Sept-Oct 2026,FormRefined Legging- Short,9
+VW4498,Product Inconsistency,3,Global,Sept-Oct 2026,Sedona Midrise Wideleg Sweat,9
+VW4498,Product Inconsistency,2,Global,Sept-Oct 2026,Sedona Midrise Wideleg Sweat,9
+VW4498,Tearing,2,Global,Sept-Oct 2026,Sedona Midrise Wideleg Sweat,9
+VW4514-S,Product Inconsistency,1,Global,Sept-Oct 2026,Maven Pull-On Wideleg-Short,11
+VW4520,Manufacturing Error,1,Global,Sept-Oct 2026,"W's Vuori Vintage Straight 30""",10
+VW4520,Product Inconsistency,1,Global,Sept-Oct 2026,"W's Vuori Vintage Straight 30""",10
+VW4521,Stitching,1,Global,Sept-Oct 2026,Retrograde Track Pant,9
+VW4521,Other,1,Global,Sept-Oct 2026,Retrograde Track Pant,9
+VW4521,Stitching,3,Global,Sept-Oct 2026,Retrograde Track Pant,9
+VW4523,Stitching,1,Global,Sept-Oct 2026,Vuori AllTheFeels LW Legging,9
+VW4523,Stitching,5,Global,Sept-Oct 2026,Vuori AllTheFeels LW Legging,9
+VW4523,Tearing,1,Global,Sept-Oct 2026,Vuori AllTheFeels LW Legging,9
+VW4527,Tearing,1,Global,Sept-Oct 2026,Restore Straight Track Sweat,11
+VW4540,Pilling,1,Global,Sept-Oct 2026,Halo Balloon Pant,11
+VW4569,Pilling,2,Global,Sept-Oct 2026,Halo LR Slim Flare Retro Pant,9
+VW4569,Pilling,3,Global,Sept-Oct 2026,Halo LR Slim Flare Retro Pant,9
+VW4569,Stitching,1,Global,Sept-Oct 2026,Halo LR Slim Flare Retro Pant,9
+VW4573,Snagging,2,Global,Sept-Oct 2026,Halo Low Rise Straight Leg,9
+VW4573,Stitching,2,Global,Sept-Oct 2026,Halo Low Rise Straight Leg,9
+VW4574,Tearing,8,Global,Sept-Oct 2026,Daily Track Legging,9
+VW4574,Stitching,12,Global,Sept-Oct 2026,Daily Track Legging,9
+VW4574,Tearing,22,Global,Sept-Oct 2026,Daily Track Legging,9
+VW5085,Stain,1,Global,Sept-Oct 2026,City Rain Trench,10
+VW5112,Toggle,1,Global,Sept-Oct 2026,Court Full Zip,11
+VW5151,Stain,1,Global,Sept-Oct 2026,Lou Reversible Jacket,10
+VW5151,Stitching,1,Global,Sept-Oct 2026,Lou Reversible Jacket,10
+VW5157,Tearing,1,Global,Sept-Oct 2026,Retrograde S/S Half Zip Jacket,11
+VW5159,Stain,1,Global,Sept-Oct 2026,Canyon Insulated Sporty Vest,11
+VW5160,Stain,2,Global,Sept-Oct 2026,Canyon Insulated Sporty Jkt,9
+VW5160,Snagging,1,Global,Sept-Oct 2026,Canyon Insulated Sporty Jkt,9
+VW5160,Stain,3,Global,Sept-Oct 2026,Canyon Insulated Sporty Jkt,9
+VW5161,Other,1,Global,Sept-Oct 2026,Women's Ballard Long Jacket,11
+VW5163,Discoloration,1,Global,Sept-Oct 2026,Icon Twill Jacket,10
+VW5163,Manufacturing Error,1,Global,Sept-Oct 2026,Icon Twill Jacket,10
+VW642,Discoloration,1,Global,Sept-Oct 2026,Rib Tee Dress,10
